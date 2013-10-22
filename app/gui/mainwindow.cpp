@@ -49,8 +49,12 @@
 #include <QFile>
 #include <Qsci/qsciscintilla.h>
 #include <Qsci/qscilexerruby.h>
+#include <QLabel>
+#include <QGridLayout>
 
 #include "mainwindow.h"
+
+#define RHS_WIDTH     300
 
 MainWindow::MainWindow(QApplication &app)
 {
@@ -69,9 +73,44 @@ MainWindow::MainWindow(QApplication &app)
 
   QMap<QString, QString> map;
   tabs = new QTabWidget();
+  tabs->setStyleSheet(" \\
+QTabWidget::pane { /* The tab widget frame */ \\
+    border-top: 2px solid #C2C7CB; \\
+} \\
+ \\
+QTabWidget::tab-bar { \\
+    left: 5px; /* move to the right by 5px */ \\
+} \\
+/* Style the tab using the tab sub-control. Note that \\
+    it reads QTabBar _not_ QTabWidget */ \\
+QTabBar::tab { \\
+    background: #e7e7e8; \\
+    border: 0px solid #C4C4C3; \\
+    border-bottom-color: #C2C7CB; /* same as the pane color */ \\
+    border-top-left-radius: 1px; \\
+    border-top-right-radius: 1px; \\
+    min-width: 8ex; \\
+    height: 34px; \\
+    width: 100px; \\
+    margin-left: 5px; \\
+    font-family: 'Bariol'; \\
+    font-size: 18px; \\
+    color: #636466; \\
+} \\
+QTabBar::tab:selected, QTabBar::tab:hover { \\
+    background: #ffffff; \\
+} \\
+QTabBar::tab:selected { \\
+    height: 36px; \\
+    border-color: #9B9B9B; \\
+    border-bottom-color: #C2C7CB; /* same as pane color */ \\
+} \\
+QTabBar::tab:!selected { \\
+    margin-top: 2px; /* make non-selected tabs look smaller */ \\
+}");
   tabs->setTabsClosable(false);
   tabs->setMovable(false);
-  setCentralWidget(tabs);
+  //setCentralWidget(tabs);
 
   workspace1 = new QsciScintilla;
   workspace2 = new QsciScintilla;
@@ -90,7 +129,6 @@ MainWindow::MainWindow(QApplication &app)
   QString w6 = "Workspace 6";
   QString w7 = "Workspace 7";
   QString w8 = "Workspace 8";
-
 
   tabs->addTab(workspace1, w1);
   tabs->addTab(workspace2, w2);
@@ -130,7 +168,7 @@ MainWindow::MainWindow(QApplication &app)
 
   lexer = new QsciLexerRuby;
 
-  QFont font("Monospace");
+  QFont font("Bariol");
   font.setStyleHint(QFont::Monospace);
   lexer->setDefaultFont(font);
 
@@ -158,21 +196,79 @@ MainWindow::MainWindow(QApplication &app)
   workspace8->setLexer(lexer);
   workspace8->zoomIn(13);
 
-  outputPane = new QTextEdit;
-  errorPane = new QsciScintilla;
+/* RHS */
+  /* Output */
+  QLabel * outputLabel = new QLabel(this);
+  outputLabel->setFixedWidth(RHS_WIDTH);
+  outputLabel->setText(tr("Output"));
+  outputLabel->setStyleSheet(" \\
+QLabel { \\
+    background-color: #e7e7e8; \\
+    color: #636466; \\
+    margin-top: 2px; \\
+    margin-bottom: 0; \\
+    padding: 8px; \\
+    font-family: 'Bariol'; \\
+    font-size: 18px; \\
+    color: #636466; \\
+}");
 
-  outputPane->zoomIn(7);
+  outputPane = new QTextEdit;
+  outputPane->setFixedWidth(RHS_WIDTH);
+  outputPane->setStyleSheet(" \\
+QTextEdit { \\
+    background-color: #ffffff; \\
+    margin: 0; \\
+    font-family: 'Bariol'; \\
+    font-size: 30px; \\
+}");
+  //outputPane->zoomIn(7);
+
+  /* Error */
+  QLabel * errorLabel = new QLabel(tr("Errors"), this);
+  errorLabel->setFixedWidth(RHS_WIDTH);
+  errorLabel->setStyleSheet(" \\
+QLabel { \\
+    background-color: #e7e7e8; \\
+    color: #636466; \\
+    margin-top: 5px; \\
+    margin-bottom: 0; \\
+    padding: 9px; \\
+    font-family: 'Bariol'; \\
+    font-size: 18px; \\
+    color: #636466; \\
+}");
+
+  errorPane = new QsciScintilla;
+  errorPane->setFixedWidth(RHS_WIDTH);
+  errorPane->setStyleSheet(" \\
+QsciScintilla { \\
+    font-family: 'Bariol'; \\
+    margin: 0; \\
+}");
   errorPane->zoomIn(3);
 
-  QDockWidget *outputWidget = new QDockWidget(tr("Output"), this);
-  outputWidget->setAllowedAreas(Qt::RightDockWidgetArea);
-  outputWidget->setWidget(outputPane);
-  addDockWidget(Qt::RightDockWidgetArea, outputWidget);
+/* RHS */
+  QGridLayout * rhsLayout = new QGridLayout;
+  rhsLayout->addWidget(outputLabel, 0, 0);
+  rhsLayout->addWidget(outputPane, 1, 0);
+  rhsLayout->addWidget(errorLabel, 2, 0);
+  rhsLayout->addWidget(errorPane, 3, 0);
+  rhsLayout->setVerticalSpacing(0);
 
-  QDockWidget *dockWidget = new QDockWidget(tr("Errors"), this);
-  dockWidget->setAllowedAreas(Qt::RightDockWidgetArea);
-  dockWidget->setWidget(errorPane);
-  addDockWidget(Qt::RightDockWidgetArea, dockWidget);
+/* Main Content Layout */
+  QGridLayout * mainContentLayout = new QGridLayout;
+  mainContentLayout->addWidget(tabs, 0, 0);
+  mainContentLayout->addLayout(rhsLayout, 0, 1);
+  mainContentLayout->setVerticalSpacing(0);
+
+  QWidget * mainWidget = new QWidget(this);
+  mainWidget->setLayout(mainContentLayout);
+
+  setCentralWidget(mainWidget);
+
+/* Set app background colour */
+  setStyleSheet("background-color: #d1d2d4");
 
   createActions();
   createMenus();
@@ -408,13 +504,12 @@ void MainWindow::clearOutputPanels()
 
 void MainWindow::createActions()
 {
-
-  runAct = new QAction(QIcon(":/images/save.png"), tr("&Run"), this);
+  runAct = new QAction(QIcon(":/images/play.png"), tr("&Run"), this);
   runAct->setShortcut(tr("Ctrl+R"));
   runAct->setStatusTip(tr("Run code"));
   connect(runAct, SIGNAL(triggered()), this, SLOT(runCode()));
 
-  stopAct = new QAction(QIcon(":/images/new.png"), tr("&Stop"), this);
+  stopAct = new QAction(QIcon(":/images/stop.png"), tr("&Stop"), this);
   stopAct->setShortcut(tr("Ctrl+Q"));
   stopAct->setStatusTip(tr("Stop code"));
   connect(stopAct, SIGNAL(triggered()), this, SLOT(stopCode()));
@@ -496,16 +591,24 @@ void MainWindow::createMenus()
 void MainWindow::createToolBars()
 {
     fileToolBar = addToolBar(tr("Run"));
+    fileToolBar->setStyleSheet( " \\
+QToolBar { \\
+    border: 0px solid black; /* Needed to make the background persistent when the bar is docked at the top or bottom */\\
+    background: #d1d2d4;\\
+    spacing: 3px; /* spacing between items in the tool bar */ \\
+}");
     fileToolBar->addAction(runAct);
     fileToolBar->addAction(stopAct);
     // fileToolBar->addAction(newAct);
     // fileToolBar->addAction(openAct);
-    fileToolBar->addAction(saveAsAct);
+    // fileToolBar->addAction(saveAsAct);
 }
 
 void MainWindow::createStatusBar()
 {
     statusBar()->showMessage(tr("Ready"));
+    /* For now, don't show the status bar */
+    statusBar()->hide();
 }
 
 void MainWindow::readSettings()

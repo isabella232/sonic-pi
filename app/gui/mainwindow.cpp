@@ -56,6 +56,108 @@
 
 #define RHS_WIDTH     300
 
+/******************* Styling *******************/
+/*                                             */
+/* TODO: Move away from using the preprocessor */
+/*                                             */
+/***********************************************/
+
+/* General App Style */
+#define APP_STYLING  "\
+background-color: #d1d2d4"
+
+/* The tabs which contain the main workspace */
+#define TABS_STYLING  " \
+QTabWidget::pane { /* The tab widget frame */ \
+    border-top: 2px solid #C2C7CB; \
+} \
+QTabWidget::tab-bar { \
+    left: 5px; /* move to the right by 5px */ \
+} \
+/* Style the tab using the tab sub-control. Note that it reads QTabBar _not_ QTabWidget */ \
+QTabBar::tab { \
+    background: #e7e7e8; \
+    border: 0px solid #C4C4C3; \
+    border-bottom-color: #C2C7CB; /* same as the pane color */ \
+    border-top-left-radius: 1px; \
+    border-top-right-radius: 1px; \
+    min-width: 8ex; \
+    height: 34px; \
+    width: 100px; \
+    margin-left: 5px; \
+    font-family: 'Bariol'; \
+    font-size: 18px; \
+    color: #636466; \
+} \
+QTabBar::tab:selected, QTabBar::tab:hover { \
+    background: #ffffff; \
+} \
+QTabBar::tab:selected { \
+    height: 36px; \
+    border-color: #9B9B9B; \
+    border-bottom-color: #C2C7CB; /* same as pane color */ \
+} \
+QTabBar::tab:!selected { \
+    margin-top: 2px; /* make non-selected tabs look smaller */ \
+}"
+
+/* The main workspace */
+#define WORKSPACE_STYLING ""
+
+/* The label describing the output pane */
+#define OUTPUT_LABEL_STYLING  " \
+QLabel { \
+    background-color: #e7e7e8; \
+    color: #636466; \
+    margin-top: 2px; \
+    margin-bottom: 0; \
+    padding: 8px; \
+    font-family: 'Bariol'; \
+    font-size: 18px; \
+    color: #636466; \
+}"
+
+/* The pane showing the output */
+#define OUTPUT_PANE_STYLING  " \
+QTextEdit { \
+    background-color: #ffffff; \
+    margin: 0; \
+    font-family: 'Bariol'; \
+    font-size: 30px; \
+}"
+
+/* The label describing the error pane */
+#define ERROR_LABEL_STYLING  " \
+QLabel { \
+    background-color: #e7e7e8; \
+    color: #636466; \
+    margin-top: 5px; \
+    margin-bottom: 0; \
+    padding: 9px; \
+    font-family: 'Bariol'; \
+    font-size: 18px; \
+    color: #636466; \
+}"
+
+/* The pane showing any error messages */
+#define ERROR_PANE_STYLING  " \
+QsciScintilla { \
+    font-family: 'Bariol'; \
+    margin: 0; \
+}"
+
+/* The dockable toolbar containing the play, pause, etc buttons */
+#define FILE_TOOLBAR_STYLING  " \
+QToolBar { \
+    border: 0px solid black; /* Needed to make the background persistent when the bar is docked at the top or bottom */\
+    background: #d1d2d4;\
+    spacing: 3px; /* spacing between items in the tool bar */ \
+}"
+
+/***** End *****/
+/*      of     */
+/*** styling ***/
+
 MainWindow::MainWindow(QApplication &app)
 {
 
@@ -73,41 +175,7 @@ MainWindow::MainWindow(QApplication &app)
 
   QMap<QString, QString> map;
   tabs = new QTabWidget();
-  tabs->setStyleSheet(" \\
-QTabWidget::pane { /* The tab widget frame */ \\
-    border-top: 2px solid #C2C7CB; \\
-} \\
- \\
-QTabWidget::tab-bar { \\
-    left: 5px; /* move to the right by 5px */ \\
-} \\
-/* Style the tab using the tab sub-control. Note that \\
-    it reads QTabBar _not_ QTabWidget */ \\
-QTabBar::tab { \\
-    background: #e7e7e8; \\
-    border: 0px solid #C4C4C3; \\
-    border-bottom-color: #C2C7CB; /* same as the pane color */ \\
-    border-top-left-radius: 1px; \\
-    border-top-right-radius: 1px; \\
-    min-width: 8ex; \\
-    height: 34px; \\
-    width: 100px; \\
-    margin-left: 5px; \\
-    font-family: 'Bariol'; \\
-    font-size: 18px; \\
-    color: #636466; \\
-} \\
-QTabBar::tab:selected, QTabBar::tab:hover { \\
-    background: #ffffff; \\
-} \\
-QTabBar::tab:selected { \\
-    height: 36px; \\
-    border-color: #9B9B9B; \\
-    border-bottom-color: #C2C7CB; /* same as pane color */ \\
-} \\
-QTabBar::tab:!selected { \\
-    margin-top: 2px; /* make non-selected tabs look smaller */ \\
-}");
+  tabs->setStyleSheet(TABS_STYLING);
   tabs->setTabsClosable(false);
   tabs->setMovable(false);
   //setCentralWidget(tabs);
@@ -201,51 +269,21 @@ QTabBar::tab:!selected { \\
   QLabel * outputLabel = new QLabel(this);
   outputLabel->setFixedWidth(RHS_WIDTH);
   outputLabel->setText(tr("Output"));
-  outputLabel->setStyleSheet(" \\
-QLabel { \\
-    background-color: #e7e7e8; \\
-    color: #636466; \\
-    margin-top: 2px; \\
-    margin-bottom: 0; \\
-    padding: 8px; \\
-    font-family: 'Bariol'; \\
-    font-size: 18px; \\
-    color: #636466; \\
-}");
+  outputLabel->setStyleSheet(OUTPUT_LABEL_STYLING);
 
   outputPane = new QTextEdit;
   outputPane->setFixedWidth(RHS_WIDTH);
-  outputPane->setStyleSheet(" \\
-QTextEdit { \\
-    background-color: #ffffff; \\
-    margin: 0; \\
-    font-family: 'Bariol'; \\
-    font-size: 30px; \\
-}");
+  outputPane->setStyleSheet(OUTPUT_PANE_STYLING);
   //outputPane->zoomIn(7);
 
   /* Error */
   QLabel * errorLabel = new QLabel(tr("Errors"), this);
   errorLabel->setFixedWidth(RHS_WIDTH);
-  errorLabel->setStyleSheet(" \\
-QLabel { \\
-    background-color: #e7e7e8; \\
-    color: #636466; \\
-    margin-top: 5px; \\
-    margin-bottom: 0; \\
-    padding: 9px; \\
-    font-family: 'Bariol'; \\
-    font-size: 18px; \\
-    color: #636466; \\
-}");
+  errorLabel->setStyleSheet(ERROR_LABEL_STYLING);
 
   errorPane = new QsciScintilla;
   errorPane->setFixedWidth(RHS_WIDTH);
-  errorPane->setStyleSheet(" \\
-QsciScintilla { \\
-    font-family: 'Bariol'; \\
-    margin: 0; \\
-}");
+  errorPane->setStyleSheet(ERROR_PANE_STYLING);
   errorPane->zoomIn(3);
 
 /* RHS */
@@ -267,8 +305,7 @@ QsciScintilla { \\
 
   setCentralWidget(mainWidget);
 
-/* Set app background colour */
-  setStyleSheet("background-color: #d1d2d4");
+  setStyleSheet(APP_STYLING);
 
   createActions();
   createMenus();
@@ -455,7 +492,7 @@ void MainWindow::open()
 
 bool MainWindow::save()
 {
-
+  return true;
 }
 
 void MainWindow::about()
@@ -591,12 +628,7 @@ void MainWindow::createMenus()
 void MainWindow::createToolBars()
 {
     fileToolBar = addToolBar(tr("Run"));
-    fileToolBar->setStyleSheet( " \\
-QToolBar { \\
-    border: 0px solid black; /* Needed to make the background persistent when the bar is docked at the top or bottom */\\
-    background: #d1d2d4;\\
-    spacing: 3px; /* spacing between items in the tool bar */ \\
-}");
+    fileToolBar->setStyleSheet(FILE_TOOLBAR_STYLING);
     fileToolBar->addAction(runAct);
     fileToolBar->addAction(stopAct);
     // fileToolBar->addAction(newAct);
@@ -697,8 +729,7 @@ QString MainWindow::workspaceFilename(QsciScintilla* text)
 bool MainWindow::saveWorkspace(QsciScintilla* text)
 {
   QString label = currentTabLabel();
-  saveFile(workspaceFilename(text), text);
-  return true;
+  return saveFile(workspaceFilename(text), text);
 }
 
 // void MainWindow::switchWorkspace(const QString &fileName)

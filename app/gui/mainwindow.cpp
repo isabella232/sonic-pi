@@ -90,7 +90,7 @@ QTabBar::tab { \
     color: #636466; \
 } \
 QTabBar::tab:selected, QTabBar::tab:hover { \
-    background: #ffffff; \
+    background: #f0f0f1; \
 } \
 QTabBar::tab:selected { \
     height: 36px; \

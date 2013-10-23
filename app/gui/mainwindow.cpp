@@ -53,6 +53,7 @@
 #include <QGridLayout>
 
 #include "mainwindow.h"
+#include "lexer.h"
 
 #define RHS_WIDTH     300
 
@@ -102,7 +103,10 @@ QTabBar::tab:!selected { \
 }"
 
 /* The main workspace */
-#define WORKSPACE_STYLING ""
+#define WORKSPACE_STYLING " \
+QSciScintilla { \
+    padding: 30px; \
+}"
 
 /* The label describing the output pane */
 #define OUTPUT_LABEL_STYLING  " \
@@ -140,6 +144,7 @@ QLabel { \
 }"
 
 /* The pane showing any error messages */
+#define ERROR_PANE_HEIGHT  150
 #define ERROR_PANE_STYLING  " \
 QsciScintilla { \
     font-family: 'Bariol'; \
@@ -234,10 +239,10 @@ MainWindow::MainWindow(QApplication &app)
   workspace7->setUtf8(true);
   workspace8->setUtf8(true);
 
-  lexer = new QsciLexerRuby;
+  lexer = new Lexer;
 
   QFont font("Bariol");
-  font.setStyleHint(QFont::Monospace);
+  font.setStyleHint(QFont::SansSerif);
   lexer->setDefaultFont(font);
 
   workspace1->setLexer(lexer);
@@ -283,6 +288,7 @@ MainWindow::MainWindow(QApplication &app)
 
   errorPane = new QsciScintilla;
   errorPane->setFixedWidth(RHS_WIDTH);
+  errorPane->setFixedHeight(ERROR_PANE_HEIGHT);
   errorPane->setStyleSheet(ERROR_PANE_STYLING);
   errorPane->zoomIn(3);
 

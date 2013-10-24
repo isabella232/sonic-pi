@@ -186,6 +186,11 @@ QToolBar { \
 /*      of     */
 /*** styling ***/
 
+
+/***********************************************************/
+/*********************** Constructor ***********************/
+/***********************************************************/
+
 MainWindow::MainWindow(QApplication &app)
 {
 
@@ -342,190 +347,7 @@ MainWindow::MainWindow(QApplication &app)
   connect(&app, SIGNAL( aboutToQuit() ), this, SLOT( onExitCleanup() ) );
 }
 
-void MainWindow::ensureWorkspaces()
-{
-  QString program = QCoreApplication::applicationDirPath() + "/../../app/scripts/ensure-workspaces.rb";
-  QStringList arguments;
-  QObject *parent;
-  runProcess = new QProcess(parent);
-  runProcess->start(program, arguments);
-  runProcess->waitForFinished();
-}
 
-void MainWindow::onExitCleanup()
-{
-  QString program = QCoreApplication::applicationDirPath() + "/../../app/scripts/shutdown.rb";
-  QStringList arguments;
-  QObject *parent;
-  runProcess = new QProcess(parent);
-  runProcess->start(program, arguments);
-}
-
-void MainWindow::loadWorkspaces()
-{
-  loadFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/one/1.spi", workspace1);
-  loadFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/two/1.spi", workspace2);
-  loadFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/three/1.spi", workspace3);
-  loadFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/four/1.spi", workspace4);
-  loadFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/five/1.spi", workspace5);
-  loadFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/six/1.spi", workspace6);
-  loadFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/seven/1.spi", workspace7);
-  loadFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/eight/1.spi", workspace8);
-}
-
-void MainWindow::saveWorkspaces()
-{
-  saveFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/one/1.spi", workspace1);
-  saveFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/two/1.spi", workspace2);
-  saveFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/three/1.spi", workspace3);
-  saveFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/four/1.spi", workspace4);
-  saveFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/five/1.spi", workspace5);
-  saveFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/six/1.spi", workspace6);
-  saveFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/seven/1.spi", workspace7);
-  saveFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/eight/1.spi", workspace8);
-}
-
-void MainWindow::closeEvent(QCloseEvent *event)
-{
-    if (maybeSave()) {
-        writeSettings();
-        event->accept();
-    } else {
-        event->ignore();
-    }
-}
-
-void MainWindow::newFile()
-{
-
-}
-
-QString MainWindow::currentTabLabel()
-{
-  return tabs->tabText(tabs->currentIndex());
-}
-
-
-bool MainWindow::saveAs()
-{
-  QString fileName = QFileDialog::getSaveFileName(this, tr("Save Current Workspace"), QDir::homePath() + "/Desktop");
-  if (!fileName.isEmpty())
-  {
-    return saveFile(fileName, (QsciScintilla*)tabs->currentWidget());
-  } else {
-    return false;
-  }
-}
-
-void MainWindow::runCode()
-{
-  //  printf("running code");
-  killSynths();
-  saveWorkspace( (QsciScintilla*)tabs->currentWidget());
-  saveFile("/tmp/sonic-pi-current-code.rb", (QsciScintilla*)tabs->currentWidget());
-  outputPane->clear();
-  errorPane->clear();
-  lexer->setPaper(Qt::lightGray);
-  QString emptyText = "";
-  statusBar()->showMessage(tr("Running..."), 2000);
-
-  //  clearOutputPanels();
-
-  //  printf((QCoreApplication::applicationDirPath() + "/../../app/scripts/run-code.rb").toAscii().data());
-  QString program = QCoreApplication::applicationDirPath() + "/../../app/scripts/run-code.rb";
-  QStringList arguments;
-  arguments << "/tmp/sonic-pi-current-code.rb";
-  QObject *parent;
-  runProcess = new QProcess(parent);
-
-  connect(runProcess, SIGNAL(readyReadStandardOutput()),
-          this, SLOT(updateOutput()));
-
-  connect(runProcess, SIGNAL(readyReadStandardError()),
-          this, SLOT(updateError()));
-
-
-
-  runProcess->start(program, arguments);
-  //runProcess->write(tabs->currentWidget()->text().toAscii());
-  //  runProcess->waitForFinished();
-  lexer->setPaper(Qt::white);
-}
-
-void MainWindow::killSynths()
-{
-  if (runProcess)
-    {
-      runProcess->kill();
-    }
-  stopRunningSynths();
-}
-
-void MainWindow::stopCode()
-{
-  outputPane->clear();
-  errorPane->clear();
-  lexer->setPaper(Qt::red);
-  statusBar()->showMessage(tr("Stopping..."), 2000);
-  killSynths();
-  //  clearOutputPanels();
-  // QString program = QCoreApplication::applicationDirPath() + "/../../app/scripts/stop-code.rb";
-  // QStringList arguments;
-  // arguments << "/tmp/sonic-pi";
-  // QObject *parent;
-  // runProcess = new QProcess(parent);
-
-  // connect(runProcess, SIGNAL(readyReadStandardOutput()),
-  //         this, SLOT(updateOutput()));
-
-  // connect(runProcess, SIGNAL(readyReadStandardError()),
-  //         this, SLOT(updateError()));
-
-  // runProcess->start(program, arguments);
-  //runProcess->write(currentTextArea()->text().toAscii());
-  //  runProcess->waitForFinished();
-  lexer->setPaper(Qt::white);
-}
-
-void MainWindow::updateError()
-{
-  QByteArray output = runProcess->readAllStandardError();
-  errorPane->append(output);
-}
-
-void MainWindow::updateOutput()
-{
-  QByteArray output = runProcess->readAllStandardOutput();
-  outputPane->append(output);
-}
-
-void MainWindow::open()
-{
-
-}
-
-bool MainWindow::save()
-{
-  return true;
-}
-
-void MainWindow::about()
-{
-   QMessageBox::about(this, tr("About Sonic Pi"),
-            tr("<b>Sonic Pi</b> is an experimental language and application"
-               "for using creative processes to engage students with a"
-               "computer science curriculum."));
-}
-
-void MainWindow::documentWasModified()
-{
-  //    setWindowModified(textEdit->isModified());
-}
-
-// void MainWindow::textChanged()
-// {
-//   printf("changed!");
-// }
 
 void MainWindow::callInitScript()
 {
@@ -537,21 +359,10 @@ void MainWindow::callInitScript()
   myProcess->waitForFinished();
 }
 
-void MainWindow::stopRunningSynths()
-{
-  QString program = QCoreApplication::applicationDirPath() + "/../../app/scripts/stop-running-synths.rb";
-  QStringList arguments;
-  QObject *parent;
-  QProcess *myProcess = new QProcess(parent);
-  myProcess->start(program, arguments);
-  myProcess->waitForFinished();
-}
 
-void MainWindow::clearOutputPanels()
-{
-    outputPane->clear();
-    errorPane->clear();
-}
+/**************************************************************************/
+/*********************** Creation of menus/toolbars ***********************/
+/**************************************************************************/
 
 void MainWindow::createActions()
 {
@@ -570,11 +381,13 @@ void MainWindow::createActions()
     // newAct->setStatusTip(tr("Create a new file"));
     // connect(newAct, SIGNAL(triggered()), this, SLOT(newFile()));
 
-    // openAct = new QAction(QIcon(":/images/open.png"), tr("&Open..."), this);
-    // openAct->setShortcut(tr("Ctrl+O"));
-    // openAct->setStatusTip(tr("Open an existing file"));
-    // connect(openAct, SIGNAL(triggered()), this, SLOT(open()));
-  saveAsAct = new QAction(QIcon(":/images/open.png"), tr("&Save &As..."), this);
+  openAct = new QAction(QIcon(":/images/open.png"), tr("&Open..."), this);
+  openAct->setShortcut(tr("Ctrl+O"));
+  openAct->setStatusTip(tr("Open an existing file"));
+  connect(openAct, SIGNAL(triggered()), this, SLOT(open()));
+
+  saveAsAct = new QAction(QIcon(":/images/save.png"), tr("&Save &As..."), this);
+  saveAsAct->setShortcut(tr("Ctrl+S"));
   saveAsAct->setStatusTip(tr("Save the document under a new name"));
   connect(saveAsAct, SIGNAL(triggered()), this, SLOT(saveAs()));
 
@@ -646,8 +459,8 @@ void MainWindow::createToolBars()
     fileToolBar->addAction(runAct);
     fileToolBar->addAction(stopAct);
     // fileToolBar->addAction(newAct);
-    // fileToolBar->addAction(openAct);
-    // fileToolBar->addAction(saveAsAct);
+    fileToolBar->addAction(openAct);
+    fileToolBar->addAction(saveAsAct);
 }
 
 void MainWindow::createStatusBar()
@@ -657,37 +470,69 @@ void MainWindow::createStatusBar()
     statusBar()->hide();
 }
 
-void MainWindow::readSettings()
+
+/***************************************************************/
+/*************************** File IO ***************************/
+/***************************************************************/
+
+/*********************** Creating a file ***********************/
+void MainWindow::newFile()
 {
-    QSettings settings("Trolltech", "Application Example");
-    QPoint pos = settings.value("pos", QPoint(200, 200)).toPoint();
-    QSize size = settings.value("size", QSize(400, 400)).toSize();
-    resize(size);
-    move(pos);
+
 }
 
-void MainWindow::writeSettings()
+/*********************** Saving a file ***********************/
+bool MainWindow::save()
 {
-    QSettings settings("Trolltech", "Application Example");
-    settings.setValue("pos", pos());
-    settings.setValue("size", size());
+  return true;
 }
 
-bool MainWindow::maybeSave()
+bool MainWindow::saveAs()
 {
-    // if (textEdit->isModified()) {
-    //     int ret = QMessageBox::warning(this, tr("Application"),
-    //                  tr("The document has been modified.\n"
-    //                     "Do you want to save your changes?"),
-    //                  QMessageBox::Yes | QMessageBox::Default,
-    //                  QMessageBox::No,
-    //                  QMessageBox::Cancel | QMessageBox::Escape);
-    //     if (ret == QMessageBox::Yes)
-    //         return save();
-    //     else if (ret == QMessageBox::Cancel)
-    //         return false;
-    // }
+  QString fileName = QFileDialog::getSaveFileName(this, tr("Save Current Workspace"),
+                                                  QDir::homePath() + "/Sonic-pi-content",
+                                                  tr("Sonic Pi Projects (*.sp)"));
+  if (!fileName.isEmpty())
+  {
+    if(!fileName.endsWith(".sp"))
+      fileName.append(".sp");
+    return saveFile(fileName, (QsciScintilla*)tabs->currentWidget());
+  } else {
+    return false;
+  }
+}
+
+bool MainWindow::saveFile(const QString &fileName, QsciScintilla* text)
+{
+    QFile file(fileName);
+    if (!file.open(QFile::WriteOnly)) {
+        QMessageBox::warning(this, tr("Sonic Pi"),
+                             tr("Cannot write file %1:\n%2.")
+                             .arg(fileName)
+                             .arg(file.errorString()));
+        return false;
+    }
+
+    QTextStream out(&file);
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+    out << text->text();
+    QApplication::restoreOverrideCursor();
+    //    statusBar()->showMessage(tr("File saved"), 2000);
     return true;
+}
+
+/*********************** Loading a file ***********************/
+void MainWindow::open()
+{
+  QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"),
+                                                  QDir::homePath() + "/Sonic-pi-content",
+                                                  tr("Sonic Pi Projects (*.sp)"));
+  if (!fileName.isEmpty())
+  {
+    QsciScintilla * currentWidget = (QsciScintilla *)tabs->currentWidget();
+    loadFile(fileName, currentWidget);
+  }
+  return;
 }
 
 void MainWindow::loadFile(const QString &fileName, QsciScintilla* &text)
@@ -708,23 +553,199 @@ void MainWindow::loadFile(const QString &fileName, QsciScintilla* &text)
     statusBar()->showMessage(tr("File loaded"), 2000);
 }
 
-bool MainWindow::saveFile(const QString &fileName, QsciScintilla* text)
-{
-    QFile file(fileName);
-    if (!file.open(QFile::WriteOnly)) {
-        QMessageBox::warning(this, tr("Sonic Pi"),
-                             tr("Cannot write file %1:\n%2.")
-                             .arg(fileName)
-                             .arg(file.errorString()));
-        return false;
-    }
 
-    QTextStream out(&file);
-    QApplication::setOverrideCursor(Qt::WaitCursor);
-    out << text->text();
-    QApplication::restoreOverrideCursor();
-    //    statusBar()->showMessage(tr("File saved"), 2000);
+/*************************************************************/
+/*********************** Music Control ***********************/
+/*************************************************************/
+
+void MainWindow::runCode()
+{
+  //  printf("running code");
+  killSynths();
+  saveWorkspace( (QsciScintilla*)tabs->currentWidget());
+  saveFile("/tmp/sonic-pi-current-code.rb", (QsciScintilla*)tabs->currentWidget());
+  outputPane->clear();
+  errorPane->clear();
+  lexer->setPaper(Qt::lightGray);
+  QString emptyText = "";
+  statusBar()->showMessage(tr("Running..."), 2000);
+
+  //  clearOutputPanels();
+
+  //  printf((QCoreApplication::applicationDirPath() + "/../../app/scripts/run-code.rb").toAscii().data());
+  QString program = QCoreApplication::applicationDirPath() + "/../../app/scripts/run-code.rb";
+  QStringList arguments;
+  arguments << "/tmp/sonic-pi-current-code.rb";
+  QObject *parent;
+  runProcess = new QProcess(parent);
+
+  connect(runProcess, SIGNAL(readyReadStandardOutput()),
+          this, SLOT(updateOutput()));
+
+  connect(runProcess, SIGNAL(readyReadStandardError()),
+          this, SLOT(updateError()));
+
+
+
+  runProcess->start(program, arguments);
+  //runProcess->write(tabs->currentWidget()->text().toAscii());
+  //  runProcess->waitForFinished();
+  lexer->setPaper(Qt::white);
+}
+
+void MainWindow::killSynths()
+{
+  if (runProcess)
+    {
+      runProcess->kill();
+    }
+  stopRunningSynths();
+}
+
+void MainWindow::stopCode()
+{
+  outputPane->clear();
+  errorPane->clear();
+  lexer->setPaper(Qt::red);
+  statusBar()->showMessage(tr("Stopping..."), 2000);
+  killSynths();
+  //  clearOutputPanels();
+  // QString program = QCoreApplication::applicationDirPath() + "/../../app/scripts/stop-code.rb";
+  // QStringList arguments;
+  // arguments << "/tmp/sonic-pi";
+  // QObject *parent;
+  // runProcess = new QProcess(parent);
+
+  // connect(runProcess, SIGNAL(readyReadStandardOutput()),
+  //         this, SLOT(updateOutput()));
+
+  // connect(runProcess, SIGNAL(readyReadStandardError()),
+  //         this, SLOT(updateError()));
+
+  // runProcess->start(program, arguments);
+  //runProcess->write(currentTextArea()->text().toAscii());
+  //  runProcess->waitForFinished();
+  lexer->setPaper(Qt::white);
+}
+
+void MainWindow::stopRunningSynths()
+{
+  QString program = QCoreApplication::applicationDirPath() + "/../../app/scripts/stop-running-synths.rb";
+  QStringList arguments;
+  QObject *parent;
+  QProcess *myProcess = new QProcess(parent);
+  myProcess->start(program, arguments);
+  myProcess->waitForFinished();
+}
+
+void MainWindow::clearOutputPanels()
+{
+    outputPane->clear();
+    errorPane->clear();
+}
+
+void MainWindow::updateError()
+{
+  QByteArray output = runProcess->readAllStandardError();
+  errorPane->append(output);
+}
+
+void MainWindow::updateOutput()
+{
+  QByteArray output = runProcess->readAllStandardOutput();
+  outputPane->append(output);
+}
+
+
+/****************************************************/
+/*********************** Exit ***********************/
+/****************************************************/
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    if (maybeSave()) {
+        writeSettings();
+        event->accept();
+    } else {
+        event->ignore();
+    }
+}
+
+
+bool MainWindow::maybeSave()
+{
+    // if (textEdit->isModified()) {
+    //     int ret = QMessageBox::warning(this, tr("Application"),
+    //                  tr("The document has been modified.\n"
+    //                     "Do you want to save your changes?"),
+    //                  QMessageBox::Yes | QMessageBox::Default,
+    //                  QMessageBox::No,
+    //                  QMessageBox::Cancel | QMessageBox::Escape);
+    //     if (ret == QMessageBox::Yes)
+    //         return save();
+    //     else if (ret == QMessageBox::Cancel)
+    //         return false;
+    // }
     return true;
+}
+
+
+void MainWindow::documentWasModified()
+{
+  //    setWindowModified(textEdit->isModified());
+}
+
+// void MainWindow::textChanged()
+// {
+//   printf("changed!");
+// }
+
+void MainWindow::onExitCleanup()
+{
+  QString program = QCoreApplication::applicationDirPath() + "/../../app/scripts/shutdown.rb";
+  QStringList arguments;
+  QObject *parent;
+  runProcess = new QProcess(parent);
+  runProcess->start(program, arguments);
+}
+
+
+/********************************************************************/
+/*********************** Workspace operations ***********************/
+/********************************************************************/
+
+void MainWindow::ensureWorkspaces()
+{
+  QString program = QCoreApplication::applicationDirPath() + "/../../app/scripts/ensure-workspaces.rb";
+  QStringList arguments;
+  QObject *parent;
+  runProcess = new QProcess(parent);
+  runProcess->start(program, arguments);
+  runProcess->waitForFinished();
+}
+
+void MainWindow::saveWorkspaces()
+{
+  saveFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/one/1.spi", workspace1);
+  saveFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/two/1.spi", workspace2);
+  saveFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/three/1.spi", workspace3);
+  saveFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/four/1.spi", workspace4);
+  saveFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/five/1.spi", workspace5);
+  saveFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/six/1.spi", workspace6);
+  saveFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/seven/1.spi", workspace7);
+  saveFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/eight/1.spi", workspace8);
+}
+
+void MainWindow::loadWorkspaces()
+{
+  loadFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/one/1.spi", workspace1);
+  loadFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/two/1.spi", workspace2);
+  loadFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/three/1.spi", workspace3);
+  loadFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/four/1.spi", workspace4);
+  loadFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/five/1.spi", workspace5);
+  loadFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/six/1.spi", workspace6);
+  loadFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/seven/1.spi", workspace7);
+  loadFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/eight/1.spi", workspace8);
 }
 
 QString MainWindow::workspaceFilename(QsciScintilla* text)
@@ -759,7 +780,43 @@ void MainWindow::setCurrentFile(const QString &fileName)
 
 }
 
+QString MainWindow::currentTabLabel()
+{
+  return tabs->tabText(tabs->currentIndex());
+}
+
 QString MainWindow::strippedName(const QString &fullFileName)
 {
     return QFileInfo(fullFileName).fileName();
 }
+
+
+/*******************************************************************/
+/*********************** About/Help/Settings ***********************/
+/*******************************************************************/
+
+void MainWindow::about()
+{
+   QMessageBox::about(this, tr("About Sonic Pi"),
+            tr("<b>Sonic Pi</b> is an experimental language and application"
+               "for using creative processes to engage students with a"
+               "computer science curriculum."));
+}
+
+void MainWindow::readSettings()
+{
+    QSettings settings("Trolltech", "Application Example");
+    QPoint pos = settings.value("pos", QPoint(200, 200)).toPoint();
+    QSize size = settings.value("size", QSize(400, 400)).toSize();
+    resize(size);
+    move(pos);
+}
+
+void MainWindow::writeSettings()
+{
+    QSettings settings("Trolltech", "Application Example");
+    settings.setValue("pos", pos());
+    settings.setValue("size", size());
+}
+
+/******************************************************************/

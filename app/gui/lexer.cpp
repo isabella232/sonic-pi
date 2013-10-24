@@ -202,9 +202,9 @@ const char *Lexer::keywords(int set) const
             "begin defined? ensure module redo super until BEGIN "
             "break do false next rescue then when END case else "
             "for nil require retry true while alias class elsif "
-            "if not return undef yield"
+            "if not return undef yield "
             // Sonic Pi specific
-            "with_synth play repeat with_tempo current_tempo play_pattern play_pattern_timed play_chord";
+            "sleep repeat play with_synth with_tempo current_tempo play_pattern play_pattern_timed play_chord";
 
 
             

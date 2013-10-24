@@ -108,6 +108,29 @@ QSciScintilla { \
     padding: 30px; \
 }"
 
+#define MARGIN_WIDTH  '0'
+
+#define MARGIN_BG_COLOUR "#e7e7e8"
+
+#define MARGIN_FG_COLOUR "#636466"
+
+#define STYLE_WORKSPACE(workspace) \
+  workspace->setUtf8(true); \
+  workspace->setAutoIndent(true); \
+  workspace->setMarginsFont(marginFont); \
+  workspace->setMarginWidth(0, MARGIN_WIDTH); \
+  workspace->setMarginLineNumbers(0, true); \
+  workspace->setMarginsBackgroundColor(QColor(MARGIN_BG_COLOUR)); \
+  workspace->setMarginsForegroundColor(QColor(MARGIN_FG_COLOUR)); \
+  workspace->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded); \
+  workspace->setIndentationWidth(4); \
+  workspace->setTabWidth(4); \
+  workspace->setLexer(lexer); \
+  workspace->zoomIn(13); \
+  //workspace->autoCompleteFromAll(); \
+  //workspace->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff); \
+
+
 /* The label describing the output pane */
 #define OUTPUT_LABEL_STYLING  " \
 QLabel { \
@@ -230,44 +253,26 @@ MainWindow::MainWindow(QApplication &app)
   map.insert(w7, seven);
   map.insert(w8, eight);
 
-  workspace1->setUtf8(true);
-  workspace2->setUtf8(true);
-  workspace3->setUtf8(true);
-  workspace4->setUtf8(true);
-  workspace5->setUtf8(true);
-  workspace6->setUtf8(true);
-  workspace7->setUtf8(true);
-  workspace8->setUtf8(true);
+  QFont marginFont("Bariol");
+  marginFont.setStyleHint(QFont::SansSerif);
+  marginFont.setPointSize(10);
 
   lexer = new Lexer;
 
   QFont font("Bariol");
   font.setStyleHint(QFont::SansSerif);
+  font.setPointSize(20);
+
   lexer->setDefaultFont(font);
 
-  workspace1->setLexer(lexer);
-  workspace1->zoomIn(13);
-
-  workspace2->setLexer(lexer);
-  workspace2->zoomIn(13);
-
-  workspace3->setLexer(lexer);
-  workspace3->zoomIn(13);
-
-  workspace4->setLexer(lexer);
-  workspace4->zoomIn(13);
-
-  workspace5->setLexer(lexer);
-  workspace5->zoomIn(13);
-
-  workspace6->setLexer(lexer);
-  workspace6->zoomIn(13);
-
-  workspace7->setLexer(lexer);
-  workspace7->zoomIn(13);
-
-  workspace8->setLexer(lexer);
-  workspace8->zoomIn(13);
+  STYLE_WORKSPACE(workspace1)
+  STYLE_WORKSPACE(workspace2)
+  STYLE_WORKSPACE(workspace3)
+  STYLE_WORKSPACE(workspace4)
+  STYLE_WORKSPACE(workspace5)
+  STYLE_WORKSPACE(workspace6)
+  STYLE_WORKSPACE(workspace7)
+  STYLE_WORKSPACE(workspace8)
 
 /* RHS */
   /* Output */
@@ -279,6 +284,7 @@ MainWindow::MainWindow(QApplication &app)
   outputPane = new QTextEdit;
   outputPane->setFixedWidth(RHS_WIDTH);
   outputPane->setStyleSheet(OUTPUT_PANE_STYLING);
+  outputPane->setReadOnly(true);
   //outputPane->zoomIn(7);
 
   /* Error */
@@ -290,6 +296,8 @@ MainWindow::MainWindow(QApplication &app)
   errorPane->setFixedWidth(RHS_WIDTH);
   errorPane->setFixedHeight(ERROR_PANE_HEIGHT);
   errorPane->setStyleSheet(ERROR_PANE_STYLING);
+  errorPane->setMarginWidth(1, 0);
+  errorPane->setReadOnly(true);
   errorPane->zoomIn(3);
 
 /* RHS */

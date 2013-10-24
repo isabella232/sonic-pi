@@ -9,6 +9,10 @@
 // The ctor.
 Lexer::Lexer(QObject *parent) : QsciLexerRuby(parent)
 {
+    // Set defaults
+    QFont f("Bariol", 20);
+    f.setStyleHint(QFont::SansSerif);
+    setDefaultFont(f);
 }
 
 
@@ -156,11 +160,7 @@ QFont Lexer::defaultFont(int style) const
     switch (style)
     {
         case Comment:
-            #if defined(Q_OS_WIN)
-                f = QFont("Comic Sans MS",9);
-            #else
-                f = QFont("Bitstream Vera Serif",9);
-            #endif
+            f = defaultFont(1);
             break;
 
         case POD:
@@ -168,13 +168,6 @@ QFont Lexer::defaultFont(int style) const
         case SingleQuotedString:
         case PercentStringq:
         case PercentStringQ:
-            #if defined(Q_OS_WIN)
-                f = QFont("Courier New",10);
-            #else
-                f = QFont("Bitstream Vera Sans Mono",9);
-            #endif
-            break;
-
         case Keyword:
         case ClassName:
         case FunctionMethodName:
@@ -186,6 +179,7 @@ QFont Lexer::defaultFont(int style) const
             break;
 
         default:
+            //f = QFont("Bariol", 20);
             f = QsciLexer::defaultFont(style);
     }
 

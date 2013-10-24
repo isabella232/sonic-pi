@@ -51,7 +51,7 @@ class Spider
           # Raspberry Pi : 16
           # x86_64 : 24
           ###
-          binary = f.read 24
+          binary = f.read 16
           tv_sec, tv_usec, type, code, value = binary.unpack "llSSl"
 #          desc = key_codes[code]
           desc = "TODO"

@@ -264,12 +264,6 @@ MainWindow::MainWindow(QApplication &app)
 
   lexer = new Lexer;
 
-  QFont font("Bariol");
-  font.setStyleHint(QFont::SansSerif);
-  font.setPointSize(20);
-
-  lexer->setDefaultFont(font);
-
   STYLE_WORKSPACE(workspace1)
   STYLE_WORKSPACE(workspace2)
   STYLE_WORKSPACE(workspace3)

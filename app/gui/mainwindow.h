@@ -23,6 +23,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "lexer.h"
 
 class QAction;
 class QMenu;
@@ -97,7 +98,7 @@ private:
 
     QTabWidget *tabs;
 
-    QsciLexerRuby *lexer;
+    Lexer *lexer;
     QProcess *runProcess;
     QMenu *fileMenu;
     QMenu *editMenu;

@@ -47,6 +47,10 @@ class Spider
       threads << Thread.new do
         f = File.open(input)
         loop do
+          ### It looks like the number following f.read is dependent on architecture ###
+          # Raspberry Pi : 16
+          # x86_64 : 24
+          ###
           binary = f.read 16
           tv_sec, tv_usec, type, code, value = binary.unpack "llSSl"
 #          desc = key_codes[code]
@@ -238,6 +242,7 @@ class SpiderLang
   end
 
   def play(note, *args)
+    note = replaceNote(note)
     play_synth spider.current_synth, "note", note, *args
   end
 
@@ -315,6 +320,41 @@ class SpiderLang
       spider.volume = vol
     end
   end
+
+  def replaceNote(note)
+    # C0 is 0
+    # All subsequent notes are the number of semitones above C0
+
+    # Allow the use of just the midi notes
+    if note.is_a? Integer
+      return note
+    else
+      length = note.length - 1
+      position = 1
+      noteLetter = note[0]
+      case noteLetter
+        when 'C'; noteNumber = 0
+        when 'D'; noteNumber = 2
+        when 'E'; noteNumber = 4
+        when 'F'; noteNumber = 5
+        when 'G'; noteNumber = 7
+        when 'A'; noteNumber = 9
+        when 'B'; noteNumber = 11
+        else noteNumber = 0
+      end
+      if note[1] == '#'
+        noteNumber += 1
+        length -= 1
+        position += 1
+      end
+      octave = note[position, length]
+      midiNote = (octave.to_i * 12) + noteNumber.to_i
+
+      return midiNote.to_i
+    end
+
+  end
+
 end
 
 puts SpiderLang.new.spider_eval(ARGF.read + "\nnil")

@@ -55,7 +55,7 @@
 #include "mainwindow.h"
 #include "lexer.h"
 
-#define RHS_WIDTH     300
+#define RHS_WIDTH     250
 
 /******************* Styling *******************/
 /*                                             */
@@ -237,8 +237,8 @@ MainWindow::MainWindow(QApplication &app)
   tabs->addTab(workspace4, w4);
   tabs->addTab(workspace5, w5);
   tabs->addTab(workspace6, w6);
-  tabs->addTab(workspace7, w7);
-  tabs->addTab(workspace8, w8);
+  //tabs->addTab(workspace7, w7);
+  //tabs->addTab(workspace8, w8);
 
   QString one = "one";
   QString two = "two";
@@ -385,10 +385,10 @@ void MainWindow::createActions()
   saveAsAct->setStatusTip(tr("Save the document under a new name"));
   connect(saveAsAct, SIGNAL(triggered()), this, SLOT(saveAs()));
 
-    // exitAct = new QAction(tr("E&xit"), this);
-    // exitAct->setShortcut(tr("Ctrl+Q"));
-    // exitAct->setStatusTip(tr("Exit the application"));
-    // connect(exitAct, SIGNAL(triggered()), this, SLOT(close()));
+  exitAct = new QAction(QIcon(":/images/stop.png"), tr("E&xit"), this);
+  exitAct->setShortcut(tr("Ctrl+Q"));
+  exitAct->setStatusTip(tr("Exit the application"));
+  connect(exitAct, SIGNAL(triggered()), this, SLOT(close()));
 
     // cutAct = new QAction(QIcon(":/images/cut.png"), tr("Cu&t"), this);
     // cutAct->setShortcut(tr("Ctrl+X"));
@@ -455,6 +455,13 @@ void MainWindow::createToolBars()
     // fileToolBar->addAction(newAct);
     fileToolBar->addAction(openAct);
     fileToolBar->addAction(saveAsAct);
+
+    // Move the close button to the far end of the toolbar
+    QWidget * spacerWidget = new QWidget(this);
+    spacerWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
+    spacerWidget->setVisible(true);
+    fileToolBar->addWidget(spacerWidget);
+    fileToolBar->addAction(exitAct);
 }
 
 void MainWindow::createStatusBar()

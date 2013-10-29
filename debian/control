@@ -1,0 +1,12 @@
+Source: make-music
+Maintainer: Alejandro Simon <alejandro@kano.me>
+Section: sound
+Priority: optional
+Standards-Version: 3.9.4
+Build-Depends: debhelper (>=8.0.0)
+
+Package: make-music
+Architecture: armhf
+Depends: ${shlibs:Depends}, ${misc:Depends}, libc6, supercollider, ruby1.9.1, libqscintilla2-8, jackd2
+Description: Make Music with a music programming environment
+ A programatic approach to making music based on Alex Bradbury's Sonic Pi

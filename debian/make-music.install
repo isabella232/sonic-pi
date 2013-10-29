@@ -1,0 +1,4 @@
+./app/* /opt/sonic-pi/
+./LICENSE /opt/sonic-pi
+./README.md /opt/sonic-pi/
+./app/gui/application /usr/bin/sonic-pi

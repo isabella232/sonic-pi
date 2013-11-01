@@ -1,0 +1,28 @@
+#!/bin/bash
+
+set -e
+
+WORKSPACE_DIR=$HOME/.make-music/workspaces/default/
+
+# Create workspace directories
+mkdir -p $WORKSPACE_DIR/one
+mkdir -p $WORKSPACE_DIR/two
+mkdir -p $WORKSPACE_DIR/three
+mkdir -p $WORKSPACE_DIR/four
+mkdir -p $WORKSPACE_DIR/five
+mkdir -p $WORKSPACE_DIR/six
+mkdir -p $WORKSPACE_DIR/seven
+mkdir -p $WORKSPACE_DIR/eight
+
+#Create workspaces
+touch $WORKSPACE_DIR/one/1.spi
+touch $WORKSPACE_DIR/two/1.spi
+touch $WORKSPACE_DIR/three/1.spi
+touch $WORKSPACE_DIR/four/1.spi
+touch $WORKSPACE_DIR/five/1.spi
+touch $WORKSPACE_DIR/six/1.spi
+touch $WORKSPACE_DIR/seven/1.spi
+touch $WORKSPACE_DIR/eight/1.spi
+
+# Create shortcuts
+ln -s ./app/gui/application /usr/bin/make-music

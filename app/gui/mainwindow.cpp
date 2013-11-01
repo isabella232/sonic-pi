@@ -495,8 +495,8 @@ bool MainWindow::saveAs()
                                                   tr("Make Music Projects (*.spi)"));
   if (!fileName.isEmpty())
   {
-    if(!fileName.endsWith(".sp"))
-      fileName.append(".sp");
+    if(!fileName.endsWith(".spi"))
+      fileName.append(".spi");
     return saveFile(fileName, (QsciScintilla*)tabs->currentWidget());
   } else {
     return false;

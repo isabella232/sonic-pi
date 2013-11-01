@@ -1,4 +1,3 @@
-./app/* /opt/sonic-pi/
-./LICENSE /opt/sonic-pi
-./README.md /opt/sonic-pi/
-./app/gui/application /usr/bin/sonic-pi
+./app/* /opt/make-music/
+./LICENSE /opt/make-music/
+./README.md /opt/make-music/

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+
+WORKSPACE_DIR=$HOME/.make-music/
+
+# Remove workspaces
+rm -r $WORKSPACE_DIR
+
+# Remove shortcuts
+rm /usr/bin/make-music

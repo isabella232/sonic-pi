@@ -2,10 +2,14 @@
 
 set -e
 
-WORKSPACE_DIR=$HOME/.make-music/
+WORKSPACE_DIR=/home/pi/.make-music
 
-# Remove workspaces
-rm -r $WORKSPACE_DIR
+echo "Removing workspaces"
+rm -rv $WORKSPACE_DIR
 
-# Remove shortcuts
-rm /usr/bin/make-music
+echo "Removing content directory"
+rm -rv $HOME/Music-content
+
+echo "Removing shortcuts"
+rm -v /usr/bin/make-music
+

@@ -2,19 +2,19 @@
 
 set -e
 
-WORKSPACE_DIR=$HOME/.make-music/workspaces/default/
+WORKSPACE_DIR=/home/pi/.make-music/workspaces/default
 
-# Create workspace directories
-mkdir -p $WORKSPACE_DIR/one
-mkdir -p $WORKSPACE_DIR/two
-mkdir -p $WORKSPACE_DIR/three
-mkdir -p $WORKSPACE_DIR/four
-mkdir -p $WORKSPACE_DIR/five
-mkdir -p $WORKSPACE_DIR/six
-mkdir -p $WORKSPACE_DIR/seven
-mkdir -p $WORKSPACE_DIR/eight
+echo "Creating workspace directories"
+mkdir -pv $WORKSPACE_DIR/one
+mkdir -pv $WORKSPACE_DIR/two
+mkdir -pv $WORKSPACE_DIR/three
+mkdir -pv $WORKSPACE_DIR/four
+mkdir -pv $WORKSPACE_DIR/five
+mkdir -pv $WORKSPACE_DIR/six
+mkdir -pv $WORKSPACE_DIR/seven
+mkdir -pv $WORKSPACE_DIR/eight
 
-#Create workspaces
+echo "Creating workspaces"
 touch $WORKSPACE_DIR/one/1.spi
 touch $WORKSPACE_DIR/two/1.spi
 touch $WORKSPACE_DIR/three/1.spi
@@ -24,5 +24,8 @@ touch $WORKSPACE_DIR/six/1.spi
 touch $WORKSPACE_DIR/seven/1.spi
 touch $WORKSPACE_DIR/eight/1.spi
 
-# Create shortcuts
-ln -s ./app/gui/application /usr/bin/make-music
+echo "Creating content directory"
+mkdir -pv $HOME/Music-content
+
+echo "Creating shortcuts"
+ln -sv /opt/make-music/app/gui/application /usr/bin/make-music

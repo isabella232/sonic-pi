@@ -33,5 +33,9 @@ echo "Setting permissions"
 chown -R 1000:1000 $WORKSPACE_ROOT_DIR
 chown -R 1000:1000 $CONTENT_DIR
 
+echo "Setting permissions for /dev/input/event*"
+# Quick and dirty fix for access problems.
+chmod +r /dev/input/event*
+
 echo "Creating shortcuts"
 ln -sv /opt/make-music/app/gui/application /usr/bin/make-music

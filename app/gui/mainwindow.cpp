@@ -385,7 +385,7 @@ void MainWindow::createActions()
   saveAsAct->setStatusTip(tr("Save the document under a new name"));
   connect(saveAsAct, SIGNAL(triggered()), this, SLOT(saveAs()));
 
-  exitAct = new QAction(QIcon(":/images/stop.png"), tr("E&xit"), this);
+  exitAct = new QAction(QIcon(":/images/close.png"), tr("E&xit"), this);
   exitAct->setShortcut(tr("Ctrl+Q"));
   exitAct->setStatusTip(tr("Exit the application"));
   connect(exitAct, SIGNAL(triggered()), this, SLOT(close()));

@@ -1,3 +1,4 @@
 ./app/* /opt/make-music/app/
 ./LICENSE /opt/make-music/
 ./README.md /opt/make-music/
+./bin/make-music.sh /usr/sbin

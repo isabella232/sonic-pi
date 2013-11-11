@@ -13,8 +13,7 @@ CONTENT_DIR=/home/$USER/Music-content
 # Workspaces to be created first time Make-Music is launched
 function init() 
 {
-    WORKSPACE_ROOT_DIR=/home/$USER/.make-music
-    WORKSPACE_DIR=$WORKSPACE_ROOT_DIR/workspaces/default
+    WORKSPACE_DIR=/home/$USER/.make-music/workspaces/default
 
     echo "Creating workspace directories"
     mkdir -pv $WORKSPACE_DIR/one

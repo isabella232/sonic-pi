@@ -8,13 +8,13 @@
 APPNAME="Make Music - default"
 DIALOG_TITLE="Make Music"
 PIDFILE=/tmp/start-make-music.pid
-WORKSPACE_ROOT_DIR=/home/$USER/.make-music
+CONTENT_DIR=/home/$USER/Music-content
 
 # Workspaces to be created first time Make-Music is launched
 function init() 
 {
+    WORKSPACE_ROOT_DIR=/home/$USER/.make-music
     WORKSPACE_DIR=$WORKSPACE_ROOT_DIR/workspaces/default
-    CONTENT_DIR=/home/$USER/Music-content
 
     echo "Creating workspace directories"
     mkdir -pv $WORKSPACE_DIR/one
@@ -50,7 +50,7 @@ function cleanup {
 trap cleanup EXIT
 
 # First time Make-Music is launched, call init() 
-if [! -f $WORKSPACE_DIR]; then
+if [! -f $CONTENT_DIR]; then
     init
 fi
 

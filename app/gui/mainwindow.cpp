@@ -222,14 +222,14 @@ MainWindow::MainWindow(QApplication &app)
   workspace7 = new QsciScintilla;
   workspace8 = new QsciScintilla;
 
-  QString w1 = "Workspace 1";
-  QString w2 = "Workspace 2";
-  QString w3 = "Workspace 3";
-  QString w4 = "Workspace 4";
-  QString w5 = "Workspace 5";
-  QString w6 = "Workspace 6";
-  QString w7 = "Workspace 7";
-  QString w8 = "Workspace 8";
+  QString w1 = "Song 1";
+  QString w2 = "Song 2";
+  QString w3 = "Song 3";
+  QString w4 = "Song 4";
+  QString w5 = "Song 5";
+  QString w6 = "Song 6";
+  QString w7 = "Song 7";
+  QString w8 = "Song 8";
 
   tabs->addTab(workspace1, w1);
   tabs->addTab(workspace2, w2);

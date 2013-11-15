@@ -7,7 +7,7 @@ require 'eventmachine'
 require 'osc-ruby/em_server'
 
 @server = OSC::EMServer.new( 3333 )
-@client = OSC::Client.new( 'localhost', 3333 )
+@client = OSC::Client.new( '127.0.0.1', 3333 )
 
 @server.add_method '/greeting' do | message |
   puts "#{message.ip_address}:#{message.ip_port} -- #{message.address} -- #{message.to_a}"

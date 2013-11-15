@@ -46,5 +46,5 @@ spider_log "Connecting SuperCollider to the System Audio via Jack..."
 `jack_connect SuperCollider:out_2 system:playback_2`
 
 # ensure that the synthdefs have been loaded
-client = OSC::Client.new('localhost', 4556)
+client = OSC::Client.new('127.0.0.1', 4556)
 client.send(OSC::Message.new("/d_loadDir", sp_synthdefs_path))

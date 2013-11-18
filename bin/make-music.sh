@@ -49,7 +49,7 @@ function cleanup {
 trap cleanup EXIT
 
 # First time Make-Music is launched, call init() 
-if [! -f $CONTENT_DIR]; then
+if [ ! -d $CONTENT_DIR ]; then
     init
 fi
 
@@ -70,7 +70,7 @@ if [ $rc -eq 0 ]; then
     exit 1
 fi
 
-make-music &
+/opt/make-music/app/gui/application &
 MUSICPID=$!
 
 (

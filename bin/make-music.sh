@@ -109,7 +109,7 @@ fi
 
 echo "100"
 ) |
-zenity --progress --no-cancel --title="$DIALOG_TITLE" --text="" --percentage=0 --width=400 --height=125 --auto-close --timeout=30 --auto-kill
+zenity --progress --no-cancel --title="$DIALOG_TITLE" --text="" --percentage=0 --width=300 --height=90 --auto-close --timeout=30 --auto-kill
 
 if [ "$?" = -1 ] ; then
     zenity --error

@@ -30,7 +30,7 @@ class Spider
 
   def initialize
     spider_log "Inintialising Spider"
-    self.client = OSC::Client.new('localhost', 4556)
+    self.client = OSC::Client.new('127.0.0.1', 4556)
     self.current_synth = "pretty_bell"
     self.current_synth_id = INITIAL_SYNTH_ID
     self.bpm = 60

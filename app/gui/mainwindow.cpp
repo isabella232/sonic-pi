@@ -386,7 +386,7 @@ void MainWindow::createActions()
   connect(saveAsAct, SIGNAL(triggered()), this, SLOT(saveAs()));
 
   exitAct = new QAction(QIcon(":/images/close.png"), tr("E&xit"), this);
-  exitAct->setShortcut(tr("Ctrl+Q"));
+  exitAct->setShortcut(tr("Alt+F4"));
   exitAct->setStatusTip(tr("Exit the application"));
   connect(exitAct, SIGNAL(triggered()), this, SLOT(close()));
 

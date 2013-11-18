@@ -9,5 +9,5 @@ HEADERS       = mainwindow.h \
 SOURCES       = main.cpp \
                 mainwindow.cpp \
                 lexer.cpp
-RESOURCES     = application.qrc
+RESOURCES     = make_music.qrc
 LIBS         += -lqscintilla2

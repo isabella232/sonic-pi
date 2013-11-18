@@ -26,7 +26,7 @@
 #include <stdio.h>
  main(int argc, char *argv[])
 {
-    Q_INIT_RESOURCE(application);
+    Q_INIT_RESOURCE(make_music);
 
     QApplication app(argc, argv);
     MainWindow mainWin(app);

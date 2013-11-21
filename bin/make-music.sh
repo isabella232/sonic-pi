@@ -70,7 +70,7 @@ if [ $rc -eq 0 ]; then
     exit 1
 fi
 
-/opt/make-music/app/gui/application &
+/opt/make-music/app/gui/make-music &
 MUSICPID=$!
 
 (

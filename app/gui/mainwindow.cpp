@@ -222,14 +222,14 @@ MainWindow::MainWindow(QApplication &app)
   workspace7 = new QsciScintilla;
   workspace8 = new QsciScintilla;
 
-  QString w1 = "Workspace 1";
-  QString w2 = "Workspace 2";
-  QString w3 = "Workspace 3";
-  QString w4 = "Workspace 4";
-  QString w5 = "Workspace 5";
-  QString w6 = "Workspace 6";
-  QString w7 = "Workspace 7";
-  QString w8 = "Workspace 8";
+  QString w1 = "Song 1";
+  QString w2 = "Song 2";
+  QString w3 = "Song 3";
+  QString w4 = "Song 4";
+  QString w5 = "Song 5";
+  QString w6 = "Song 6";
+  QString w7 = "Song 7";
+  QString w8 = "Song 8";
 
   tabs->addTab(workspace1, w1);
   tabs->addTab(workspace2, w2);
@@ -331,7 +331,7 @@ MainWindow::MainWindow(QApplication &app)
   //         this, SLOT(documentWasModified()));
 
   //  setWindowTitle(tr("Sonic Pi"));
-  setWindowTitle("Sonic Pi - " + groupName);
+  setWindowTitle("Make Music - " + groupName);
   callInitScript();
   loadWorkspaces();
 
@@ -385,8 +385,8 @@ void MainWindow::createActions()
   saveAsAct->setStatusTip(tr("Save the document under a new name"));
   connect(saveAsAct, SIGNAL(triggered()), this, SLOT(saveAs()));
 
-  exitAct = new QAction(QIcon(":/images/stop.png"), tr("E&xit"), this);
-  exitAct->setShortcut(tr("Ctrl+Q"));
+  exitAct = new QAction(QIcon(":/images/close.png"), tr("E&xit"), this);
+  exitAct->setShortcut(tr("Alt+F4"));
   exitAct->setStatusTip(tr("Exit the application"));
   connect(exitAct, SIGNAL(triggered()), this, SLOT(close()));
 
@@ -491,12 +491,12 @@ bool MainWindow::save()
 bool MainWindow::saveAs()
 {
   QString fileName = QFileDialog::getSaveFileName(this, tr("Save Current Workspace"),
-                                                  QDir::homePath() + "/Sonic-pi-content",
-                                                  tr("Sonic Pi Projects (*.sp)"));
+                                                  QDir::homePath() + "/Music-content",
+                                                  tr("Make Music Projects (*.spi)"));
   if (!fileName.isEmpty())
   {
-    if(!fileName.endsWith(".sp"))
-      fileName.append(".sp");
+    if(!fileName.endsWith(".spi"))
+      fileName.append(".spi");
     return saveFile(fileName, (QsciScintilla*)tabs->currentWidget());
   } else {
     return false;
@@ -507,7 +507,7 @@ bool MainWindow::saveFile(const QString &fileName, QsciScintilla* text)
 {
     QFile file(fileName);
     if (!file.open(QFile::WriteOnly)) {
-        QMessageBox::warning(this, tr("Sonic Pi"),
+        QMessageBox::warning(this, tr("Make Music"),
                              tr("Cannot write file %1:\n%2.")
                              .arg(fileName)
                              .arg(file.errorString()));
@@ -526,8 +526,8 @@ bool MainWindow::saveFile(const QString &fileName, QsciScintilla* text)
 void MainWindow::open()
 {
   QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"),
-                                                  QDir::homePath() + "/Sonic-pi-content",
-                                                  tr("Sonic Pi Projects (*.sp)"));
+                                                  QDir::homePath() + "/Music-content",
+                                                  tr("Make Music Projects (*.spi)"));
   if (!fileName.isEmpty())
   {
     QsciScintilla * currentWidget = (QsciScintilla *)tabs->currentWidget();
@@ -540,7 +540,7 @@ void MainWindow::loadFile(const QString &fileName, QsciScintilla* &text)
 {
     QFile file(fileName);
     if (!file.open(QFile::ReadOnly)) {
-        QMessageBox::warning(this, tr("Sonic Pi"),
+        QMessageBox::warning(this, tr("Make Music"),
                              tr("Cannot read file %1:\n%2.")
                              .arg(fileName)
                              .arg(file.errorString()));
@@ -727,39 +727,39 @@ void MainWindow::ensureWorkspaces()
 
 void MainWindow::saveWorkspaces()
 {
-  saveFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/one/1.spi", workspace1);
-  saveFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/two/1.spi", workspace2);
-  saveFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/three/1.spi", workspace3);
-  saveFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/four/1.spi", workspace4);
-  saveFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/five/1.spi", workspace5);
-  saveFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/six/1.spi", workspace6);
-  saveFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/seven/1.spi", workspace7);
-  saveFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/eight/1.spi", workspace8);
+  saveFile(QDir::homePath() + "/.make-music/workspaces/" + groupName + "/one/1.spi", workspace1);
+  saveFile(QDir::homePath() + "/.make-music/workspaces/" + groupName + "/two/1.spi", workspace2);
+  saveFile(QDir::homePath() + "/.make-music/workspaces/" + groupName + "/three/1.spi", workspace3);
+  saveFile(QDir::homePath() + "/.make-music/workspaces/" + groupName + "/four/1.spi", workspace4);
+  saveFile(QDir::homePath() + "/.make-music/workspaces/" + groupName + "/five/1.spi", workspace5);
+  saveFile(QDir::homePath() + "/.make-music/workspaces/" + groupName + "/six/1.spi", workspace6);
+  saveFile(QDir::homePath() + "/.make-music/workspaces/" + groupName + "/seven/1.spi", workspace7);
+  saveFile(QDir::homePath() + "/.make-music/workspaces/" + groupName + "/eight/1.spi", workspace8);
 }
 
 void MainWindow::loadWorkspaces()
 {
-  loadFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/one/1.spi", workspace1);
-  loadFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/two/1.spi", workspace2);
-  loadFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/three/1.spi", workspace3);
-  loadFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/four/1.spi", workspace4);
-  loadFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/five/1.spi", workspace5);
-  loadFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/six/1.spi", workspace6);
-  loadFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/seven/1.spi", workspace7);
-  loadFile(QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/eight/1.spi", workspace8);
+  loadFile(QDir::homePath() + "/.make-music/workspaces/" + groupName + "/one/1.spi", workspace1);
+  loadFile(QDir::homePath() + "/.make-music/workspaces/" + groupName + "/two/1.spi", workspace2);
+  loadFile(QDir::homePath() + "/.make-music/workspaces/" + groupName + "/three/1.spi", workspace3);
+  loadFile(QDir::homePath() + "/.make-music/workspaces/" + groupName + "/four/1.spi", workspace4);
+  loadFile(QDir::homePath() + "/.make-music/workspaces/" + groupName + "/five/1.spi", workspace5);
+  loadFile(QDir::homePath() + "/.make-music/workspaces/" + groupName + "/six/1.spi", workspace6);
+  loadFile(QDir::homePath() + "/.make-music/workspaces/" + groupName + "/seven/1.spi", workspace7);
+  loadFile(QDir::homePath() + "/.make-music/workspaces/" + groupName + "/eight/1.spi", workspace8);
 }
 
 QString MainWindow::workspaceFilename(QsciScintilla* text)
 {
-  if(text == workspace1) {return QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/one/1.spi";}
-  else if(text == workspace2) {return QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/two/1.spi";}
-  else if(text == workspace3) {return QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/three/1.spi";}
-  else if(text == workspace4) {return QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/four/1.spi";}
-  else if(text == workspace5) {return QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/five/1.spi";}
-  else if(text == workspace6) {return QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/six/1.spi";}
-  else if(text == workspace7) {return QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/seven/1.spi";}
-  else if(text == workspace8) {return QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/eight/1.spi";}
- else {return QDir::homePath() + "/.sonic-pi/workspaces/" + groupName + "/one/1.spi";}
+  if(text == workspace1) {return QDir::homePath() + "/.make-music/workspaces/" + groupName + "/one/1.spi";}
+  else if(text == workspace2) {return QDir::homePath() + "/.make-music/workspaces/" + groupName + "/two/1.spi";}
+  else if(text == workspace3) {return QDir::homePath() + "/.make-music/workspaces/" + groupName + "/three/1.spi";}
+  else if(text == workspace4) {return QDir::homePath() + "/.make-music/workspaces/" + groupName + "/four/1.spi";}
+  else if(text == workspace5) {return QDir::homePath() + "/.make-music/workspaces/" + groupName + "/five/1.spi";}
+  else if(text == workspace6) {return QDir::homePath() + "/.make-music/workspaces/" + groupName + "/six/1.spi";}
+  else if(text == workspace7) {return QDir::homePath() + "/.make-music/workspaces/" + groupName + "/seven/1.spi";}
+  else if(text == workspace8) {return QDir::homePath() + "/.make-music/workspaces/" + groupName + "/eight/1.spi";}
+ else {return QDir::homePath() + "/.make-music/workspaces/" + groupName + "/one/1.spi";}
 }
 
 bool MainWindow::saveWorkspace(QsciScintilla* text)

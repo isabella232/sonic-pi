@@ -4,4 +4,4 @@
 ./app/gui/make-music /opt/make-music/app/gui/
 ./LICENSE /opt/make-music/
 ./README.md /opt/make-music/
-./bin/make-music.sh /usr/sbin
+./bin/make-music /usr/bin

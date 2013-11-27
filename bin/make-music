@@ -15,27 +15,23 @@ function init()
 {
     WORKSPACE_DIR=/home/$USER/.make-music/workspaces/default
 
-    echo "Creating workspace directories"
+    # Creating workspace directories
     mkdir -pv $WORKSPACE_DIR/one
     mkdir -pv $WORKSPACE_DIR/two
     mkdir -pv $WORKSPACE_DIR/three
     mkdir -pv $WORKSPACE_DIR/four
     mkdir -pv $WORKSPACE_DIR/five
     mkdir -pv $WORKSPACE_DIR/six
-    mkdir -pv $WORKSPACE_DIR/seven
-    mkdir -pv $WORKSPACE_DIR/eight
 
-    echo "Creating workspaces"
+    # Creating workspaces
     touch $WORKSPACE_DIR/one/1.spi
     touch $WORKSPACE_DIR/two/1.spi
     touch $WORKSPACE_DIR/three/1.spi
     touch $WORKSPACE_DIR/four/1.spi
     touch $WORKSPACE_DIR/five/1.spi
     touch $WORKSPACE_DIR/six/1.spi
-    touch $WORKSPACE_DIR/seven/1.spi
-    touch $WORKSPACE_DIR/eight/1.spi
 
-    echo "Creating content directory"
+    # Creating content directory
     mkdir -pv $CONTENT_DIR
 }
 
@@ -55,7 +51,7 @@ fi
 
 # Avoid multiple make-music instances
 if [ -f $PIDFILE ]; then
-    echo "Start-Make music is starting."
+    # Make music is already starting
     exit 0
 else
     touch $PIDFILE
@@ -64,7 +60,7 @@ fi
 wdata=`xwininfo -root -tree | grep "$APPNAME"`
 rc=$?
 if [ $rc -eq 0 ]; then
-    echo "$APPNAME is already running, raising focus."
+    # $APPNAME is already running, raising focus
     wid=`echo $wdata | awk '{print $1}'`
     xdotool windowraise $wid
     exit 1
@@ -73,10 +69,11 @@ fi
 /opt/make-music/app/gui/make-music &
 MUSICPID=$!
 
+# Create progress dialog with Zenity
 (
-echo "#Make Music is loading..."
+echo "#Make Music powered by Sonic Pi is loading..."
 
-for I in 10 15 20 25 30 35 40 45 50 55 60 65 70 75 80 85 90 95 99; do
+for I in 10 20 30 40 50 60 70 80 90 95 96 97 98 99; do
     sleep 1
     xwininfo -root -tree | grep "$APPNAME"
     rc=$?
@@ -109,11 +106,11 @@ fi
 
 echo "100"
 ) |
-zenity --progress --no-cancel --title="$DIALOG_TITLE" --text="" --percentage=0 --width=300 --height=90 --auto-close --timeout=30 --auto-kill
+zenity --progress --no-cancel --text="" --width=300 --height=90 --auto-close --timeout=30 --auto-kill
 
 if [ "$?" = -1 ] ; then
     zenity --error
     --text="Start failed."
 fi
-echo "$APPNAME PID=$MUSICPID"
+
 exit $MUSICPID

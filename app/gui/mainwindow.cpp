@@ -219,8 +219,8 @@ MainWindow::MainWindow(QApplication &app)
   workspace4 = new QsciScintilla;
   workspace5 = new QsciScintilla;
   workspace6 = new QsciScintilla;
-  workspace7 = new QsciScintilla;
-  workspace8 = new QsciScintilla;
+  //workspace7 = new QsciScintilla;
+  //workspace8 = new QsciScintilla;
 
   QString w1 = "Song 1";
   QString w2 = "Song 2";
@@ -228,8 +228,8 @@ MainWindow::MainWindow(QApplication &app)
   QString w4 = "Song 4";
   QString w5 = "Song 5";
   QString w6 = "Song 6";
-  QString w7 = "Song 7";
-  QString w8 = "Song 8";
+  //QString w7 = "Song 7";
+  //QString w8 = "Song 8";
 
   tabs->addTab(workspace1, w1);
   tabs->addTab(workspace2, w2);
@@ -246,8 +246,8 @@ MainWindow::MainWindow(QApplication &app)
   QString four = "four";
   QString five = "five";
   QString six = "six";
-  QString seven = "seven";
-  QString eight = "eight";
+  //QString seven = "seven";
+  //QString eight = "eight";
 
   map.insert(w1, one);
   map.insert(w2, two);
@@ -255,8 +255,8 @@ MainWindow::MainWindow(QApplication &app)
   map.insert(w4, four);
   map.insert(w5, five);
   map.insert(w6, six);
-  map.insert(w7, seven);
-  map.insert(w8, eight);
+  //map.insert(w7, seven);
+  //map.insert(w8, eight);
 
   QFont marginFont("Bariol");
   marginFont.setStyleHint(QFont::SansSerif);
@@ -270,8 +270,8 @@ MainWindow::MainWindow(QApplication &app)
   STYLE_WORKSPACE(workspace4)
   STYLE_WORKSPACE(workspace5)
   STYLE_WORKSPACE(workspace6)
-  STYLE_WORKSPACE(workspace7)
-  STYLE_WORKSPACE(workspace8)
+  //STYLE_WORKSPACE(workspace7)
+  //STYLE_WORKSPACE(workspace8)
 
 /* RHS */
   /* Output */
@@ -733,8 +733,8 @@ void MainWindow::saveWorkspaces()
   saveFile(QDir::homePath() + "/.make-music/workspaces/" + groupName + "/four/1.spi", workspace4);
   saveFile(QDir::homePath() + "/.make-music/workspaces/" + groupName + "/five/1.spi", workspace5);
   saveFile(QDir::homePath() + "/.make-music/workspaces/" + groupName + "/six/1.spi", workspace6);
-  saveFile(QDir::homePath() + "/.make-music/workspaces/" + groupName + "/seven/1.spi", workspace7);
-  saveFile(QDir::homePath() + "/.make-music/workspaces/" + groupName + "/eight/1.spi", workspace8);
+  //saveFile(QDir::homePath() + "/.make-music/workspaces/" + groupName + "/seven/1.spi", workspace7);
+  //saveFile(QDir::homePath() + "/.make-music/workspaces/" + groupName + "/eight/1.spi", workspace8);
 }
 
 void MainWindow::loadWorkspaces()
@@ -745,8 +745,8 @@ void MainWindow::loadWorkspaces()
   loadFile(QDir::homePath() + "/.make-music/workspaces/" + groupName + "/four/1.spi", workspace4);
   loadFile(QDir::homePath() + "/.make-music/workspaces/" + groupName + "/five/1.spi", workspace5);
   loadFile(QDir::homePath() + "/.make-music/workspaces/" + groupName + "/six/1.spi", workspace6);
-  loadFile(QDir::homePath() + "/.make-music/workspaces/" + groupName + "/seven/1.spi", workspace7);
-  loadFile(QDir::homePath() + "/.make-music/workspaces/" + groupName + "/eight/1.spi", workspace8);
+  //loadFile(QDir::homePath() + "/.make-music/workspaces/" + groupName + "/seven/1.spi", workspace7);
+  //loadFile(QDir::homePath() + "/.make-music/workspaces/" + groupName + "/eight/1.spi", workspace8);
 }
 
 QString MainWindow::workspaceFilename(QsciScintilla* text)
@@ -757,8 +757,8 @@ QString MainWindow::workspaceFilename(QsciScintilla* text)
   else if(text == workspace4) {return QDir::homePath() + "/.make-music/workspaces/" + groupName + "/four/1.spi";}
   else if(text == workspace5) {return QDir::homePath() + "/.make-music/workspaces/" + groupName + "/five/1.spi";}
   else if(text == workspace6) {return QDir::homePath() + "/.make-music/workspaces/" + groupName + "/six/1.spi";}
-  else if(text == workspace7) {return QDir::homePath() + "/.make-music/workspaces/" + groupName + "/seven/1.spi";}
-  else if(text == workspace8) {return QDir::homePath() + "/.make-music/workspaces/" + groupName + "/eight/1.spi";}
+  //else if(text == workspace7) {return QDir::homePath() + "/.make-music/workspaces/" + groupName + "/seven/1.spi";}
+  //else if(text == workspace8) {return QDir::homePath() + "/.make-music/workspaces/" + groupName + "/eight/1.spi";}
  else {return QDir::homePath() + "/.make-music/workspaces/" + groupName + "/one/1.spi";}
 }
 

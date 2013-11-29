@@ -57,15 +57,17 @@
 
 #define RHS_WIDTH     250
 
-/******************* Styling *******************/
-/*                                             */
-/* TODO: Move away from using the preprocessor */
-/*                                             */
-/***********************************************/
+/******************* Styling *******************
+ *                                             *
+ * TODO: Move away from using the preprocessor *
+ *                                             *
+ ***********************************************/
 
 /* General App Style */
-#define APP_STYLING  "\
-background-color: #d1d2d4"
+#define APP_STYLING  " \
+QWidget { \
+  background-color: #d1d2d4 \
+}"
 
 /* The tabs which contain the main workspace */
 #define TABS_STYLING  " \
@@ -182,14 +184,14 @@ QToolBar { \
     spacing: 3px; /* spacing between items in the tool bar */ \
 }"
 
-/***** End *****/
-/*      of     */
-/*** styling ***/
+/***** End *****
+ *      of     *
+ *** styling ***/
 
 
-/***********************************************************/
-/*********************** Constructor ***********************/
-/***********************************************************/
+/***********************************************************
+ *********************** Constructor ***********************
+ ***********************************************************/
 
 MainWindow::MainWindow(QApplication &app)
 {

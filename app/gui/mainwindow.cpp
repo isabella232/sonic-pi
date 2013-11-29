@@ -451,6 +451,8 @@ void MainWindow::createMenus()
 void MainWindow::createToolBars()
 {
     fileToolBar = addToolBar(tr("Run"));
+    fileToolBar->setMovable(false);
+    fileToolBar->setIconSize(QSize(69,30));
     fileToolBar->setStyleSheet(FILE_TOOLBAR_STYLING);
     fileToolBar->addAction(runAct);
     fileToolBar->addAction(stopAct);

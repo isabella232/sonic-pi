@@ -88,8 +88,8 @@ private:
     QsciScintilla *workspace4;
     QsciScintilla *workspace5;
     QsciScintilla *workspace6;
-    QsciScintilla *workspace7;
-    QsciScintilla *workspace8;
+    // QsciScintilla *workspace7;
+    // QsciScintilla *workspace8;
     QTextEdit *outputPane;
     QsciScintilla *errorPane;
 

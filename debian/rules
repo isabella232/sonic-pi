@@ -4,7 +4,5 @@
 	dh $@
 
 override_dh_auto_build:
-	cd ./app/gui
-	qmake
+	qmake ./app/gui/make-music.pro
 	make
-	cd ../../

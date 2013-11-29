@@ -4,7 +4,7 @@
 	dh $@
 
 override_dh_auto_build:
-	pushd ./app/gui
+	cd ./app/gui
 	qmake
 	make
-	popd
+	cd ../../

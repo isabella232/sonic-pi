@@ -1,8 +1,13 @@
 #!/bin/bash
+
+# make-music
 #
-#  Starts make-music with a progress dialog.
-#  If a make-music instance is already running, give it the focus and exit.
-#  Progress dialog requests focus all the time so it doesn't get obscured by overlapping windows.
+# Copyright (C) 2013 Kano Computing Ltd.
+# License:   http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+#
+# Starts make-music with a progress dialog.
+# If a make-music instance is already running, give it the focus and exit.
+# Progress dialog requests focus all the time so it doesn't get obscured by overlapping windows.
 #
 
 APPNAME="Make Music - default"

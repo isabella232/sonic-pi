@@ -1,9 +1,16 @@
+
+/*
+# lexer.cpp
+#
+# Copyright (C) 2013 Kano Computing Ltd.
+# License:   http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+#
+*/
+
 #include "lexer.h"
 
 #include <qcolor.h>
 #include <qfont.h>
-
-//#include "Qsci/qscilexerruby.h"
 
 
 // The ctor.
@@ -179,7 +186,6 @@ QFont Lexer::defaultFont(int style) const
             break;
 
         default:
-            //f = QFont("Bariol", 20);
             f = QsciLexer::defaultFont(style);
     }
 

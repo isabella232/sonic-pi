@@ -275,7 +275,70 @@ MainWindow::MainWindow(QApplication &app)
   //STYLE_WORKSPACE(workspace7)
   //STYLE_WORKSPACE(workspace8)
 
-/* RHS */
+  /*************************************************************
+   * Application Asset Declaration and Arrangement             *
+   *************************************************************
+   * Looks something like this                                 *
+   *************************************************************
+   *  | Toolbar                                             |  *
+   *  -------------------------------------------------------  *
+   *   ________  ________  ________             ____________   *
+   *  | Song 1 || Song 2 || Song 3 | ...       | Output     |  *
+   *  -----------------------------------------|-------------  *
+   *  | Main workspace                         |            |  *
+   *  |                                        |            |  *
+   *  |                                        |            |  *
+   *  |                                        |            |  *
+   *  |                                        |            |  *
+   *  |                                        |            |  *
+   *  |                                        |            |  *
+   *  |                                        |____________|  *
+   *  |                                        |Errors      |  *
+   *  |                                        |------------|  *
+   *  |                                        |            |  *
+   *  |                                        |            |  *
+   *  |                                        |            |  *
+   *  |                                        |            |  *
+   *  -------------------------------------------------------  *
+   *************************************************************
+   * Setup with QGridLayout elements like this                 *
+   *************************************************************
+   *  | Toolbar                                             |  *
+   *  -------------------------------------------------------  *
+   *  _______________________________________________________  *
+   * | mainContentLayout                                     | *
+   * | _______________________________________ _____________ | *
+   * || tabs Widget                           | rhsLayout   || *
+   * ||                                       | ___________ || *
+   * ||                                       ||outputLabel||| *
+   * ||                                       ||-----------||| *
+   * ||                                       ||outputPane ||| *
+   * ||                                       ||           ||| *
+   * ||                                       ||           ||| *
+   * ||                                       ||           ||| *
+   * ||                                       ||           ||| *
+   * ||                                       ||___________||| *
+   * ||                                       ||errorLabel ||| *
+   * ||                                       ||-----------||| *
+   * ||                                       ||errorPane  ||| *
+   * ||                                       ||           ||| *
+   * ||                                       ||           ||| *
+   * ||                                       |-------------|| *
+   * |-------------------------------------------------------| *
+   * --------------------------------------------------------- *
+   *************************************************************
+   * mainContentLayout and rhsLayout : QGridLayout   elements  *
+   * tabs                            : QTabWidget    element   *
+   * outputLabel and errorLabel      : QLabel        elements  *
+   * outputPane                      : QTextEdit     element   *
+   * errorPane                       : QSciScintilla element   *
+   *************************************************************/
+
+
+/*******
+ * RHS *
+ *******/
+
   /* Output */
   QLabel * outputLabel = new QLabel(this);
   outputLabel->setFixedWidth(RHS_WIDTH);
@@ -301,7 +364,7 @@ MainWindow::MainWindow(QApplication &app)
   errorPane->setReadOnly(true);
   errorPane->zoomIn(3);
 
-/* RHS */
+  /* RHS Grid Layout */
   QGridLayout * rhsLayout = new QGridLayout;
   rhsLayout->addWidget(outputLabel, 0, 0);
   rhsLayout->addWidget(outputPane, 1, 0);
@@ -309,7 +372,11 @@ MainWindow::MainWindow(QApplication &app)
   rhsLayout->addWidget(errorPane, 3, 0);
   rhsLayout->setVerticalSpacing(0);
 
-/* Main Content Layout */
+
+/***********************
+ * Main Content Layout *
+ ***********************/
+
   QGridLayout * mainContentLayout = new QGridLayout;
   mainContentLayout->addWidget(tabs, 0, 0);
   mainContentLayout->addLayout(rhsLayout, 0, 1);

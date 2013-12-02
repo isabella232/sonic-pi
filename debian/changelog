@@ -1,3 +1,9 @@
+make-music (1.0-1) unstable; urgency=low
+
+  * Kanux MincePie.
+
+ -- Team Kano <hello@kano.me>  Mon, 02 Dec 2013 21:29:35 +0000
+
 make-music (0.1-17) unstable; urgency=low
 
   * Package rebuilt, updated to revision 3c3facab.

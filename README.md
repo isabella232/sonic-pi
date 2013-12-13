@@ -6,6 +6,45 @@ This is the source for the Sonic Pi music programming environment. The dependenc
 * ruby1.9.1
 * libqscintilla2-8
 
-You will need to compile the Qt app within `app/gui` and run one of the `start-group-*` scripts to start the app.
+Compilation
+-----------
+
+Build dependencies:
+
+* g++
+* make
+* libqscintilla2
+* qt
+
+To install dependencies for Debian:
+```
+sudo apt-get install g++ make libqt4-dev libqscintilla2-dev
+```
+
+Or for Red-Hat:
+```
+sudo yum install g++ make qt-devel qscintilla-devel
+```
+
+To compile:
+```
+qmake ./app/gui/make-music.pro
+make
+```
+
+Running
+-------
+
+Initially run with
+```
+./bin/make-music
+```
+to create directories, setup the workspaces and position the window.
+
+However, if the window positioning is not required, then the program can br run directly with
+
+```
+./make-music
+```
 
 The current implementation assumes the execution context is a Raspberry Pi. Patches for other platforms will be happily considered.

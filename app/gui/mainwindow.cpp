@@ -66,7 +66,7 @@
 /* General App Style */
 #define APP_STYLING  " \
 QWidget { \
-  background-color: #d1d2d4 \
+  background-color: #ffffff; \
 }"
 
 /* The tabs which contain the main workspace */

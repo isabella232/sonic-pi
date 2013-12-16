@@ -16,12 +16,12 @@ Build dependencies:
 * libqscintilla2
 * qt
 
-To install dependencies for Debian:
+To install dependencies for Debian-based systems:
 ```
 sudo apt-get install g++ make libqt4-dev libqscintilla2-dev
 ```
 
-Or for Red-Hat:
+Or for Red Hat-based:
 ```
 sudo yum install g++ make qt-devel qscintilla-devel
 ```
@@ -41,10 +41,13 @@ Initially run with
 ```
 to create directories, setup the workspaces and position the window.
 
-However, if the window positioning is not required, then the program can br run directly with
+However, if the window positioning is not required, then the program can subsequently be run directly with
 
 ```
 ./make-music
 ```
+
+Notes
+-----
 
 The current implementation assumes the execution context is a Raspberry Pi. Patches for other platforms will be happily considered.

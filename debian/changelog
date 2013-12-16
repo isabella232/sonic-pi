@@ -2,158 +2,158 @@ make-music (1.0-9) unstable; urgency=low
 
   * Package rebuilt, updated to revision 5316094c.
 
- -- Team Kano <hello@kano.me>  Fri, 13 Dec 2013 16:43:37 +0000
+ -- Team Kano <dev@kano.me>  Fri, 13 Dec 2013 16:43:37 +0000
 
 make-music (1.0-8) unstable; urgency=low
 
   * Package rebuilt, updated to revision 38242a4b.
 
- -- Team Kano <hello@kano.me>  Thu, 12 Dec 2013 16:16:31 +0000
+ -- Team Kano <dev@kano.me>  Thu, 12 Dec 2013 16:16:31 +0000
 
 make-music (1.0-7) unstable; urgency=low
 
   * Package rebuilt, updated to revision 1b69433c.
 
- -- Team Kano <hello@kano.me>  Mon, 09 Dec 2013 02:57:25 +0000
+ -- Team Kano <dev@kano.me>  Mon, 09 Dec 2013 02:57:25 +0000
 
 make-music (1.0-6) unstable; urgency=low
 
   * Package rebuilt, updated to revision 9cfc11f0.
 
- -- Team Kano <hello@kano.me>  Sun, 08 Dec 2013 02:57:06 +0000
+ -- Team Kano <dev@kano.me>  Sun, 08 Dec 2013 02:57:06 +0000
 
 make-music (1.0-5) unstable; urgency=low
 
   * Package rebuilt, updated to revision 301e1ce6.
 
- -- Team Kano <hello@kano.me>  Sat, 07 Dec 2013 02:57:28 +0000
+ -- Team Kano <dev@kano.me>  Sat, 07 Dec 2013 02:57:28 +0000
 
 make-music (1.0-4) unstable; urgency=low
 
   * Package rebuilt, updated to revision 9e53e266.
 
- -- Team Kano <hello@kano.me>  Thu, 05 Dec 2013 19:00:02 +0000
+ -- Team Kano <dev@kano.me>  Thu, 05 Dec 2013 19:00:02 +0000
 
 make-music (1.0-3) unstable; urgency=low
 
   * Package rebuilt, updated to revision b0a05e9e.
 
- -- Team Kano <hello@kano.me>  Wed, 04 Dec 2013 02:56:37 +0000
+ -- Team Kano <dev@kano.me>  Wed, 04 Dec 2013 02:56:37 +0000
 
 make-music (1.0-2) unstable; urgency=low
 
   * Package rebuilt, updated to revision b3694062.
 
- -- Team Kano <hello@kano.me>  Mon, 02 Dec 2013 22:23:26 +0000
+ -- Team Kano <dev@kano.me>  Mon, 02 Dec 2013 22:23:26 +0000
 
 make-music (1.0-1) unstable; urgency=low
 
   * Kanux MincePie.
 
- -- Team Kano <hello@kano.me>  Mon, 02 Dec 2013 21:29:35 +0000
+ -- Team Kano <dev@kano.me>  Mon, 02 Dec 2013 21:29:35 +0000
 
 make-music (0.1-17) unstable; urgency=low
 
   * Package rebuilt, updated to revision 3c3facab.
 
- -- Team Kano <hello@kano.me>  Fri, 29 Nov 2013 22:29:35 +0000
+ -- Team Kano <dev@kano.me>  Fri, 29 Nov 2013 22:29:35 +0000
 
 make-music (0.1-16) unstable; urgency=low
 
   * Package rebuilt, updated to revision 72dbb894.
 
- -- Team Kano <hello@kano.me>  Fri, 29 Nov 2013 12:22:34 +0000
+ -- Team Kano <dev@kano.me>  Fri, 29 Nov 2013 12:22:34 +0000
 
 make-music (0.1-15) unstable; urgency=low
 
   * Package rebuilt, updated to revision c566f5b3.
 
- -- Team Kano <hello@kano.me>  Fri, 29 Nov 2013 09:20:18 +0000
+ -- Team Kano <dev@kano.me>  Fri, 29 Nov 2013 09:20:18 +0000
 
 make-music (0.1-14) unstable; urgency=low
 
   * Package rebuilt, updated to revision 2c8744f0.
 
- -- Team Kano <hello@kano.me>  Thu, 28 Nov 2013 22:06:15 +0000
+ -- Team Kano <dev@kano.me>  Thu, 28 Nov 2013 22:06:15 +0000
 
 make-music (0.1-13) unstable; urgency=low
 
   * Package rebuilt, updated to revision b26c86d0.
 
- -- Team Kano <hello@kano.me>  Wed, 27 Nov 2013 22:09:04 +0000
+ -- Team Kano <dev@kano.me>  Wed, 27 Nov 2013 22:09:04 +0000
 
 make-music (0.1-12) unstable; urgency=low
 
   * Package rebuilt, updated to revision d024abd7.
 
- -- Team Kano <hello@kano.me>  Tue, 26 Nov 2013 22:04:38 +0000
+ -- Team Kano <dev@kano.me>  Tue, 26 Nov 2013 22:04:38 +0000
 
 make-music (0.1-11) unstable; urgency=low
 
   * Package rebuilt, updated to revision 2bb3fffa.
 
- -- Team Kano <hello@kano.me>  Tue, 26 Nov 2013 14:04:46 +0000
+ -- Team Kano <dev@kano.me>  Tue, 26 Nov 2013 14:04:46 +0000
 
 make-music (0.1-10) unstable; urgency=low
 
   * Package rebuilt, updated to revision 9a299b94.
 
- -- Team Kano <hello@kano.me>  Thu, 21 Nov 2013 14:21:03 +0000
+ -- Team Kano <dev@kano.me>  Thu, 21 Nov 2013 14:21:03 +0000
 
 make-music (0.1-9) unstable; urgency=low
 
   * Package rebuilt, updated to revision a89d791d.
 
- -- Team Kano <hello@kano.me>  Tue, 19 Nov 2013 22:00:19 +0000
+ -- Team Kano <dev@kano.me>  Tue, 19 Nov 2013 22:00:19 +0000
 
 make-music (0.1-8) unstable; urgency=low
 
   * Package rebuilt, updated to revision 214b3c76.
 
- -- Team Kano <hello@kano.me>  Mon, 18 Nov 2013 22:00:24 +0000
+ -- Team Kano <dev@kano.me>  Mon, 18 Nov 2013 22:00:24 +0000
 
 make-music (0.1-7) unstable; urgency=low
 
   * Package rebuilt, updated to revision b4357b9b.
 
- -- Team Kano <hello@kano.me>  Mon, 18 Nov 2013 16:39:12 +0000
+ -- Team Kano <dev@kano.me>  Mon, 18 Nov 2013 16:39:12 +0000
 
 make-music (0.1-6) unstable; urgency=low
 
   * Package rebuilt, updated to revision 87754d3e.
 
- -- Team Kano <hello@kano.me>  Mon, 18 Nov 2013 13:10:48 +0000
+ -- Team Kano <dev@kano.me>  Mon, 18 Nov 2013 13:10:48 +0000
 
 make-music (0.1-5) unstable; urgency=low
 
   * Package rebuilt, updated to revision 43b4dc85.
 
- -- Team Kano <hello@kano.me>  Fri, 15 Nov 2013 22:02:17 +0000
+ -- Team Kano <dev@kano.me>  Fri, 15 Nov 2013 22:02:17 +0000
 
 make-music (0.1-4) unstable; urgency=low
 
   * Package rebuilt, updated to revision 0633cd7f.
 
- -- Team Kano <hello@kano.me>  Wed, 13 Nov 2013 13:31:50 +0000
+ -- Team Kano <dev@kano.me>  Wed, 13 Nov 2013 13:31:50 +0000
 
 make-music (0.1-3) unstable; urgency=low
 
   * Package rebuilt, updated to revision 322104b0.
 
- -- Team Kano <hello@kano.me>  Fri, 08 Nov 2013 18:19:30 +0000
+ -- Team Kano <dev@kano.me>  Fri, 08 Nov 2013 18:19:30 +0000
 
 make-music (0.1-2) unstable; urgency=low
 
   * Package rebuilt, updated to revision 1cfba182.
 
- -- Team Kano <hello@kano.me>  Wed, 06 Nov 2013 18:11:49 +0000
+ -- Team Kano <dev@kano.me>  Wed, 06 Nov 2013 18:11:49 +0000
 
 make-music (0.1-1.1) unstable; urgency=low
 
   * Non-maintainer upload.
   * Package rebuilt, updated to revision 50605fd1.
 
- -- Team Kano <hello@kano.me>  Fri, 01 Nov 2013 17:50:50 +0000
+ -- Team Kano <dev@kano.me>  Fri, 01 Nov 2013 17:50:50 +0000
 
 make-music (0.1-1) unstable; urgency=low
 

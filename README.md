@@ -47,6 +47,12 @@ However, if the window positioning is not required, then the program can subsequ
 ./make-music
 ```
 
+File System Structure
+---------------------
+
+`./app/gui/` contains the main QT program source files.
+`./app/scripts/` contains the scripts to be called when a song is played. They define things such as the `play`, `play_chord` and `play_pattern` functions.
+
 Notes
 -----
 

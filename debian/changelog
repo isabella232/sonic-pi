@@ -1,3 +1,10 @@
+make-music (1.0-9.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Package rebuilt, updated to revision ba320742.
+
+ -- Team Kano <hello@kano.me>  Tue, 17 Dec 2013 02:51:43 +0000
+
 make-music (1.0-9) unstable; urgency=low
 
   * Package rebuilt, updated to revision 5316094c.

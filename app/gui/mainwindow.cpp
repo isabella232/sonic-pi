@@ -180,7 +180,7 @@ QsciScintilla { \
 #define FILE_TOOLBAR_STYLING  " \
 QToolBar { \
     border: 0px solid black; /* Needed to make the background persistent when the bar is docked at the top or bottom */\
-    background: #d1d2d4;\
+    background: #ffffff;\
     spacing: 3px; /* spacing between items in the tool bar */ \
 }"
 

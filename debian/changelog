@@ -1,3 +1,9 @@
+make-music (1.0-18) unstable; urgency=low
+
+  * Package rebuilt, updated to revision 08d93946.
+
+ -- Team Kano <dev@kano.me>  Fri, 27 Dec 2013 03:03:40 +0000
+
 make-music (1.0-17) unstable; urgency=low
 
   * Package rebuilt, updated to revision 42df1ff9.

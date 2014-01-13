@@ -6,5 +6,5 @@
 ./README.md /usr/share/make-music/
 ./bin/make-music /usr/bin
 
-./idesktop/SonicPi.lnk /usr/share/kano-desktop/idesk/
+./idesktop/SonicPi.lnk /usr/share/kano-desktop/idesk/idesktop/
 ./icon/sonicpi.png /usr/share/kano-desktop/icons/

@@ -77,6 +77,10 @@ QTabWidget::pane { /* The tab widget frame */ \
 QTabWidget::tab-bar { \
     left: 5px; /* move to the right by 5px */ \
 } \
+QTabBar { \
+    outline: none; \
+} \
+\
 /* Style the tab using the tab sub-control. Note that it reads QTabBar _not_ QTabWidget */ \
 QTabBar::tab { \
     background: #e7e7e8; \

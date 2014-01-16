@@ -1,12 +1,11 @@
 Files: *
 Copyright: 2013 Samuel Aaron
 License: MIT
-Comments: Except files under GPL license
 
 Files: /app/gui/lexer.*
-Copyright: 2013 Kano Computing Ltd.
-License: GPL-2+
+Copyright: 2014 Kano Computing Ltd.
+License: MIT
 
 Files: /bin/*
-Copyright: 2013 Kano Computing Ltd.
-License: GPL-2+
+Copyright: 2014 Kano Computing Ltd.
+License: MIT

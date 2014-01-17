@@ -2,7 +2,7 @@
 # lexer.h
 #
 # Copyright (C) 2013 Kano Computing Ltd.
-# License:   http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+# License: http://opensource.org/licenses/MIT
 #
 # This extends the QsciLexerRuby class from Scintilla for the purpose
 # of formatting code specific to Sonic Pi

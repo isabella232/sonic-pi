@@ -2,7 +2,7 @@
 
 # make-music
 #
-# Copyright (C) 2013 Kano Computing Ltd.
+# Copyright (C) 2014 Kano Computing Ltd.
 # License: http://opensource.org/licenses/MIT
 #
 # Starts make-music with a progress dialog.
@@ -14,12 +14,11 @@ APPNAME="Make Music - default"
 DIALOG_TITLE="Make Music"
 PIDFILE=/tmp/start-make-music.pid
 CONTENT_DIR=/home/$USER/Music-content
+WORKSPACE_DIR=/home/$USER/.make-music/workspaces/default
 
 # Workspaces to be created first time Make-Music is launched
 function init() 
 {
-    WORKSPACE_DIR=/home/$USER/.make-music/workspaces/default
-
     # Creating workspace directories
     mkdir -pv $WORKSPACE_DIR/one
     mkdir -pv $WORKSPACE_DIR/two
@@ -35,9 +34,6 @@ function init()
     touch $WORKSPACE_DIR/four/1.spi
     touch $WORKSPACE_DIR/five/1.spi
     touch $WORKSPACE_DIR/six/1.spi
-
-    # Creating content directory
-    mkdir -pv $CONTENT_DIR
 }
 
 # remove temporary pid file always at exit time
@@ -49,8 +45,13 @@ function cleanup {
 }
 trap cleanup EXIT
 
-# First time Make-Music is launched, call init() 
+# Check content directory
 if [ ! -d $CONTENT_DIR ]; then
+    # Creating content directory
+    mkdir -pv $CONTENT_DIR
+fi
+# Check workspaces
+if [ ! -d $WORKSPACE_DIR ]; then
     init
 fi
 

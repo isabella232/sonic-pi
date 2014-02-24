@@ -13,6 +13,7 @@
 APPNAME="Make Music - default"
 DIALOG_TITLE="Make Music"
 PIDFILE=/tmp/start-make-music.pid
+SONG_DIR=/usr/share/make-music/songs
 CONTENT_DIR=/home/$USER/Music-content
 WORKSPACE_DIR=/home/$USER/.make-music/workspaces/default
 
@@ -50,6 +51,8 @@ trap cleanup EXIT
 if [ ! -d $CONTENT_DIR ]; then
     # Creating content directory
     mkdir -pv $CONTENT_DIR
+    # Copy songs
+    cp -r $SONG_DIR $CONTENT_DIR
 fi
 # Check workspaces
 if [ ! -d $WORKSPACE_DIR ]; then

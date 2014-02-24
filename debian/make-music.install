@@ -2,9 +2,10 @@
 ./app/scripts/* /usr/share/make-music/app/scripts/
 ./app/gui/images/* /usr/share/make-music/app/gui/images/
 ./make-music /usr/share/make-music/app/gui/
+
 ./LICENSE /usr/share/make-music/
-./README.md /usr/share/make-music/
 ./bin/make-music /usr/bin
+./songs/* /usr/share/make-music/songs
 
 ./idesktop/SonicPi.lnk /usr/share/kano-desktop/idesk/idesktop/
 ./icon/sonicpi.png /usr/share/kano-desktop/icons/

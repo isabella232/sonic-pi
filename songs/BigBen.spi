@@ -1,0 +1,18 @@
+# BigBen.spi
+#
+# Copyright (C) 2014 Kano Computing Inc.
+# License: GNU General Public License v2 http://www.gnu.org/licenses/gpl-2.0.txt
+#
+# Simple example
+#
+
+3. times do
+	play 70
+	sleep 1
+	play 66
+	sleep 1
+	play 68
+	sleep 1
+	play 61
+	sleep 1
+end

@@ -1,0 +1,114 @@
+
+# JingleBells.spi
+#
+# Copyright (C) 2014 Kano Computing Inc.
+# License: GNU General Public License v2 http://www.gnu.org/licenses/gpl-2.0.txt
+#
+# Here's a little festive fun by Kano
+# 
+
+#Let's define some notes!
+firstloop = true
+speed = 0.4
+semibreve = 4  * speed
+minim = 2 * speed
+crotchet = 1 *speed
+quaver = 0.5 * speed
+semi = 0.25 * speed
+
+in_thread do
+	2. times do
+		#Jingle Bells, Jingle Bells
+		2. times do
+			play 76
+			sleep crotchet
+			play 76
+			sleep crotchet
+			play 76
+			sleep minim
+		end
+
+		#Jingle All the Way
+		play 76
+		sleep crotchet
+		play 79
+		sleep crotchet
+		play 72
+		sleep crotchet + quaver
+		play 74
+		sleep quaver
+		play 76
+		sleep semibreve
+
+		#Oh what fun it is to ride on a
+		play 77
+		sleep crotchet
+		play 77
+		sleep crotchet
+		play 77
+		sleep crotchet + quaver
+		play 77
+		sleep quaver
+
+		play 77
+		sleep crotchet
+		play 76
+		sleep crotchet
+		play 76
+		sleep crotchet
+		play 76
+		sleep quaver
+		play 76
+		sleep quaver
+
+		# First time : one horse open sleigh!
+		if firstloop == true
+			play 76
+			sleep crotchet
+			play 74
+			sleep crotchet
+			play 74
+			sleep crotchet
+			play 76
+			sleep crotchet
+			play 74
+			sleep minim
+			play 79
+			sleep minim
+			firstloop = false
+
+		# Second time : one horse open sleigh!
+		else
+			play 79
+			sleep crotchet
+			play 79
+			sleep crotchet
+			play 77
+			sleep crotchet
+			play 74
+			sleep crotchet
+			play 72
+			sleep breve
+		end
+	end
+end
+
+in_thread do
+	2. times do
+		with_synth("saw_beep")
+		4. times do
+				play_pattern_timed [72, 67], [minim, minim]			
+		end
+		
+		play_pattern_timed [65, 60], [minim, minim]			
+		play_pattern_timed [72, 67], [minim, minim]
+
+		if firstloop == true			
+			play_pattern_timed [66, 62], [minim, minim]			
+			play_pattern_timed [67, 65], [minim, minim]			
+		else
+			play_pattern_timed [67, 65], [minim, minim]			
+			play_pattern_timed [72, 67], [minim, minim]			
+		end			
+	end
+end

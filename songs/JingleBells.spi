@@ -1,4 +1,3 @@
-
 # JingleBells.spi
 #
 # Copyright (C) 2014 Kano Computing Inc.
@@ -88,7 +87,7 @@ in_thread do
 			play 74
 			sleep crotchet
 			play 72
-			sleep breve
+			sleep semibreve
 		end
 	end
 end

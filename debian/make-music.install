@@ -7,5 +7,5 @@
 ./bin/make-music /usr/bin
 ./songs/* /usr/share/make-music/songs
 
-./idesktop/SonicPi.lnk /usr/share/kano-desktop/idesk/idesktop/
+./kdesktop/SonicPi.lnk /usr/share/kano-desktop/kdesk/kdesktop/
 ./icon/sonicpi.png /usr/share/kano-desktop/icons/

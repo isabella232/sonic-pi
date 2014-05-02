@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Exec=/usr/bin/kano-launcher /usr/bin/make-music
+Icon=/usr/share/kano-desktop/icons/sonicpi.png
+Terminal=false
+Name=Make Music
+Comment= Create Music with Make Music powered by SonicPi
+Categories=Application;Education;Development;Kano;
+MimeType=application/x-kano-make-music

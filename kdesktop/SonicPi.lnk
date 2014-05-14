@@ -8,7 +8,7 @@ table Icon
   HoverXOffset: 0
   Width: 138
   Height: 128
-  Relative-To: bottom-centre
+  Relative-To: grid
   X: 4
   Y: 0
 end

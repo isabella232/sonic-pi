@@ -201,6 +201,7 @@ QToolBar { \
 
 MainWindow::MainWindow(QApplication &app)
 {
+  this->setWindowIcon(QIcon(":app_icon"));
 
   ensureWorkspaces();
 

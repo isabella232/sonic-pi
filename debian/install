@@ -10,4 +10,6 @@
 ./kdesktop/SonicPi.lnk /usr/share/kano-desktop/kdesk/kdesktop/
 ./kdesktop/make-music.desktop /usr/share/applications/
 ./icon/sonicpi.png /usr/share/kano-desktop/icons/
+./icon/sonicpi.png /usr/share/icons/Kano/88x88/apps
 ./icon/SonicPi-hover.png /usr/share/kano-desktop/icons/
+./icon/make-snake.app /usr/share/applications

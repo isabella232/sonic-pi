@@ -6,6 +6,7 @@
 ./LICENSE /usr/share/make-music/
 ./bin/make-music /usr/bin
 ./songs/* /usr/share/make-music/songs
+./challenges/* /usr/share/make-music/challenges
 
 ./kdesktop/SonicPi.lnk /usr/share/kano-desktop/kdesk/kdesktop/
 ./kdesktop/make-music.desktop /usr/share/applications/

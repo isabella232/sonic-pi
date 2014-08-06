@@ -1,6 +1,7 @@
 {
     "title": "Make Music",
     "tagline": "Play music with code",
+    "description": "",
     "slug": "make-music",
 
     "icon": "sonicpi",
@@ -11,5 +12,6 @@
     "packages": [],
     "dependencies": ["make-music"],
     "launch_command": "make-music",
-    "overrides": []
+    "overrides": [],
+    "desktop": false
 }

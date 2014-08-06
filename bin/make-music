@@ -15,6 +15,7 @@ APPNAME="Make Music - default"
 DIALOG_TITLE="Make Music"
 PIDFILE=/tmp/start-make-music.pid
 SONG_DIR=/usr/share/make-music/songs
+CHALLENGE_DIR=/usr/share/make-music/challenges
 CONTENT_DIR=/home/$USER/Music-content
 WORKSPACE_DIR=/home/$USER/.make-music/workspaces/default
 
@@ -61,6 +62,8 @@ if [ ! -d $CONTENT_DIR ]; then
     mkdir -pv $CONTENT_DIR
     # Copy songs
     cp -r $SONG_DIR $CONTENT_DIR
+    # Copy challenges
+    cp -r $CHALLENGE_DIR $CONTENT_DIR
 fi
 # Check workspaces
 if [ ! -d $WORKSPACE_DIR ]; then

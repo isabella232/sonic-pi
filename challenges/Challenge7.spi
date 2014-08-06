@@ -1,0 +1,31 @@
+#------------------------------------------------------#
+# Challenge 7 : Really Random!
+# Make music using random numbers
+#------------------------------------------------------#
+
+
+# 1. Type: loop do
+
+
+
+# 2. Type: play rrand(50,100)
+
+
+
+# 3. Type: sleep rrand(0,0.5)
+
+
+
+# 4. Type: end
+
+
+
+# rrand tells the computer to choose a random number
+# between the two numbers you set.
+
+# E.g. rrand(50,100) will choose a number between 50 and 100.
+
+
+#************************************#
+#     Now press the play button      #
+#************************************#

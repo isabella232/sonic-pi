@@ -1,0 +1,24 @@
+#------------------------------------------------------#
+# Challenge 5 : New instrument
+# Change the sound of your music!
+#------------------------------------------------------#
+
+# Let's add a new instrument to the tune you just wrote! 
+
+# 1. Type: with_synth "saw_beep"
+
+
+
+# 2. Copy your song from the last challenge and 
+#    paste it below
+
+
+
+
+
+# with_synth let's us change the sound effect the computer
+# uses when it plays our song!
+
+#************************************#
+#     Now press the play button      #
+#************************************#

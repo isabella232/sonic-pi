@@ -1,0 +1,21 @@
+#------------------------------------------------------#
+# Challenge 1 : Play some funky beats
+# Get started with Sonic Pi
+#------------------------------------------------------#
+
+# We're going to do something you've probably never done
+# before: we're going to make music using COMPUTER CODE! 
+
+# Here's a funky tune to get you started. 
+# Click the play button in the top left to hear it!
+
+play 80
+sleep 1
+play 76
+sleep 1
+play 78
+sleep 1
+play 71
+sleep 1
+
+# Cool huh? Let's write our own! Open up Challenge 2. 

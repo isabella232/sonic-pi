@@ -31,12 +31,12 @@ init()
     mkdir -pv $WORKSPACE_DIR/six
 
     # Creating workspaces
-    touch $WORKSPACE_DIR/one/1.spi
-    touch $WORKSPACE_DIR/two/1.spi
-    touch $WORKSPACE_DIR/three/1.spi
-    touch $WORKSPACE_DIR/four/1.spi
-    touch $WORKSPACE_DIR/five/1.spi
-    touch $WORKSPACE_DIR/six/1.spi
+    cp $CHALLENGE_DIR/Challenge1.spi $WORKSPACE_DIR/one/1.spi
+    cp $CHALLENGE_DIR/Challenge2.spi $WORKSPACE_DIR/two/1.spi
+    cp $CHALLENGE_DIR/Challenge3.spi $WORKSPACE_DIR/three/1.spi
+    cp $CHALLENGE_DIR/Challenge4.spi $WORKSPACE_DIR/four/1.spi
+    cp $CHALLENGE_DIR/Challenge5.spi $WORKSPACE_DIR/five/1.spi
+    cp $CHALLENGE_DIR/Challenge6.spi $WORKSPACE_DIR/six/1.spi
 }
 
 # save the time at which make-music starts

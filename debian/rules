@@ -4,5 +4,5 @@
 	dh $@
 
 override_dh_auto_build:
-	qmake ./app/gui/make-music.pro
+	qmake ./app/gui/qt/SonicPi.pro
 	make

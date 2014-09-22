@@ -1,7 +1,5 @@
-./app/etc/* /usr/share/make-music/app/etc/
-./app/scripts/* /usr/share/make-music/app/scripts/
-./app/gui/images/* /usr/share/make-music/app/gui/images/
-./make-music /usr/share/make-music/app/gui/
+./etc/* /usr/share/make-music/app/etc/
+./SonicPi /usr/share/make-music/app/gui/
 
 ./LICENSE /usr/share/make-music/
 ./bin/make-music /usr/bin

@@ -82,25 +82,8 @@ fi
 MUSICPID=$!
 sleep 2
 
-# Create progress dialog with Zenity
-(
-  echo "#Make Music powered by Sonic Pi is loading..."
-  i=0 ; while [ "$i" -lt 100 ]; do
-     echo "$i"
-     i=$(($i+1))
-     sleep 0.05
-  done
-
-  kano-window-tool -t "$APPNAME" -m -dno
-  echo "#Ready"
-  sleep 1
-  echo "100"
-  ) |
-zenity --progress --no-cancel --text="" --width=300 --height=90 --auto-close --timeout=30 --auto-kill
-
-if [ "$?" = -1 ] ; then
-    zenity --error
-    --text="Start failed."
-fi
+# Create progress dialog with kano-progress bar
+kano-progress title="Make Music powered by Sonic Pi is loading..." rate=0.01
+kano-window-tool -t "$APPNAME" -m -dno
 
 exit $MUSICPID

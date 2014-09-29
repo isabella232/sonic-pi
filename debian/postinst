@@ -1,0 +1,20 @@
+Remove config file
+stinst
+#
+# Copyright (C) 2014 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+#
+
+TMP_FILE=/tmp/kano-toolset_conf
+
+case "$1" in
+    configure)
+        # Create Symlink
+        ln -s /usr/share/sonic-pi/app/gui/qt/Sonic-Pi /usr/bin
+
+        ;;
+esac
+
+#DEBHELPER#
+
+exit 0

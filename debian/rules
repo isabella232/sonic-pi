@@ -4,5 +4,4 @@
 	dh $@
 
 override_dh_auto_build:
-	qmake ./app/gui/qt/SonicPi.pro
-	make
+	./app/gui/qt/rp-build-app

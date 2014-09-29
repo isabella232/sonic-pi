@@ -1,16 +1,12 @@
-./app/etc/* /usr/share/make-music/app/etc/
-./app/scripts/* /usr/share/make-music/app/scripts/
-./app/gui/images/* /usr/share/make-music/app/gui/images/
-./make-music /usr/share/make-music/app/gui/
+app /usr/share/sonic-pi
+etc /usr/share/sonic-pi
+songs /usr/share/sonic-pi
+challenges /usr/share/sonic-pi
+LICENSE_SonicPi /usr/share/sonic-pi
 
-./LICENSE /usr/share/make-music/
-./bin/make-music /usr/bin
-./songs/* /usr/share/make-music/songs
-./challenges/* /usr/share/make-music/challenges
-
-./kdesktop/SonicPi.lnk /usr/share/kano-desktop/kdesk/kdesktop/
-./kdesktop/make-music.desktop /usr/share/applications/
-./icon/sonicpi.png /usr/share/kano-desktop/icons/
-./icon/sonicpi.png /usr/share/icons/Kano/88x88/apps
-./icon/SonicPi-hover.png /usr/share/kano-desktop/icons/
-./icon/make-music.app /usr/share/applications
+kdesktop/SonicPi.lnk /usr/share/kano-desktop/kdesk/kdesktop/
+kdesktop/make-music.desktop /usr/share/applications/
+icon/sonicpi.png /usr/share/kano-desktop/icons/
+icon/sonicpi.png /usr/share/icons/Kano/88x88/apps
+icon/SonicPi-hover.png /usr/share/kano-desktop/icons/
+icon/make-music.app /usr/share/applications

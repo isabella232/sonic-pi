@@ -4,5 +4,5 @@
 	dh $@
 
 override_dh_auto_build:
-	qmake ./app/gui/make-music.pro
-	make
+	app/gui/qt/rp-build-app
+	app/server/bin/compile-extensions.rb

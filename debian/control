@@ -9,6 +9,6 @@ Build-Depends: debhelper (>=9.0.0), qt4-dev-tools, libqt4-dev, libqscintilla2-de
 Package: make-music
 Architecture: all
 Depends: ${shlibs:Depends}, ${misc:Depends}, libc6, supercollider, jackd2,
- ruby (>=1.9.3), libqscintilla2-8,
+ ruby (>=1.9.3), libqscintilla2-8, kano-toolset (>= 1.2-2)
 Description: Make Music with a music programming environment
  A programatic approach to making music based on Sam Aaron's Sonic Pi

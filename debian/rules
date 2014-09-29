@@ -4,4 +4,5 @@
 	dh $@
 
 override_dh_auto_build:
-	./app/gui/qt/rp-build-app
+	app/gui/qt/rp-build-app
+	app/server/bin/compile-extensions.rb

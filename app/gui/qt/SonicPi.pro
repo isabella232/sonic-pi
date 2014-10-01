@@ -26,12 +26,14 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
            mainwindow.cpp \
-           sonicpilexer.cpp
+           sonicpilexer.cpp \
+           load_source_dialog.cpp
 
 HEADERS  += mainwindow.h \
             oscpkt.hh \
             udp.hh \
-            sonicpilexer.h
+            sonicpilexer.h \
+            load_source_dialog.h
 
 OTHER_FILES += \
     images/copy.png \

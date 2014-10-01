@@ -65,6 +65,7 @@ private slots:
     void stopRunningSynths();
     QString currentTabLabel();
     bool saveAs();
+    void load();
     void about();
     void help();
     void documentWasModified();
@@ -107,6 +108,7 @@ private:
     void addHelpPage(QListWidget *nameList, struct help_page *helpPages,
                      int len);
     QListWidget *createHelpTab(QTextEdit *docPane, QString name);
+    QsciScintilla * getCurrentWorkspace();
 
     QFuture<void> osc_thread;
 
@@ -149,6 +151,7 @@ private:
     QAction *runAct;
     QAction *stopAct;
     QAction *saveAct;
+    QAction *loadAct;
     QAction *recAct;
     QAction *infoAct;
     QAction *prefsAct;

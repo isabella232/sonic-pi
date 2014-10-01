@@ -87,6 +87,7 @@ using namespace oscpkt;
 #endif
 
 #include "mainwindow.h"
+#include "load_source_dialog.h"
 
 #ifdef Q_OS_MAC
 MainWindow::MainWindow(QApplication &app, QMainWindow* splash)
@@ -649,6 +650,22 @@ bool MainWindow::saveAs()
   }
 }
 
+QsciScintilla * MainWindow::getCurrentWorkspace() {
+    return workspaces[tabs->currentIndex()];
+};
+
+void MainWindow::load()
+{
+    LoadSourceDialog * load_from_dialog = new LoadSourceDialog();
+    int rc = load_from_dialog->exec();
+
+    if (rc == QDialog::Accepted) {
+        getCurrentWorkspace()->setText(QString::fromStdString(load_from_dialog->get_file_contents()));
+    }
+
+    delete load_from_dialog;
+}
+
 void MainWindow::sendOSC(Message m)
 {
   UdpSocket sock;
@@ -1087,6 +1104,13 @@ void MainWindow::createToolBar()
   QAction *saveAsAct = new QAction(QIcon(":/images/save.png"), tr("Save As..."), this);
   setupAction(saveAsAct, 0, tr("Save current workspace as an external file"), SLOT(saveAs()));
 
+  // Load
+  loadAct = new QAction(QIcon(":/images/save.png"), tr("&Load..."), this);
+  loadAct->setShortcut(tr("ctrl+O"));
+  loadAct->setToolTip(tr("Load a workspace"));
+  loadAct->setStatusTip(tr("Load a workspace"));
+  connect(loadAct, SIGNAL(triggered()), this, SLOT(load()));
+
   // Info
   QAction *infoAct = new QAction(QIcon(":/images/info.png"), tr("Info"), this);
   setupAction(infoAct, 0, tr("See information about Sonic Pi"),
@@ -1132,6 +1156,7 @@ void MainWindow::createToolBar()
   toolBar->addAction(stopAct);
 
   toolBar->addAction(saveAsAct);
+  toolBar->addAction(loadAct);
   toolBar->addAction(recAct);
   toolBar->addWidget(spacer);
 

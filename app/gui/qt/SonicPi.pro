@@ -37,7 +37,8 @@ SOURCES += main.cpp \
            sonicpiapis.cpp \
            sonicpiscintilla.cpp \
            oschandler.cpp \
-           sonicpiudpserver.cpp
+           sonicpiudpserver.cpp \
+           load_source_dialog.cpp
 
 HEADERS  += mainwindow.h \
             oscpkt.hh \
@@ -46,7 +47,8 @@ HEADERS  += mainwindow.h \
             sonicpiapis.h \
             sonicpiscintilla.h \
             oschandler.h \
-            sonicpiudpserver.h
+            sonicpiudpserver.h \
+            load_source_dialog.h
 
 OTHER_FILES += \
     images/copy.png \

@@ -95,6 +95,7 @@ private slots:
     void mixerLpfDisable();
     QString currentTabLabel();
     bool saveAs();
+    void load();
     void about();
     void help();
     void onExitCleanup();
@@ -155,6 +156,7 @@ private:
 		     const char *slot);
     QString readFile(QString name);
     QString rootPath();
+    QsciScintilla * getCurrentWorkspace();
 
     void addUniversalCopyShortcuts(QTextEdit *te);
 
@@ -196,6 +198,10 @@ private:
 
     QToolBar *toolBar;
 
+    QAction *runAct;
+    QAction *stopAct;
+    QAction *saveAct;
+    QAction *loadAct;
     QAction *recAct;
 
     QCheckBox *mixer_invert_stereo;

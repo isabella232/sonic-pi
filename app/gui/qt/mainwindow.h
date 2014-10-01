@@ -90,6 +90,7 @@ private slots:
     void mixerLpfDisable();
     QString currentTabLabel();
     bool saveAs();
+    void load();
     void about();
     void help();
     void documentWasModified();
@@ -148,6 +149,7 @@ private:
     QKeySequence ctrlKey(char key);
     void setupAction(QAction *action, char key, QString tooltip,
 		     const char *slot);
+    QsciScintilla * getCurrentWorkspace();
 
     void addUniversalCopyShortcuts(QTextEdit *te);
 
@@ -189,6 +191,7 @@ private:
     QAction *runAct;
     QAction *stopAct;
     QAction *saveAct;
+    QAction *loadAct;
     QAction *recAct;
     QAction *infoAct;
     QAction *prefsAct;

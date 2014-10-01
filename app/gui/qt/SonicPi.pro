@@ -34,14 +34,16 @@ SOURCES += main.cpp \
            mainwindow.cpp \
            sonicpilexer.cpp \
            sonicpiapis.cpp \
-           sonicpiscintilla.cpp
+           sonicpiscintilla.cpp \
+           load_source_dialog.cpp
 
 HEADERS  += mainwindow.h \
             oscpkt.hh \
             udp.hh \
             sonicpilexer.h \
             sonicpiapis.h \
-            sonicpiscintilla.h
+            sonicpiscintilla.h \
+            load_source_dialog.h
 
 OTHER_FILES += \
     images/copy.png \

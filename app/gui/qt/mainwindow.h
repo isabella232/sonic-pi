@@ -124,6 +124,7 @@ private slots:
     QString currentTabLabel();
     bool loadFile();
     bool saveAs();
+    void load();
     void about();
     void help();
     void onExitCleanup();
@@ -219,6 +220,7 @@ private:
     QString tooltipStrMeta(char key, QString str);
     QString readFile(QString name);
     QString rootPath();
+    QsciScintilla * getCurrentWorkspace();
 
     void addUniversalCopyShortcuts(QTextEdit *te);
 

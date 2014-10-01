@@ -61,7 +61,9 @@ SOURCES += main.cpp \
            sonicpiserver.cpp \
            sonicpiudpserver.cpp \
            sonicpitcpserver.cpp \
-           sonicpitheme.cpp
+           sonicpitheme.cpp \
+           load_source_dialog.cpp
+
 win32 {
 # have to link these explicitly for some reason
   SOURCES += platform/win/moc_qsciscintilla.cpp \
@@ -80,7 +82,8 @@ HEADERS  += mainwindow.h \
             sonicpiudpserver.h \
             ruby_help.h \
             sonicpitcpserver.h \
-            sonicpitheme.h
+            sonicpitheme.h \
+            load_source_dialog.h
 
 TRANSLATIONS = lang/sonic-pi_de.ts \
                lang/sonic-pi_is.ts

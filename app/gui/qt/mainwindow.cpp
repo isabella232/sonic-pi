@@ -110,6 +110,7 @@ using namespace oscpkt;// OSC specific stuff
 #endif
 
 #include "mainwindow.h"
+#include "load_source_dialog.h"
 
 #ifdef Q_OS_MAC
 MainWindow::MainWindow(QApplication &app, bool i18n, QMainWindow* splash)
@@ -1816,6 +1817,21 @@ bool MainWindow::saveAs()
   }
 }
 
+QsciScintilla * MainWindow::getCurrentWorkspace() {
+    return workspaces[tabs->currentIndex()];
+};
+
+void MainWindow::load()
+{
+    LoadSourceDialog * load_from_dialog = new LoadSourceDialog();
+    int rc = load_from_dialog->exec();
+
+    if (rc == QDialog::Accepted) {
+        getCurrentWorkspace()->setText(QString::fromStdString(load_from_dialog->get_file_contents()));
+    }
+
+    delete load_from_dialog;
+}
 
 void MainWindow::resetErrorPane() {
   errorPane->clear();
@@ -2727,7 +2743,7 @@ void MainWindow::createToolBar()
   // Load
   loadFileAct = new QAction(QIcon(":/images/toolbar/default/load.png"), tr("Load"), this);
   QString loadFileDesc = tooltipStrShiftMeta('O', tr("Load an external file in the current buffer"));
-  setupAction(loadFileAct, 0, loadFileDesc, SLOT(loadFile()));
+  setupAction(loadFileAct, 0, loadFileDesc, SLOT(load()));
   loadFileAct->setToolTip(loadFileDesc);
 
   // Record
@@ -2786,10 +2802,12 @@ void MainWindow::createToolBar()
   toolBar->setIconSize(QSize(73, 30));
   toolBar->addAction(runAct);
   toolBar->addAction(stopAct);
+
+  toolBar->addAction(saveAsAct);
+  toolBar->addAction(loadAct);
   toolBar->addAction(recAct);
 
   toolBar->addAction(saveAsAct);
-  toolBar->addAction(loadFileAct);
 
   toolBar->addWidget(spacer);
 

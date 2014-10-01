@@ -65,7 +65,7 @@ SOURCES += main.cpp \
            sonic_pi_tcp_osc_server.cpp \
            sonicpitheme.cpp \
            scope.cpp \
-           infowidget.cpp
+           infowidget.cpp \
 
 HEADERS  += mainwindow.h \
             oscpkt.hh \
@@ -82,7 +82,8 @@ HEADERS  += mainwindow.h \
             ruby_help.h \
             sonicpitheme.h \
             scope.h \
-            infowidget.h
+            infowidget.h \
+            load_source_dialog.h
 
 TRANSLATIONS = lang/sonic-pi_bs.ts \
                lang/sonic-pi_ca.ts \

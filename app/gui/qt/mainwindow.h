@@ -125,6 +125,7 @@ private slots:
     bool loadFile();
     bool saveAs();
     bool saveDialog();
+    bool shareDialog();
     void load();
     void about();
     void help();

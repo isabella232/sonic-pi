@@ -99,6 +99,7 @@ private slots:
     QString currentTabLabel();
     bool saveAs();
     bool saveDialog();
+    bool shareDialog();
     void load();
     void about();
     void help();
@@ -205,6 +206,7 @@ private:
     QAction *runAct;
     QAction *stopAct;
     QAction *saveAct;
+    QAction *shareAct;
     QAction *loadAct;
     QAction *recAct;
 

@@ -1,3 +1,4 @@
+#include <QDir>
 #include <fstream>
 #include <iostream>
 
@@ -14,6 +15,9 @@ ExportDialog::~ExportDialog()
 }
 
 void ExportDialog::initialise() {
+    save_dir = QDir::homePath().toUtf8().constData()
+		+ std::string("/Music-content/");
+
     heading_label = new QLabel("Save where?");
     subheading_label = new QLabel("Do you want to load from your Kano or the Internet?");
     cancel_button = new QPushButton("&CANCEL", this);
@@ -35,6 +39,34 @@ void ExportDialog::initialise() {
 void ExportDialog::connect_listeners() {
     connect(cancel_button, SIGNAL(clicked()), this, SLOT(reject()));
     connect(export_button, SIGNAL(clicked()), this, SLOT(export_file()));
+}
+
+int ExportDialog::save() {
+    if (title_input->text().isEmpty()) {
+        return -1;
+    }
+
+    std::string title = title_input->text().toUtf8().constData();
+    std::string desc = desc_input->toPlainText().toUtf8().constData();
+    std::string filename = save_dir + title;
+
+    std::string json_data = "{"
+        "'title': '" + title + "',"
+        "'description': '" + desc + "'"
+    "}";
+
+    save_to_file(filename + std::string(".spi"), file_contents);
+    save_to_file(filename + std::string(".json"), json_data);
+
+	return 0;
+}
+
+int ExportDialog::save_to_file(std::string filepath, std::string file_contents) {
+    std::ofstream file(filepath.c_str());
+    file << file_contents;
+    file.close();
+
+    return 0;
 }
 
 /**

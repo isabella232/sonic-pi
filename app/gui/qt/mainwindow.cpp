@@ -91,6 +91,7 @@ using namespace oscpkt;
 
 #include "mainwindow.h"
 #include "load_source_dialog.h"
+#include "save_dialog.h"
 
 #ifdef Q_OS_MAC
 MainWindow::MainWindow(QApplication &app, QMainWindow* splash)
@@ -847,6 +848,16 @@ bool MainWindow::saveAs()
   }
 }
 
+bool MainWindow::saveDialog()
+{
+    SaveDialog * save_dialog = new SaveDialog();
+    save_dialog->set_file_contents(getCurrentWorkspace()->text().toUtf8().constData());
+
+    save_dialog->exec();
+
+    delete save_dialog;
+}
+
 QsciScintilla * MainWindow::getCurrentWorkspace() {
     return workspaces[tabs->currentIndex()];
 };
@@ -1372,7 +1383,7 @@ void MainWindow::createToolBar()
 
   // Save
   QAction *saveAsAct = new QAction(QIcon(":/images/save.png"), tr("Save As..."), this);
-  setupAction(saveAsAct, 0, tr("Save current workspace as an external file"), SLOT(saveAs()));
+  setupAction(saveAsAct, 0, tr("Save current workspace as an external file"), SLOT(saveDialog()));
 
   // Load
   QAction *loadAct = new QAction(QIcon(":/images/save.png"), tr("&Load..."), this);

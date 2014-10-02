@@ -6,7 +6,6 @@
 
 LoadSourceDialog::~LoadSourceDialog()
 {
-    delete layout;
     delete heading_label;
     delete subheading_label;
     delete local_button;
@@ -14,24 +13,15 @@ LoadSourceDialog::~LoadSourceDialog()
 }
 
 void LoadSourceDialog::initialise() {
-    this->setWindowFlags(Qt::Tool
-                         | Qt::WindowTitleHint
-                         | Qt::WindowCloseButtonHint
-                         | Qt::CustomizeWindowHint);
-    this->setWindowModality(Qt::ApplicationModal);
-
     heading_label = new QLabel("Load from where?");
     subheading_label = new QLabel("Do you want to load from your Kano or the Internet?");
     local_button = new QPushButton("&YOUR KANO", this);
     remote_button = new QPushButton("&INTERNET", this);
 
-    layout = new QGridLayout();
     layout->addWidget(heading_label, 0, 0, 1, 2);
     layout->addWidget(subheading_label, 1, 0, 1, 2);
     layout->addWidget(local_button, 2, 0);
     layout->addWidget(remote_button, 2, 1);
-
-    this->setLayout(layout);
 }
 
 void LoadSourceDialog::connect_listeners() {
@@ -91,7 +81,15 @@ int LoadSourceDialog::load_from_internet() {
     // Find the returned file path
     std::string file_path_str = "File Path: ";
     int start = std_out.find(file_path_str) + file_path_str.length();
+
     int end = std_out.find('\n', start);
+
+    if (start == -1
+        || end == -1) {
+
+        // No file returned
+        return -1;
+    }
 
     std::string file_path = std_out.substr(start, end - start);
     std::cout << file_path;

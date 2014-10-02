@@ -41,6 +41,9 @@ SOURCES += main.cpp \
            sonicpiscintilla.cpp \
            oschandler.cpp \
            sonicpiudpserver.cpp \
+           io_dialog.cpp \
+           export_dialog.cpp \
+           save_dialog.cpp \
            load_source_dialog.cpp
 
 HEADERS  += mainwindow.h \
@@ -52,6 +55,9 @@ HEADERS  += mainwindow.h \
             oschandler.h \
             sonicpiudpserver.h \
             ruby_help.h \
+            io_dialog.h \
+            export_dialog.h \
+            save_dialog.h \
             load_source_dialog.h
 
 TRANSLATIONS = lang/sonic-pi_de.ts

@@ -112,6 +112,7 @@ using namespace oscpkt;// OSC specific stuff
 #include "mainwindow.h"
 #include "load_source_dialog.h"
 #include "save_dialog.h"
+#include "share_dialog.h"
 
 #ifdef Q_OS_MAC
 MainWindow::MainWindow(QApplication &app, bool i18n, QMainWindow* splash)
@@ -1826,6 +1827,20 @@ bool MainWindow::saveDialog()
     save_dialog->exec();
 
     delete save_dialog;
+
+    return true;
+}
+
+bool MainWindow::shareDialog()
+{
+    ShareDialog * share_dialog = new ShareDialog();
+    share_dialog->set_file_contents(getCurrentWorkspace()->text().toUtf8().constData());
+
+    share_dialog->exec();
+
+    delete share_dialog;
+
+    return true;
 }
 
 QsciScintilla * MainWindow::getCurrentWorkspace() {
@@ -2751,6 +2766,12 @@ void MainWindow::createToolBar()
   setupAction(saveAsAct, 0, saveFileDesc, SLOT(saveDialog()));
   saveAsAct->setToolTip(saveFileDesc);
 
+  // Share
+  QAction *shareAct = new QAction(QIcon(":/images/save.png"), tr("&Share..."), this);
+  shareAct->setToolTip(tr("Share your creation with the world"));
+  shareAct->setStatusTip(tr("Share your creation with the world"));
+  connect(shareAct, SIGNAL(triggered()), this, SLOT(shareDialog()));
+
   // Load
   loadFileAct = new QAction(QIcon(":/images/toolbar/default/load.png"), tr("Load"), this);
   QString loadFileDesc = tooltipStrShiftMeta('O', tr("Load an external file in the current buffer"));
@@ -2815,6 +2836,7 @@ void MainWindow::createToolBar()
   toolBar->addAction(stopAct);
 
   toolBar->addAction(saveAsAct);
+  toolBar->addAction(shareAct);
   toolBar->addAction(loadAct);
   toolBar->addAction(recAct);
 

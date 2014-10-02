@@ -1,37 +1,35 @@
 #ifndef LOAD_SOURCE_DIALOG_H
 #define LOAD_SOURCE_DIALOG_H
 
-#include <QDialog>
-#include <QGridLayout>
 #include <QLabel>
 #include <QPushButton>
 #include <string>
 
-class LoadSourceDialog : public QDialog
+#include "io_dialog.h"
+
+class LoadSourceDialog : public IODialog
 {
     Q_OBJECT
 
     public:
         LoadSourceDialog(QWidget * parent = 0,
                          Qt::WindowFlags f = 0) :
-            QDialog(parent, f) {
+            IODialog(parent, f) {
                 initialise();
                 connect_listeners();
             };
         ~LoadSourceDialog();
         std::string get_file_contents();
 
-    private slots:
+    protected slots:
         int load_from_local();
         int load_from_internet();
 
-    private:
-        QGridLayout * layout;
+    protected:
         QLabel * heading_label;
         QLabel * subheading_label;
         QPushButton * local_button;
         QPushButton * remote_button;
-        std::string file_contents;
 
         void initialise();
         void connect_listeners();

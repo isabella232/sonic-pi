@@ -95,6 +95,7 @@ private slots:
     void mixerLpfDisable();
     QString currentTabLabel();
     bool saveAs();
+    bool saveDialog();
     void load();
     void about();
     void help();

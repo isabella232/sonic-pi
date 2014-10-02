@@ -63,6 +63,7 @@ SOURCES += main.cpp \
            io_dialog.cpp \
            export_dialog.cpp \
            save_dialog.cpp \
+           share_dialog.cpp \
            load_source_dialog.cpp
 win32 {
 # have to link these explicitly for some reason
@@ -84,6 +85,7 @@ HEADERS  += mainwindow.h \
             io_dialog.h \
             export_dialog.h \
             save_dialog.h \
+            share_dialog.h \
             load_source_dialog.h
 
 TRANSLATIONS = lang/sonic-pi_de.ts

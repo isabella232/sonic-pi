@@ -132,6 +132,7 @@ private slots:
     QString currentTabLabel();
     bool loadFile();
     bool saveAs();
+    bool saveDialog();
     void load();
     void about();
     void scope();

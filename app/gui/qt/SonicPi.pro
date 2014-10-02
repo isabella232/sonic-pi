@@ -62,6 +62,9 @@ SOURCES += main.cpp \
            sonicpiudpserver.cpp \
            sonicpitcpserver.cpp \
            sonicpitheme.cpp \
+           io_dialog.cpp \
+           export_dialog.cpp \
+           save_dialog.cpp \
            load_source_dialog.cpp
 
 win32 {
@@ -83,6 +86,9 @@ HEADERS  += mainwindow.h \
             ruby_help.h \
             sonicpitcpserver.h \
             sonicpitheme.h \
+            io_dialog.h \
+            export_dialog.h \
+            save_dialog.h \
             load_source_dialog.h
 
 TRANSLATIONS = lang/sonic-pi_de.ts \

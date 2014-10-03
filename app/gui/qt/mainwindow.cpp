@@ -115,9 +115,9 @@ using namespace oscpkt;// OSC specific stuff
 #include "share_dialog.h"
 
 #ifdef Q_OS_MAC
-MainWindow::MainWindow(QApplication &app, bool i18n, QMainWindow* splash)
+MainWindow::MainWindow(QApplication &app, bool i18n, QMainWindow* splash, std::string load_file)
 #else
-MainWindow::MainWindow(QApplication &app, bool i18n, QSplashScreen* splash)
+MainWindow::MainWindow(QApplication &app, bool i18n, QSplashScreen* splash, std::string load_file)
 #endif
 {
 
@@ -401,6 +401,8 @@ MainWindow::MainWindow(QApplication &app, bool i18n, QSplashScreen* splash)
 
   //setup autocompletion
   autocomplete->loadSamples(sample_path);
+
+  file_to_load = load_file;
 
   OscHandler* handler = new OscHandler(this, outputPane, incomingPane, theme);
 
@@ -1138,6 +1140,9 @@ void MainWindow::splashClose() {
 }
 
 void MainWindow::showWindow() {
+  splashClose();
+  loadWorkspaces(file_to_load);
+
   QSettings settings("sonic-pi.net", "gui-settings");
   if(settings.value("first_time", 1).toInt() == 1) {
     showMaximized();
@@ -1742,7 +1747,7 @@ std::string MainWindow::number_name(int i) {
   }
 }
 
-void MainWindow::loadWorkspaces()
+void MainWindow::loadWorkspaces(std::string file_path)
 {
   std::cout << "[GUI] - loading workspaces" << std::endl;
 
@@ -1750,6 +1755,10 @@ void MainWindow::loadWorkspaces()
     Message msg("/load-buffer");
     msg.pushStr(guiID.toStdString());
     std::string s = "workspace_" + number_name(i);
+      if (i == 0
+          && file_path.compare("")) {
+	    s = file_path;
+      }
     msg.pushStr(s);
     sendOSC(msg);
   }

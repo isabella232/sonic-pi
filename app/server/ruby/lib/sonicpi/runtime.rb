@@ -431,6 +431,8 @@ module SonicPi
       s = "# Welcome to Sonic Pi #{@version.to_s}\n\n"
       if File.exist? path
         s = IO.read(path)
+      elsif File.exists? id
+        s = IO.read(id)
       end
       __replace_buffer(id, s)
     end

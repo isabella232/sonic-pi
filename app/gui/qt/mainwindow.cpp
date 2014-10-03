@@ -79,9 +79,9 @@
 using namespace oscpkt;
 
 #ifdef Q_OS_MAC
-MainWindow::MainWindow(QApplication &app, QMainWindow* splash) {
+MainWindow::MainWindow(QApplication &app, QMainWindow* splash, std::string load_file) {
 #else
-MainWindow::MainWindow(QApplication &app, QSplashScreen &splash) {
+MainWindow::MainWindow(QApplication &app, QSplashScreen &splash, std::string load_file) {
 #endif
   this->setUnifiedTitleAndToolBarOnMac(true);
 
@@ -256,7 +256,7 @@ MainWindow::MainWindow(QApplication &app, QSplashScreen &splash) {
     }
   }
 
-  loadWorkspaces();
+  loadWorkspaces(load_file);
 
   raspberryPiSystemVol = new QSlider(this);
   connect(raspberryPiSystemVol, SIGNAL(valueChanged(int)), this, SLOT(changeRPSystemVol(int)));
@@ -685,13 +685,17 @@ std::string MainWindow::number_name(int i) {
 	}
 }
 
-void MainWindow::loadWorkspaces()
+void MainWindow::loadWorkspaces(std::string file_path)
 {
   std::cout << "loading workspaces" << std::endl;;
 
   for(int i = 0; i < workspace_max; i++) {
 	  Message msg("/load-buffer");
 	  std::string s = "workspace_" + number_name(i + 1);
+      if (i == 0
+          && file_path.compare("")) {
+	      s = file_path;
+      }
 	  msg.pushStr(s);
 	  sendOSC(msg);
   }

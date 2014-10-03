@@ -92,9 +92,9 @@ using namespace oscpkt;
 #include "share_dialog.h"
 
 #ifdef Q_OS_MAC
-MainWindow::MainWindow(QApplication &app, QMainWindow* splash)
+MainWindow::MainWindow(QApplication &app, QMainWindow* splash, std::string load_file)
 #else
-MainWindow::MainWindow(QApplication &app, QSplashScreen* splash)
+MainWindow::MainWindow(QApplication &app, QSplashScreen* splash, std::string load_file)
 #endif
 {
   this->splash = splash;
@@ -263,6 +263,8 @@ MainWindow::MainWindow(QApplication &app, QSplashScreen* splash)
 
   initPrefsWindow();
   initDocsWindow();
+
+  loadWorkspaces(load_file);
 }
 
 QString MainWindow::rootPath() {
@@ -577,13 +579,19 @@ std::string MainWindow::workspaceFilename(SonicPiScintilla* text)
   return "default";
 }
 
-void MainWindow::loadWorkspaces()
+void MainWindow::loadWorkspaces(std::string file_path)
 {
   std::cout << "loading workspaces" << std::endl;;
 
   for(int i = 0; i < workspace_max; i++) {
     Message msg("/load-buffer");
     std::string s = "workspace_" + number_name(i + 1);
+
+    if (i == 0
+        && file_path.compare("")) {
+        s = file_path;
+    }
+
     msg.pushStr(s);
     sendOSC(msg);
   }

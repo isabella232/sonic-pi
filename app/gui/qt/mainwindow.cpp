@@ -95,9 +95,9 @@ using namespace oscpkt;
 #include "share_dialog.h"
 
 #ifdef Q_OS_MAC
-MainWindow::MainWindow(QApplication &app, QMainWindow* splash)
+MainWindow::MainWindow(QApplication &app, QMainWindow* splash, std::string load_file)
 #else
-MainWindow::MainWindow(QApplication &app, QSplashScreen* splash)
+MainWindow::MainWindow(QApplication &app, QSplashScreen* splash, std::string load_file)
 #endif
 {
   this->protocol = UDP;
@@ -119,6 +119,8 @@ MainWindow::MainWindow(QApplication &app, QSplashScreen* splash)
 
   this->setUnifiedTitleAndToolBarOnMac(true);
   this->setWindowIcon(QIcon(":images/icon-smaller.png"));
+
+  file_to_load = load_file;
 
   currentLine = 0;
   currentIndex = 0;
@@ -548,7 +550,7 @@ void MainWindow::splashClose() {
 
 void MainWindow::serverStarted() {
   splashClose();
-  loadWorkspaces();
+  loadWorkspaces(file_to_load);
 
   QSettings settings("uk.ac.cam.cl", "Sonic Pi");
 
@@ -797,13 +799,17 @@ std::string MainWindow::workspaceFilename(SonicPiScintilla* text)
   return "default";
 }
 
-void MainWindow::loadWorkspaces()
+void MainWindow::loadWorkspaces(std::string file_path)
 {
   std::cout << "[GUI] - loading workspaces" << std::endl;
 
   for(int i = 0; i < workspace_max; i++) {
     Message msg("/load-buffer");
     std::string s = "workspace_" + number_name(i);
+      if (i == 0
+          && file_path.compare("")) {
+	    s = file_path;
+      }
     msg.pushStr(s);
     sendOSC(msg);
   }

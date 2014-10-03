@@ -69,9 +69,9 @@ class MainWindow : public QMainWindow
 
 public:
 #if defined(Q_OS_MAC)
-    MainWindow(QApplication &ref, bool i18n, QMainWindow* splash);
+    MainWindow(QApplication &ref, bool i18n, QMainWindow* splash, std::string load_file = "");
 #else
-    MainWindow(QApplication &ref, bool i18n, QSplashScreen* splash);
+    MainWindow(QApplication &ref, bool i18n, QSplashScreen* splash, std::string load_file = "");
 #endif
 
     SonicPiServer *sonicPiServer;
@@ -184,7 +184,7 @@ private:
     void writeSettings();
     void loadFile(const QString &fileName, SonicPiScintilla* &text);
     bool saveFile(const QString &fileName, SonicPiScintilla* text);
-    void loadWorkspaces();
+    void loadWorkspaces(std::string file_path = "");
     void saveWorkspaces();
     std::string number_name(int);
     std::string workspaceFilename(SonicPiScintilla* text);
@@ -302,6 +302,8 @@ private:
 
     QString guiID;
 
+
+	std::string file_to_load;
 };
 
 #endif

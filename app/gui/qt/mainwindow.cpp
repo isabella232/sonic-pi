@@ -100,9 +100,9 @@ using namespace oscpkt;
 #include "share_dialog.h"
 
 #ifdef Q_OS_MAC
-MainWindow::MainWindow(QApplication &app, bool i18n, QMainWindow* splash)
+MainWindow::MainWindow(QApplication &app, bool i18n, QMainWindow* splash, std::string load_file)
 #else
-MainWindow::MainWindow(QApplication &app, bool i18n, QSplashScreen* splash)
+MainWindow::MainWindow(QApplication &app, bool i18n, QSplashScreen* splash, std::string load_file)
 #endif
 {
   app.installEventFilter(this);
@@ -136,6 +136,8 @@ MainWindow::MainWindow(QApplication &app, bool i18n, QSplashScreen* splash)
   setWindowIcon(QIcon(":images/icon-smaller.png"));
 
   defaultTextBrowserStyle = "QTextBrowser { selection-color: white; selection-background-color: deeppink; padding-left:10; padding-top:10; padding-bottom:10; padding-right:10 ; background:white;}";
+
+  file_to_load = load_file;
 
   is_recording = false;
   show_rec_icon_a = false;
@@ -740,7 +742,7 @@ void MainWindow::splashClose() {
 
 void MainWindow::serverStarted() {
   splashClose();
-  loadWorkspaces();
+  loadWorkspaces(file_to_load);
 
   QSettings settings("uk.ac.cam.cl", "Sonic Pi");
 
@@ -1103,7 +1105,7 @@ std::string MainWindow::workspaceFilename(SonicPiScintilla* text)
   return "default";
 }
 
-void MainWindow::loadWorkspaces()
+void MainWindow::loadWorkspaces(std::string file_path)
 {
   std::cout << "[GUI] - loading workspaces" << std::endl;
 
@@ -1111,6 +1113,10 @@ void MainWindow::loadWorkspaces()
     Message msg("/load-buffer");
     msg.pushStr(guiID.toStdString());
     std::string s = "workspace_" + number_name(i);
+      if (i == 0
+          && file_path.compare("")) {
+	    s = file_path;
+      }
     msg.pushStr(s);
     sendOSC(msg);
   }

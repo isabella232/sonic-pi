@@ -59,8 +59,14 @@ int main(int argc, char *argv[])
   splashWindow->raise();
   splashWindow->show();
 
-  MainWindow mainWin(app, i18n, splashWindow);
-  return app.exec();
+  if (argc == 2) {
+      MainWindow mainWin(app, i18n, splashWindow, argv[1]);
+      return app.exec();
+  } else {
+      MainWindow mainWin(app, i18n, splashWindow);
+      return app.exec();
+  }
+
 #else
   QPixmap pixmap(":/images/splash.png");
   QSplashScreen *splash = new QSplashScreen(pixmap);
@@ -68,8 +74,14 @@ int main(int argc, char *argv[])
   splash->show();
   splash->repaint();
 
-  MainWindow mainWin(app, i18n, splash);
-  return app.exec();
+  if (argc == 2) {
+      MainWindow mainWin(app, i18n, splash, argv[1]);
+      return app.exec();
+  } else {
+      MainWindow mainWin(app, i18n, splash);
+      return app.exec();
+  }
+
 #endif
 
 }

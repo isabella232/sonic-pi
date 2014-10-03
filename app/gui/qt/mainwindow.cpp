@@ -2767,7 +2767,7 @@ void MainWindow::createToolBar()
   saveAsAct->setToolTip(saveFileDesc);
 
   // Share
-  QAction *shareAct = new QAction(QIcon(":/images/save.png"), tr("&Share..."), this);
+  QAction *shareAct = new QAction(QIcon(":/images/toolbar/default/share.png"), tr("&Share..."), this);
   shareAct->setToolTip(tr("Share your creation with the world"));
   shareAct->setStatusTip(tr("Share your creation with the world"));
   connect(shareAct, SIGNAL(triggered()), this, SLOT(shareDialog()));

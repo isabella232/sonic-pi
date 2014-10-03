@@ -1909,13 +1909,13 @@ void MainWindow::createToolBar()
   setupAction(saveAsAct, 0, tr("Save current buffer as an external file"), SLOT(saveDialog()));
 
   // Share
-  QAction *shareAct = new QAction(QIcon(":/images/save.png"), tr("&Share..."), this);
+  QAction *shareAct = new QAction(QIcon(":/images/share.png"), tr("&Share..."), this);
   shareAct->setToolTip(tr("Share your creation with the world"));
   shareAct->setStatusTip(tr("Share your creation with the world"));
   connect(shareAct, SIGNAL(triggered()), this, SLOT(shareDialog()));
 
   // Load
-  QAction *loadAct = new QAction(QIcon(":/images/save.png"), tr("&Load..."), this);
+  QAction *loadAct = new QAction(QIcon(":/images/load.png"), tr("&Load..."), this);
   loadAct->setShortcut(tr("ctrl+O"));
   loadAct->setToolTip(tr("Load a workspace"));
   loadAct->setStatusTip(tr("Load a workspace"));

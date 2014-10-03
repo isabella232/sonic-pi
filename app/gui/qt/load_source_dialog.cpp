@@ -62,7 +62,7 @@ int LoadSourceDialog::load_from_local() {
 }
 
 int LoadSourceDialog::load_from_internet() {
-    FILE *share_proc;
+    FILE * share_proc;
     char buff[512];
 
     if (!(share_proc = popen("/usr/bin/kano-share make-music", "r"))) {

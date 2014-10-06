@@ -21,14 +21,16 @@ int ShareDialog::export_file() {
     // Share
     FILE *share_proc;
 
-	std::string filename = save_dir +
-		+ title_input->text().toUtf8().constData()
+    std::string filename = title_input->text().toUtf8().constData();
+    std::replace(filename.begin(), filename.end(), ' ', '_');
+	std::string filepath = save_dir
+		+ filename
         + std::string(".spi");
 
     std::string cmd = std::string("/usr/bin/kano-share upload make-music ")
-                    + title_input->text().toUtf8().constData()
+                    + filename.c_str()
                     + std::string(" ")
-                    + filename.c_str();
+                    + filepath.c_str();
     if (!(share_proc = popen(cmd.c_str(), "r"))) {
         return -1;
     }

@@ -1406,6 +1406,11 @@ void MainWindow::onExitCleanup()
     sendOSC(msg);
   }
   osc_thread.waitForFinished();
+
+  // Ensure that all the processes are killed
+  system("pkill ruby");
+  system("pkill scsynth");
+
   std::cout << "Exiting..." << std::endl;
 
 }

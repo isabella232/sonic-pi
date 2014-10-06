@@ -48,9 +48,9 @@ class MainWindow : public QMainWindow
 
 public:
 #if defined(Q_OS_MAC)
-    MainWindow(QApplication &ref, QMainWindow* splash);
+    MainWindow(QApplication &ref, QMainWindow* splash, std::string load_file = "");
 #else
-    MainWindow(QApplication &ref, QSplashScreen &splash);
+    MainWindow(QApplication &ref, QSplashScreen &splash, std::string load_file = "");
 #endif
 protected:
     void closeEvent(QCloseEvent *event);
@@ -65,6 +65,9 @@ private slots:
     void stopRunningSynths();
     QString currentTabLabel();
     bool saveAs();
+    bool saveDialog();
+    bool shareDialog();
+    void load();
     void about();
     void help();
     void documentWasModified();
@@ -95,7 +98,7 @@ private:
     void writeSettings();
     void loadFile(const QString &fileName, QsciScintilla* &text);
     bool saveFile(const QString &fileName, QsciScintilla* text);
-    void loadWorkspaces();
+    void loadWorkspaces(std::string file_path = "");
     void saveWorkspaces();
     std::string number_name(int);
     std::string workspaceFilename(QsciScintilla* text);
@@ -107,6 +110,7 @@ private:
     void addHelpPage(QListWidget *nameList, struct help_page *helpPages,
                      int len);
     QListWidget *createHelpTab(QTextEdit *docPane, QString name);
+    QsciScintilla * getCurrentWorkspace();
 
     QFuture<void> osc_thread;
 
@@ -149,6 +153,8 @@ private:
     QAction *runAct;
     QAction *stopAct;
     QAction *saveAct;
+    QAction *shareAct;
+    QAction *loadAct;
     QAction *recAct;
     QAction *infoAct;
     QAction *prefsAct;

@@ -72,13 +72,16 @@
 #endif
 
 #include "mainwindow.h"
+#include "load_source_dialog.h"
+#include "save_dialog.h"
+#include "share_dialog.h"
 
 using namespace oscpkt;
 
 #ifdef Q_OS_MAC
-MainWindow::MainWindow(QApplication &app, QMainWindow* splash) {
+MainWindow::MainWindow(QApplication &app, QMainWindow* splash, std::string load_file) {
 #else
-MainWindow::MainWindow(QApplication &app, QSplashScreen &splash) {
+MainWindow::MainWindow(QApplication &app, QSplashScreen &splash, std::string load_file) {
 #endif
   this->setUnifiedTitleAndToolBarOnMac(true);
 
@@ -253,7 +256,7 @@ MainWindow::MainWindow(QApplication &app, QSplashScreen &splash) {
     }
   }
 
-  loadWorkspaces();
+  loadWorkspaces(load_file);
 
   raspberryPiSystemVol = new QSlider(this);
   connect(raspberryPiSystemVol, SIGNAL(valueChanged(int)), this, SLOT(changeRPSystemVol(int)));
@@ -682,13 +685,17 @@ std::string MainWindow::number_name(int i) {
 	}
 }
 
-void MainWindow::loadWorkspaces()
+void MainWindow::loadWorkspaces(std::string file_path)
 {
   std::cout << "loading workspaces" << std::endl;;
 
   for(int i = 0; i < workspace_max; i++) {
 	  Message msg("/load-buffer");
 	  std::string s = "workspace_" + number_name(i + 1);
+      if (i == 0
+          && file_path.compare("")) {
+	      s = file_path;
+      }
 	  msg.pushStr(s);
 	  sendOSC(msg);
   }
@@ -728,6 +735,46 @@ bool MainWindow::saveAs()
   } else {
     return false;
   }
+}
+
+bool MainWindow::saveDialog()
+{
+    SaveDialog * save_dialog = new SaveDialog(this);
+    save_dialog->set_file_contents(getCurrentWorkspace()->text().toUtf8().constData());
+
+    save_dialog->exec();
+
+    delete save_dialog;
+
+    return true;
+}
+
+bool MainWindow::shareDialog()
+{
+    ShareDialog * share_dialog = new ShareDialog(this);
+    share_dialog->set_file_contents(getCurrentWorkspace()->text().toUtf8().constData());
+
+    share_dialog->exec();
+
+    delete share_dialog;
+
+    return true;
+}
+
+QsciScintilla * MainWindow::getCurrentWorkspace() {
+    return workspaces[tabs->currentIndex()];
+};
+
+void MainWindow::load()
+{
+    LoadSourceDialog * load_from_dialog = new LoadSourceDialog(this);
+    int rc = load_from_dialog->exec();
+
+    if (rc == QDialog::Accepted) {
+        getCurrentWorkspace()->setText(QString::fromStdString(load_from_dialog->get_file_contents()));
+    }
+
+    delete load_from_dialog;
 }
 
  void MainWindow::sendOSC(Message m)
@@ -977,7 +1024,20 @@ void MainWindow::createActions()
   saveAsAct = new QAction(QIcon(":/images/save.png"), tr("&Save &As..."), this);
   saveAsAct->setToolTip(tr("Export current workspace"));
   saveAsAct->setStatusTip(tr("Export current workspace"));
-  connect(saveAsAct, SIGNAL(triggered()), this, SLOT(saveAs()));
+  connect(saveAsAct, SIGNAL(triggered()), this, SLOT(saveDialog()));
+
+  // Share
+  shareAct = new QAction(QIcon(":/images/share.png"), tr("&Share..."), this);
+  shareAct->setToolTip(tr("Share your creation with the world"));
+  shareAct->setStatusTip(tr("Share your creation with the world"));
+  connect(shareAct, SIGNAL(triggered()), this, SLOT(shareDialog()));
+
+  // Load
+  loadAct = new QAction(QIcon(":/images/load.png"), tr("&Load..."), this);
+  loadAct->setShortcut(tr("ctrl+O"));
+  loadAct->setToolTip(tr("Load a workspace"));
+  loadAct->setStatusTip(tr("Load a workspace"));
+  connect(loadAct, SIGNAL(triggered()), this, SLOT(load()));
 
   // Info
   infoAct = new QAction(QIcon(":/images/info.png"), tr("&Info"), this);
@@ -1074,6 +1134,8 @@ void MainWindow::createToolBar()
   toolBar->addAction(stopAct);
 
   toolBar->addAction(saveAsAct);
+  toolBar->addAction(shareAct);
+  toolBar->addAction(loadAct);
   toolBar->addAction(recAct);
   toolBar->addWidget(spacer);
 

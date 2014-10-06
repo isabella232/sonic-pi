@@ -554,13 +554,8 @@ void MainWindow::serverStarted() {
 
   QSettings settings("uk.ac.cam.cl", "Sonic Pi");
 
-  if(settings.value("first_time", 1).toInt() == 1) {
-    this->showMaximized();
-  } else {
-    this->showNormal();
-
-  }
   this->changeShowLineNumbers();
+  this->showMaximized();
 }
 
 

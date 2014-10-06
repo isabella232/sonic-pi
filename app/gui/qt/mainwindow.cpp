@@ -1406,7 +1406,7 @@ bool MainWindow::saveAs()
 
 bool MainWindow::saveDialog()
 {
-    SaveDialog * save_dialog = new SaveDialog();
+    SaveDialog * save_dialog = new SaveDialog(this);
     save_dialog->set_file_contents(getCurrentWorkspace()->text().toUtf8().constData());
 
     save_dialog->exec();
@@ -1418,7 +1418,7 @@ bool MainWindow::saveDialog()
 
 bool MainWindow::shareDialog()
 {
-    ShareDialog * share_dialog = new ShareDialog();
+    ShareDialog * share_dialog = new ShareDialog(this);
     share_dialog->set_file_contents(getCurrentWorkspace()->text().toUtf8().constData());
 
     share_dialog->exec();
@@ -1434,7 +1434,7 @@ QsciScintilla * MainWindow::getCurrentWorkspace() {
 
 void MainWindow::load()
 {
-    LoadSourceDialog * load_from_dialog = new LoadSourceDialog();
+    LoadSourceDialog * load_from_dialog = new LoadSourceDialog(this);
     int rc = load_from_dialog->exec();
 
     if (rc == QDialog::Accepted) {

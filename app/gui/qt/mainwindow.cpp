@@ -1710,6 +1710,10 @@ void MainWindow::onExitCleanup()
   }
   std::cout << "[GUI] - exiting. Cheerio :-)" << std::endl;
 
+  // Ensure that all the processes are killed
+  system("pkill ruby");
+  system("pkill scsynth");
+
 }
 
 void MainWindow::updateDocPane(QListWidgetItem *cur) {

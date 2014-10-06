@@ -39,6 +39,7 @@ class ExportDialog : public IODialog
         void connect_listeners();
         int save();
         int save_to_file(std::string filepath, std::string file_contents);
+        int ensure_dir(std::string dir);
 };
 
 #endif

@@ -882,12 +882,8 @@ void MainWindow::showWindow() {
   loadWorkspaces(file_to_load);
 
   QSettings settings("uk.ac.cam.cl", "Sonic Pi");
-  if(settings.value("first_time", 1).toInt() == 1) {
-    showMaximized();
-  } else {
-    showNormal();
 
-  }
+  showMaximized();
   changeShowLineNumbers();
 }
 

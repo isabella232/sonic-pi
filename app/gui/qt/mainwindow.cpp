@@ -350,7 +350,7 @@ MainWindow::MainWindow(QApplication &app, QSplashScreen &splash, std::string loa
   closeInfoAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_W));
   connect(closeInfoAct, SIGNAL(triggered()), this, SLOT(about()));
   infoWidg->addAction(closeInfoAct);
-  this->showNormal();
+  this->showMaximized();
 
 
 }

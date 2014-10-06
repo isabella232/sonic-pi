@@ -18,8 +18,8 @@ void ExportDialog::initialise() {
     save_dir = QDir::homePath().toUtf8().constData()
 		+ std::string("/Music-content/");
 
-    heading_label = new QLabel("Save where?");
-    subheading_label = new QLabel("Do you want to load from your Kano or the Internet?");
+    heading_label = new QLabel();
+    subheading_label = new QLabel();
     cancel_button = new QPushButton("&CANCEL", this);
     export_button = new QPushButton(this);
 

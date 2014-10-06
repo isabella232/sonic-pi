@@ -14,6 +14,8 @@ void IODialog::initialise() {
                          | Qt::CustomizeWindowHint);
     this->setWindowModality(Qt::ApplicationModal);
 
+    QRect app_geometry = static_cast<QWidget *>(parent())->geometry();
+    this->move(app_geometry.center() - rect().center());
 
     layout = new QGridLayout();
 

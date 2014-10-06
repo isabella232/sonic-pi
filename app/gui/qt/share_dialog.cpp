@@ -4,7 +4,9 @@
 #include "share_dialog.h"
 
 void ShareDialog::initialise() {
-	export_button->setText("SHARE");
+    export_button->setText("SHARE");
+    heading_label->setText("Share");
+    subheading_label->setText("Share your project with the world");
 }
 
 /**

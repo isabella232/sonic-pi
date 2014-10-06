@@ -47,18 +47,21 @@ int ExportDialog::save() {
     }
 
     std::string title = title_input->text().toUtf8().constData();
+    std::string filename = title;
+    std::replace(filename.begin(), filename.end(), ' ', '_');
+
     std::string desc = desc_input->toPlainText().toUtf8().constData();
-    std::string filename = save_dir + title;
+    std::string filepath = save_dir + filename;
 
     std::string json_data = "{"
-        "'title': '" + title + "',"
-        "'description': '" + desc + "'"
+        "\"title\": \"" + title + "\","
+        "\"description\": \"" + desc + "\""
     "}";
 
     ensure_dir(save_dir);
 
-    save_to_file(filename + std::string(".spi"), file_contents);
-    save_to_file(filename + std::string(".json"), json_data);
+    save_to_file(filepath + std::string(".spi"), file_contents);
+    save_to_file(filepath + std::string(".json"), json_data);
 
 	return 0;
 }

@@ -55,6 +55,8 @@ int ExportDialog::save() {
         "'description': '" + desc + "'"
     "}";
 
+    ensure_dir(save_dir);
+
     save_to_file(filename + std::string(".spi"), file_contents);
     save_to_file(filename + std::string(".json"), json_data);
 
@@ -65,6 +67,21 @@ int ExportDialog::save_to_file(std::string filepath, std::string file_contents) 
     std::ofstream file(filepath.c_str());
     file << file_contents;
     file.close();
+
+    return 0;
+}
+
+int ExportDialog::ensure_dir(std::string dir) {
+    std::string cmd = std::string("mkdir -p ")
+        + dir;
+
+    FILE * mkdir_proc;
+
+    if (!(mkdir_proc = popen(cmd.c_str(), "r"))) {
+        return -1;
+    }
+
+    pclose(mkdir_proc);
 
     return 0;
 }

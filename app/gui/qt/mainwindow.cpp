@@ -2243,6 +2243,10 @@ void MainWindow::onExitCleanup()
   }
   std::cout << "[GUI] - exiting. Cheerio :-)" << std::endl;
   std::cout.rdbuf(coutbuf); // reset to stdout before exiting
+
+  // Ensure that all the processes are killed
+  system("pkill ruby");
+  system("pkill scsynth");
 }
 
 void MainWindow::heartbeatOSC() {

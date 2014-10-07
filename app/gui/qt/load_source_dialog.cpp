@@ -13,6 +13,7 @@ LoadSourceDialog::~LoadSourceDialog()
 }
 
 void LoadSourceDialog::initialise() {
+    this->setWindowTitle("Load");
     heading_label = new QLabel("Load from where?");
     subheading_label = new QLabel("Do you want to load from your Kano or the Internet?");
     local_button = new QPushButton("&YOUR KANO", this);

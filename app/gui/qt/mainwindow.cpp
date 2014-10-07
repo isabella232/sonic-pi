@@ -443,6 +443,7 @@ MainWindow::MainWindow(QApplication &app, QSplashScreen &splash, std::string loa
   infoWidg->setLayout(infoLayout);
 
   infoWidg->setWindowFlags(Qt::Tool | Qt::WindowTitleHint | Qt::WindowCloseButtonHint | Qt::CustomizeWindowHint);
+  infoWidg->setWindowTitle("About Sonic Pi");
 
   QAction *closeInfoAct = new QAction(this);
   closeInfoAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_W));

@@ -15,7 +15,10 @@ void ShareDialog::initialise() {
  */
 
 int ShareDialog::export_file() {
+    this->setCursor(QCursor(Qt::WaitCursor));
+
     if (save() == -1) {
+        this->setCursor(QCursor(Qt::ArrowCursor));
         return -1;
     }
 
@@ -33,6 +36,7 @@ int ShareDialog::export_file() {
                     + std::string(" ")
                     + filepath.c_str();
     if (!(share_proc = popen(cmd.c_str(), "r"))) {
+        this->setCursor(QCursor(Qt::ArrowCursor));
         return -1;
     }
 
@@ -47,9 +51,11 @@ int ShareDialog::export_file() {
     int rc = pclose(share_proc);
     int status = WEXITSTATUS(rc);
 
+
     if (status != 0) {
         // Sharing failed.
         std::cout << "\nShare failed: " << std_out;
+        this->setCursor(QCursor(Qt::ArrowCursor));
         return -1;
     }
 

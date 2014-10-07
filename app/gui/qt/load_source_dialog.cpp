@@ -67,6 +67,8 @@ int LoadSourceDialog::load_from_local() {
 }
 
 int LoadSourceDialog::load_from_internet() {
+    this->setCursor(QCursor(Qt::WaitCursor));
+
     FILE * share_proc;
     char buff[512];
 
@@ -93,6 +95,7 @@ int LoadSourceDialog::load_from_internet() {
         || end == -1) {
 
         // No file returned
+        this->setCursor(QCursor(Qt::ArrowCursor));
         return -1;
     }
 

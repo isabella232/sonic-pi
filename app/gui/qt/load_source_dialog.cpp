@@ -50,7 +50,11 @@ int LoadSourceDialog::read_file(std::string filename) {
  */
 
 int LoadSourceDialog::load_from_local() {
-    QString filename = QFileDialog::getOpenFileName(this, tr("Load from your Kano"), QDir::homePath() + "/Music-content", tr("Sonic Pi Files (*.spi)"));
+    QString filename = QFileDialog::getOpenFileName(
+        this,
+        tr("Load from your Kano"),
+        QString::fromStdString(save_dir),
+        tr("Sonic Pi Files (*.spi)"));
 
     if (filename.isEmpty()) {
         return -1;

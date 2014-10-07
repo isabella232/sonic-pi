@@ -18,9 +18,11 @@ class IODialog : public QDialog {
     protected:
         QGridLayout * layout;
         std::string file_contents;
+        std::string save_dir;
 
         void initialise();
         void connect_listeners();
+        int ensure_dir(std::string dir);
 };
 
 #endif

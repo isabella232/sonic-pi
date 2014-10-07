@@ -33,13 +33,11 @@ class ExportDialog : public IODialog
 		QTextEdit * desc_input;
         QPushButton * cancel_button;
         QPushButton * export_button;
-        std::string save_dir;
 
         void initialise();
         void connect_listeners();
         int save();
         int save_to_file(std::string filepath, std::string file_contents);
-        int ensure_dir(std::string dir);
 };
 
 #endif

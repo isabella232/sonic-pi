@@ -44,3 +44,19 @@ int IODialog::ensure_dir(std::string dir) {
 
     return 0;
 }
+
+void IODialog::set_waiting(QWidget * window, std::vector<QPushButton *> buttons) {
+    window->setCursor(QCursor(Qt::WaitCursor));
+
+    for (std::vector<QPushButton *>::iterator button = buttons.begin(); button != buttons.end(); button++) {
+        (*button)->setDisabled(true);
+    }
+}
+
+void IODialog::set_active(QWidget * window, std::vector<QPushButton *> buttons) {
+    window->setCursor(QCursor(Qt::ArrowCursor));
+
+    for (std::vector<QPushButton *>::iterator button = buttons.begin(); button != buttons.end(); button++) {
+        (*button)->setDisabled(false);
+    }
+}

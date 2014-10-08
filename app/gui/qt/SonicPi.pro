@@ -59,3 +59,4 @@ RESOURCES += \
 
 ICON = images/app.icns
 LIBS         += -lqscintilla2
+QMAKE_CXXFLAGS     += -std=c++0x

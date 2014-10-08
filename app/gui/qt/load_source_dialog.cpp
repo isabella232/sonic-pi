@@ -67,7 +67,8 @@ int LoadSourceDialog::load_from_local() {
 }
 
 int LoadSourceDialog::load_from_internet() {
-    this->setCursor(QCursor(Qt::WaitCursor));
+    std::vector<QPushButton *> buttons = {local_button, remote_button};
+    set_waiting(this, buttons);
 
     FILE * share_proc;
     char buff[512];
@@ -95,7 +96,7 @@ int LoadSourceDialog::load_from_internet() {
         || end == -1) {
 
         // No file returned
-        this->setCursor(QCursor(Qt::ArrowCursor));
+        set_active(this, buttons);
         return -1;
     }
 

@@ -99,6 +99,7 @@ MainWindow::MainWindow(QApplication &app, QSplashScreen* splash, std::string loa
 {
   this->splash = splash;
 
+  this->setWindowIcon(QIcon("images/logo.png"));
   this->setUnifiedTitleAndToolBarOnMac(true);
   this->setWindowIcon(QIcon(":images/icon-smaller.png"));
 

@@ -95,6 +95,7 @@ MainWindow::MainWindow(QApplication &app, QMainWindow* splash, std::string load_
 #else
 MainWindow::MainWindow(QApplication &app, QSplashScreen &splash, std::string load_file) {
 #endif
+  this->setWindowIcon(QIcon("images/logo.png"));
   this->setUnifiedTitleAndToolBarOnMac(true);
   this->setWindowIcon(QIcon(":images/icon-smaller.png"));
 

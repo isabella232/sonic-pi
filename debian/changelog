@@ -1,3 +1,9 @@
+make-music (2.1-1) unstable; urgency=low
+
+  * Updated version to Sonic-Pi 2.1.1
+
+ -- Team Kano <dev@kano.me>  Tue, 16 Dec 2014 11:10:39 +0000
+
 make-music (2.0-1) unstable; urgency=low
 
   * Updated version to Sonic-Pi 2

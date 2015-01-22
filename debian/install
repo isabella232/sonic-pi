@@ -6,6 +6,7 @@ LICENSE_SonicPi /usr/share/sonic-pi
 
 kdesktop/SonicPi.lnk /usr/share/kano-desktop/kdesk/kdesktop/
 kdesktop/make-music.desktop /usr/share/applications/
+kdesktop/sonic-pi.xml /usr/share/mime/packages/
 icon/sonicpi.png /usr/share/kano-desktop/icons/
 icon/sonicpi.png /usr/share/icons/Kano/88x88/apps
 icon/SonicPi-hover.png /usr/share/kano-desktop/icons/

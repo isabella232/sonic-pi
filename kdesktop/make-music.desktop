@@ -2,7 +2,7 @@
 Encoding=UTF-8
 Version=1.0
 Type=Application
-Exec=/usr/bin/kano-launcher /usr/bin/make-music
+Exec=/usr/bin/kano-launcher '/usr/bin/make-music %f'
 Icon=/usr/share/kano-desktop/icons/sonicpi.png
 Terminal=false
 Name=Make Music

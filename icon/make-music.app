@@ -8,6 +8,7 @@
     "colour": "#5e96b3",
 
     "categories": ["code"],
+    "mime_type": "application/x-kano-make-music",
 
     "packages": [],
     "dependencies": ["make-music"],

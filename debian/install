@@ -9,5 +9,6 @@ kdesktop/make-music.desktop /usr/share/applications/
 kdesktop/sonic-pi.xml /usr/share/mime/packages/
 icon/sonicpi.png /usr/share/kano-desktop/icons/
 icon/sonicpi.png /usr/share/icons/Kano/88x88/apps
+icon/application-x-kano-make-music.png /usr/share/icons/Kano/88x88/mimetypes
 icon/SonicPi-hover.png /usr/share/kano-desktop/icons/
 icon/make-music.app /usr/share/applications

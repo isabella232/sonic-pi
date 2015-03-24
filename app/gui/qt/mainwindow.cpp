@@ -17,6 +17,7 @@
 #include <math.h>
 #include <sstream>
 #include <fstream>
+#include <pthread.h>
 
 // Qt stuff
 #include <QDir>
@@ -91,6 +92,7 @@ using namespace oscpkt;
 
 #include "mainwindow.h"
 #include "load_source_dialog.h"
+#include "export_dialog.h"
 #include "save_dialog.h"
 #include "share_dialog.h"
 
@@ -971,6 +973,10 @@ void MainWindow::runCode()
     outputPane->clear();
   }
 
+  pthread_t record_thread;
+  pthread_create(&record_thread, NULL, record_sample, NULL);
+  pthread_detach(record_thread);
+
   msg.pushStr(code);
   msg.pushStr(QString(tr("Workspace %1")).arg(tabs->currentIndex()).toStdString());
   sendOSC(msg);
@@ -978,6 +984,26 @@ void MainWindow::runCode()
   QTimer::singleShot(500, this, SLOT(unhighlightCode()));
 
 
+}
+
+void * MainWindow::record_sample(void *)
+{
+  /**
+   * Record an 8 second snippet.
+   * N.B. This is to be run in a pthread
+   */
+
+  Message rec_msg("/start-recording");
+  sendOSC(rec_msg);
+
+  sleep(8);
+
+  Message stop_rec_msg("/stop-recording");
+  sendOSC(stop_rec_msg);
+
+  Message save_msg("/save-recording");
+  save_msg.pushStr(SAMPLE_TMP_PATH);
+  sendOSC(save_msg);
 }
 
 void MainWindow::unhighlightCode()
@@ -1465,7 +1491,7 @@ void MainWindow::createToolBar()
   toolBar->addAction(saveAsAct);
   toolBar->addAction(shareAct);
   toolBar->addAction(loadAct);
-  toolBar->addAction(recAct);
+  // toolBar->addAction(recAct);
   toolBar->addWidget(spacer);
 
   toolBar->addAction(textDecAct);
@@ -1708,6 +1734,9 @@ void MainWindow::onExitCleanup()
     osc_thread.waitForFinished();
   }
   std::cout << "[GUI] - exiting. Cheerio :-)" << std::endl;
+
+  // Remove the temporary sample
+  std::remove(SAMPLE_TMP_PATH);
 
   // Ensure that all the processes are killed
   system("pkill ruby");

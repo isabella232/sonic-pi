@@ -9,6 +9,8 @@
 
 #include "io_dialog.h"
 
+#define SAMPLE_TMP_PATH "/tmp/sonic_pi.wav"
+
 class ExportDialog : public IODialog
 {
     Q_OBJECT

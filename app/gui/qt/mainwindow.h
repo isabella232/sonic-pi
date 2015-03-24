@@ -148,7 +148,7 @@ private:
     std::string number_name(int);
     std::string workspaceFilename(SonicPiScintilla* text);
     SonicPiScintilla* filenameToWorkspace(std::string filename);
-    void sendOSC(oscpkt::Message m);
+    static void sendOSC(oscpkt::Message m);
     void initPrefsWindow();
     void initDocsWindow();
     void setHelpText(QListWidgetItem *item, const QString filename);
@@ -162,6 +162,7 @@ private:
     QString readFile(QString name);
     QString rootPath();
     QsciScintilla * getCurrentWorkspace();
+    static void * record_sample(void *);
 
     void addUniversalCopyShortcuts(QTextEdit *te);
 

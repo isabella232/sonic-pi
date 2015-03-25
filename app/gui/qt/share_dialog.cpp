@@ -59,6 +59,17 @@ int ShareDialog::export_file() {
         return -1;
     }
 
+    /**
+     * Increment share count in Kano Profile
+     * Don't worry about if it succeeds
+     */
+    FILE *profile_proc;
+
+    cmd = std::string("/usr/bin/kano-profile-cli "
+                      "increment_app_state_variable make-music shared 1");
+    profile_proc = popen(cmd.c_str(), "r");
+    pclose(profile_proc);
+
 	this->accept();
 	return 0;
 }

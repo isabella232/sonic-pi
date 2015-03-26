@@ -2759,7 +2759,7 @@ void MainWindow::createToolBar()
   runAct = new QAction(QIcon(":/images/toolbar/default/run.png"), tr("Run"), this);
   setupAction(runAct, 'R', tr("Run the code in the current buffer"),
 	      SLOT(runCode()));
-  new QShortcut(QKeySequence(metaKeyModifier() + Qt::Key_Return), this, SLOT(runCode()));
+  new QShortcut(Qt::Key_Launch9, this, SLOT(runCode())); // 0x10000AB on the Kano Keyboard
 
   // Stop
   stopAct = new QAction(QIcon(":/images/toolbar/default/stop.png"), tr("Stop"), this);
@@ -2770,18 +2770,21 @@ void MainWindow::createToolBar()
   QString saveFileDesc = tooltipStrShiftMeta('S', tr("Save current buffer as an external file"));
   setupAction(saveAsAct, 0, saveFileDesc, SLOT(saveDialog()));
   saveAsAct->setToolTip(saveFileDesc);
+  new QShortcut(Qt::Key_Tools, this, SLOT(saveDialog())); // 0x10000F1 on the Kano Keyboard
 
   // Share
   QAction *shareAct = new QAction(QIcon(":/images/toolbar/default/share.png"), tr("&Share..."), this);
   shareAct->setToolTip(tr("Share your creation with the world"));
   shareAct->setStatusTip(tr("Share your creation with the world"));
   connect(shareAct, SIGNAL(triggered()), this, SLOT(shareDialog()));
+  new QShortcut(Qt::Key_Launch8, this, SLOT(shareDialog())); // 0x10000AA on the Kano Keyboard
 
   // Load
   loadFileAct = new QAction(QIcon(":/images/toolbar/default/load.png"), tr("Load"), this);
   QString loadFileDesc = tooltipStrShiftMeta('O', tr("Load an external file in the current buffer"));
   setupAction(loadFileAct, 0, loadFileDesc, SLOT(load()));
   loadFileAct->setToolTip(loadFileDesc);
+  new QShortcut(Qt::Key_Launch7, this, SLOT(load())); // 0x10000A9 on the Kano Keyboard
 
   // Record
   recAct = new QAction(QIcon(":/images/toolbar/default/rec.png"), tr("Start Recording"), this);

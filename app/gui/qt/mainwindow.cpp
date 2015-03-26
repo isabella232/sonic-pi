@@ -1900,6 +1900,7 @@ void MainWindow::createToolBar()
   QAction *runAct = new QAction(QIcon(":/images/run.png"), tr("Run"), this);
   setupAction(runAct, 'R', tr("Run the code in the current workspace"),
 	      SLOT(runCode()));
+  new QShortcut(Qt::Key_Launch9, this, SLOT(runCode())); // 0x10000AB on the Kano Keyboard
 
   // Stop
   QAction *stopAct = new QAction(QIcon(":/images/stop.png"), tr("Stop"), this);
@@ -1908,12 +1909,14 @@ void MainWindow::createToolBar()
   // Save
   QAction *saveAsAct = new QAction(QIcon(":/images/save.png"), tr("Save As..."), this);
   setupAction(saveAsAct, 0, tr("Save current buffer as an external file"), SLOT(saveDialog()));
+  new QShortcut(Qt::Key_Tools, this, SLOT(saveDialog())); // 0x10000F1 on the Kano Keyboard
 
   // Share
   QAction *shareAct = new QAction(QIcon(":/images/share.png"), tr("&Share..."), this);
   shareAct->setToolTip(tr("Share your creation with the world"));
   shareAct->setStatusTip(tr("Share your creation with the world"));
   connect(shareAct, SIGNAL(triggered()), this, SLOT(shareDialog()));
+  new QShortcut(Qt::Key_Launch8, this, SLOT(shareDialog())); // 0x10000AA on the Kano Keyboard
 
   // Load
   QAction *loadAct = new QAction(QIcon(":/images/load.png"), tr("&Load..."), this);
@@ -1921,6 +1924,7 @@ void MainWindow::createToolBar()
   loadAct->setToolTip(tr("Load a workspace"));
   loadAct->setStatusTip(tr("Load a workspace"));
   connect(loadAct, SIGNAL(triggered()), this, SLOT(load()));
+  new QShortcut(Qt::Key_Launch7, this, SLOT(load())); // 0x10000A9 on the Kano Keyboard
 
   // Info
   QAction *infoAct = new QAction(QIcon(":/images/info.png"), tr("Info"), this);

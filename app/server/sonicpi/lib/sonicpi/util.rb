@@ -148,7 +148,23 @@ module SonicPi
     end
 
     def project_path
-      @@project_path
+      return @@project_path if @@project_path
+      @@util_lock.synchronize do
+        return @@project_path if @@project_path
+        ## TODO: allow user to modify this for different projects
+        path = home_dir + '/store/default/'
+        ensure_dir(path)
+        ensure_challenges(path)
+        @@project_path = path
+        path
+      end
+    end
+
+    def ensure_challenges(project_path)
+      challenge_path = File.absolute_path("#{root_path}/challenges")
+      Dir["#{challenge_path}/*.spi"].each do |challenge|
+        FileUtils.cp_r challenge, project_path
+      end
     end
 
     def log_path

@@ -973,10 +973,6 @@ void MainWindow::runCode()
     outputPane->clear();
   }
 
-  pthread_t record_thread;
-  pthread_create(&record_thread, NULL, record_sample, NULL);
-  pthread_detach(record_thread);
-
   msg.pushStr(code);
   msg.pushStr(QString(tr("Workspace %1")).arg(tabs->currentIndex()).toStdString());
   sendOSC(msg);
@@ -984,26 +980,6 @@ void MainWindow::runCode()
   QTimer::singleShot(500, this, SLOT(unhighlightCode()));
 
 
-}
-
-void * MainWindow::record_sample(void *)
-{
-  /**
-   * Record an 8 second snippet.
-   * N.B. This is to be run in a pthread
-   */
-
-  Message rec_msg("/start-recording");
-  sendOSC(rec_msg);
-
-  sleep(8);
-
-  Message stop_rec_msg("/stop-recording");
-  sendOSC(stop_rec_msg);
-
-  Message save_msg("/save-recording");
-  save_msg.pushStr(SAMPLE_TMP_PATH);
-  sendOSC(save_msg);
 }
 
 void MainWindow::unhighlightCode()

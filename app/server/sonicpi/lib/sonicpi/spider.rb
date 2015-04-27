@@ -489,6 +489,9 @@ module SonicPi
           @run_start_time = now if num_running_jobs == 1
           __info "Starting run #{id}"
           code = PreParser.preparse(code)
+
+          self.recording_start
+
           eval(code, nil, info[:workspace] || 'eval', firstline)
           __schedule_delayed_blocks_and_messages!
         rescue Exception => e
@@ -516,6 +519,10 @@ module SonicPi
         deregister_job_and_return_subthreads(id)
         @user_jobs.job_completed(id)
         Kernel.sleep @mod_sound_studio.sched_ahead_time
+
+        self.recording_stop
+        self.recording_save("/tmp/sonic_pi.wav")
+
         __info "Completed run #{id}"
         @msg_queue.push({type: :job, jobid: id, action: :completed, jobinfo: info})
       end

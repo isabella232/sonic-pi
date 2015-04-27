@@ -777,6 +777,8 @@ module SonicPi
           end
           __info "Starting run #{id}" unless silent
           code = PreParser.preparse(code, SonicPi::Lang::Core.vec_fns)
+
+          self.recording_start
           code = "in_thread seed: 0 do\n" + code + "\nend"
           firstline -=1
           eval(code, nil, info[:workspace], firstline)
@@ -832,6 +834,10 @@ module SonicPi
         deregister_job_and_return_subthreads(id)
         @user_jobs.job_completed(id)
         Kernel.sleep default_sched_ahead_time
+
+        self.recording_stop
+        self.recording_save("/tmp/sonic_pi.wav")
+
         __info "Completed run #{id}" unless silent
         unless @user_jobs.any_jobs_running?
           __info "All runs completed" unless silent
@@ -840,7 +846,6 @@ module SonicPi
         end
 
         __msg_queue.push({type: :job, jobid: id, action: :completed, jobinfo: info})
-
       end
     end
 

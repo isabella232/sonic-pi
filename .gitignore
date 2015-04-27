@@ -37,6 +37,7 @@ app/gui/qt/qrc_help_files.cpp
 app/gui/qt/Sonic-Pi.app
 app/gui/qt/Sonic Pi.app
 app/gui/qt/build
+moc_*.cpp
 
 app/gui/qt/info
 app/gui/qt/qrc_info_files.cpp
@@ -67,6 +68,7 @@ app/gui/qt/Makefile
 \.#*
 .lein-plugins
 *~
+.*.swp
 
 # Native
 

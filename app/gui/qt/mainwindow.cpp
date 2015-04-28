@@ -2762,6 +2762,7 @@ void MainWindow::createToolBar()
   setupAction(runAct, 'R', tr("Run the code in the current buffer"),
 	      SLOT(runCode()));
   new QShortcut(Qt::Key_Launch9, this, SLOT(runCode())); // 0x10000AB on the Kano Keyboard
+  new QShortcut(ctrlKey('r'), this, SLOT(runCode())); // ctrl + r
 
   // Stop
   stopAct = new QAction(QIcon(":/images/toolbar/default/stop.png"), tr("Stop"), this);
@@ -2773,6 +2774,7 @@ void MainWindow::createToolBar()
   setupAction(saveAsAct, 0, saveFileDesc, SLOT(saveDialog()));
   saveAsAct->setToolTip(saveFileDesc);
   new QShortcut(Qt::Key_Tools, this, SLOT(saveDialog())); // 0x10000F1 on the Kano Keyboard
+  new QShortcut(ctrlKey('s'), this, SLOT(saveDialog())); // ctrl + s
 
   // Share
   QAction *shareAct = new QAction(QIcon(":/images/toolbar/default/share.png"), tr("&Share..."), this);
@@ -2780,6 +2782,7 @@ void MainWindow::createToolBar()
   shareAct->setStatusTip(tr("Share your creation with the world"));
   connect(shareAct, SIGNAL(triggered()), this, SLOT(shareDialog()));
   new QShortcut(Qt::Key_Launch8, this, SLOT(shareDialog())); // 0x10000AA on the Kano Keyboard
+  new QShortcut(ctrlKey('u'), this, SLOT(shareDialog())); // ctrl + u
 
   // Load
   loadFileAct = new QAction(QIcon(":/images/toolbar/default/load.png"), tr("Load"), this);

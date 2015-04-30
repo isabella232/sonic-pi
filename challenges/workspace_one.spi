@@ -1,21 +1,21 @@
 #------------------------------------------------------#
-# Challenge 1 : Play some funky beats
-# Get started with Sonic Pi
+# Challenge 2 : Note Scribbler
+# Start writing your own music!
 #------------------------------------------------------#
 
-# We're going to do something you've probably never done
-# before: we're going to make music using COMPUTER CODE! 
+# We need TWO ingredients to make music.
+# First we need PITCH. This is how high or low a note is.
 
-# Here's a funky tune to get you started. 
-# Click the play button in the top left to hear it!
+# 1. Type this below: play 80
 
-play 80
-sleep 1
-play 76
-sleep 1
-play 78
-sleep 1
-play 71
-sleep 1
 
-# Cool huh? Let's write our own! Open up Challenge 2. 
+
+
+
+
+# This will play the 80th note on the piano. Lower numbers
+# make the sound lower, and higher numbers make higher sounds!
+
+#************************************#
+#     Now press the play button      #
+#************************************#

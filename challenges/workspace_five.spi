@@ -1,11 +1,11 @@
 #------------------------------------------------------#
-# Challenge 5 : New instrument
-# Change the sound of your music!
+# Challenge 6 : Go Loopy!
+# Make your music repeat by magic
 #------------------------------------------------------#
 
-# Let's add a new instrument to the tune you just wrote! 
+# Let's get the computer to repeat the code we wrote earlier
 
-# 1. Type: with_synth "saw_beep"
+# 1. Type: 3. times do
 
 
 
@@ -14,10 +14,9 @@
 
 
 
+# 3. Type : end
 
 
-# with_synth let's us change the sound effect the computer
-# uses when it plays our song!
 
 #************************************#
 #     Now press the play button      #

@@ -1,24 +1,18 @@
 #------------------------------------------------------#
-# Challenge 3 : Time Master
-# Control your notes with time
+# Challenge 4 : Write some more!
+# Use your new skills to write a song.
 #------------------------------------------------------#
 
-# The second ingredient we need is DURATION. This is how
-# long we want each note to play for.
+# Use play + sleep to make your own song below:
+
+play 80
+sleep 1
 
 
-# 1. Type: play 80
-
-
-
-
-# 2. Type: sleep 1
+#You finish it off!...
 
 
 
-
-# This will make the note sound for 1 second. Smaller numbers
-# make the note play for less time. Why not experiment?
 
 
 

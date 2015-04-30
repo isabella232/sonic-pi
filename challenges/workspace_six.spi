@@ -1,21 +1,29 @@
 #------------------------------------------------------#
-# Challenge 6 : Go Loopy!
-# Make your music repeat by magic
+# Challenge 7 : Really Random!
+# Make music using random numbers
 #------------------------------------------------------#
 
-# Let's get the computer to repeat the code we wrote earlier
 
-# 1. Type: 3. times do
-
-
-
-# 2. Copy your song from the last challenge and 
-#    paste it below
+# 1. Type: loop do
 
 
 
-# 3. Type : end
+# 2. Type: play rrand(50,100)
 
+
+
+# 3. Type: sleep rrand(0,0.5)
+
+
+
+# 4. Type: end
+
+
+
+# rrand tells the computer to choose a random number
+# between the two numbers you set.
+
+# E.g. rrand(50,100) will choose a number between 50 and 100.
 
 
 #************************************#

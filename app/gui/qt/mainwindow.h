@@ -213,6 +213,8 @@ private:
 
     void addUniversalCopyShortcuts(QTextEdit *te);
 
+    void registerDBusConnections();
+
     QTcpSocket *clientSock;
     QFuture<void> osc_thread, server_thread;
     int protocol;

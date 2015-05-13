@@ -16,7 +16,7 @@ lessThan(QT_MAJOR_VERSION, 5): error("requires Qt 5")
 TARGET = 'sonic-pi'
 CONFIG += qscintilla2 qwt c++11 resources_big
 
-QT += core gui concurrent network opengl widgets
+QT += core gui concurrent network opengl widgets dbus
 
 # Linux only
 unix:!macx {
@@ -71,7 +71,8 @@ SOURCES += main.cpp \
            save_dialog.cpp \
            share_dialog.cpp \
            load_source_dialog.cpp \
-           audio_tools.cpp
+           audio_tools.cpp \
+           dbus_actions.cpp
 
 HEADERS  += mainwindow.h \
             oscpkt.hh \
@@ -94,7 +95,8 @@ HEADERS  += mainwindow.h \
             save_dialog.h \
             share_dialog.h \
             load_source_dialog.h \
-            audio_tools.h
+            audio_tools.h \
+            dbus_actions.h
 
 TRANSLATIONS = lang/sonic-pi_bs.ts \
                lang/sonic-pi_ca.ts \

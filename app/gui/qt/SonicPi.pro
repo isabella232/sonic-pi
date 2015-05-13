@@ -26,6 +26,8 @@
 
 TARGET = 'sonic-pi'
 
+QT       += core gui concurrent network dbus
+
 QT += core gui concurrent network
 greaterThan(QT_MAJOR_VERSION, 4) {
   QT += widgets
@@ -78,7 +80,8 @@ SOURCES += main.cpp \
            save_dialog.cpp \
            share_dialog.cpp \
            load_source_dialog.cpp \
-           audio_tools.cpp
+           audio_tools.cpp \
+           dbus_actions.cpp
 
 win32 {
 # have to link these explicitly for some reason
@@ -104,7 +107,8 @@ HEADERS  += mainwindow.h \
             save_dialog.h \
             share_dialog.h \
             load_source_dialog.h \
-            audio_tools.h
+            audio_tools.h \
+            dbus_actions.h
 
 TRANSLATIONS = lang/sonic-pi_de.ts \
                lang/sonic-pi_is.ts \

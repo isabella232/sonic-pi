@@ -63,6 +63,7 @@
 #include <QScrollBar>
 #include <QSignalMapper>
 #include <QSplitter>
+#include <QtDBus/QtDBus>
 
 // QScintilla stuff
 #include <Qsci/qsciapis.h>
@@ -82,6 +83,9 @@
 #include "oscpkt.hh"
 #include "udp.hh"
 using namespace oscpkt;
+
+#include "dbus_actions.h"
+
 
 // OS specific stuff
 #if defined(Q_OS_WIN)
@@ -565,6 +569,15 @@ void MainWindow::escapeWorkspaces() {
     workspaces[w]->escapeAndCancelSelection();
     workspaces[w]->clearLineMarkers();
   }
+  registerDBusConnections();
+
+}
+
+void MainWindow::registerDBusConnections() {
+    DbusActionsAdaptor *test_adaptor = new DbusActionsAdaptor(this);
+    QDBusConnection connection = QDBusConnection::sessionBus();
+    connection.registerObject("/me/kano/sonicpi", test_adaptor, QDBusConnection::ExportAllSlots);
+    connection.registerService("me.kano.sonicpi");
 }
 
 void MainWindow::changeTab(int id){

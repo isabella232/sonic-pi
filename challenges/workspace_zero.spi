@@ -7,7 +7,7 @@
 # before: we're going to make music using COMPUTER CODE! 
 
 # Here's a funky tune to get you started. 
-# Click the play button in the top left to hear it!
+# Click the run button in the top left to hear it!
 
 play 80
 sleep 1

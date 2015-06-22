@@ -12,7 +12,7 @@
 
     "packages": [],
     "dependencies": ["make-music"],
-    "launch_command": "make-music",
+    "launch_command": "kano-tracker-ctl session run make-music make-music",
     "overrides": [],
     "desktop": false
 }

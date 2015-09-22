@@ -1,3 +1,9 @@
+make-music (2.7-0) unstable; urgency=low
+
+  * Updated version to Sonic-Pi 2.7.0 (Rerezzed)
+
+ -- Team Kano <dev@kano.me>  Tue, 22 Sep 2015 15:00:00 +0000
+
 make-music (2.5-0) unstable; urgency=low
 
   * Updated version to Sonic-Pi 2.5.0 (Craft)

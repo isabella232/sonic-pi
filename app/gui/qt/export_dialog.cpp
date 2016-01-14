@@ -20,9 +20,13 @@ void ExportDialog::initialise() {
     export_button = new QPushButton(this);
 
 	title_input = new QLineEdit();
+  title_input->setMaxLength(200);
 	title_input->setPlaceholderText("Title");
-	desc_input = new QTextEdit();
+
+  desc_input = new QTextEdit();
 	// desc_input->setPlaceholderText("Description");
+    QTextDocument *doc = desc_input->document();
+    connect(doc, SIGNAL(contentsChanged()), this, SLOT(limit_description()));
 
     layout->addWidget(heading_label, 0, 0, 1, 2);
     layout->addWidget(subheading_label, 1, 0, 1, 2);
@@ -75,7 +79,17 @@ int ExportDialog::save_to_file(std::string filepath, std::string file_contents) 
  */
 
 int ExportDialog::export_file() {
-	return 0;
+	  return 0;
+};
+
+int ExportDialog::limit_description() {
+    QString desc = desc_input->toPlainText();
+    if (desc.size() > 500) {
+        desc.chop(desc.size() - 500);
+        desc_input->setPlainText(desc);
+        desc_input->moveCursor(QTextCursor::End);
+    }
+	  return 0;
 };
 
 /**

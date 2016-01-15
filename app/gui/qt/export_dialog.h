@@ -27,8 +27,8 @@ class ExportDialog : public IODialog
         void set_file_contents(std::string contents);
 
     protected slots:
-	    virtual int export_file();
-      int limit_description();
+	      virtual int export_file();
+        int limit_description();
 
     protected:
         QLabel * heading_label;

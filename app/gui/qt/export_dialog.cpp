@@ -9,8 +9,8 @@ ExportDialog::~ExportDialog()
     delete subheading_label;
     delete cancel_button;
     delete export_button;
-	delete title_input;
-	delete desc_input;
+    delete title_input;
+    delete desc_input;
 }
 
 void ExportDialog::initialise() {
@@ -19,15 +19,19 @@ void ExportDialog::initialise() {
     cancel_button = new QPushButton("&CANCEL", this);
     export_button = new QPushButton(this);
 
-	title_input = new QLineEdit();
-	title_input->setPlaceholderText("Title");
-	desc_input = new QTextEdit();
-	// desc_input->setPlaceholderText("Description");
+    title_input = new QLineEdit();
+    title_input->setMaxLength(200);
+    title_input->setPlaceholderText("Title");
+
+    desc_input = new QTextEdit();
+    // desc_input->setPlaceholderText("Description");
+    QTextDocument *doc = desc_input->document();
+    connect(doc, SIGNAL(contentsChanged()), this, SLOT(limit_description()));
 
     layout->addWidget(heading_label, 0, 0, 1, 2);
     layout->addWidget(subheading_label, 1, 0, 1, 2);
-	layout->addWidget(title_input, 2, 0, 1, 2);
-	layout->addWidget(desc_input, 3, 0, 1, 2);
+    layout->addWidget(title_input, 2, 0, 1, 2);
+    layout->addWidget(desc_input, 3, 0, 1, 2);
     layout->addWidget(cancel_button, 4, 0);
     layout->addWidget(export_button, 4, 1);
 }
@@ -59,7 +63,7 @@ int ExportDialog::save() {
     AudioTools::convert_wav_to_ogg(SAMPLE_TMP_PATH,
                                    filepath + std::string(".ogg"));
 
-	return 0;
+    return 0;
 }
 
 int ExportDialog::save_to_file(std::string filepath, std::string file_contents) {
@@ -75,7 +79,17 @@ int ExportDialog::save_to_file(std::string filepath, std::string file_contents) 
  */
 
 int ExportDialog::export_file() {
-	return 0;
+    return 0;
+};
+
+int ExportDialog::limit_description() {
+    QString desc = desc_input->toPlainText();
+    if (desc.size() > 500) {
+        desc.chop(desc.size() - 500);
+        desc_input->setPlainText(desc);
+        desc_input->moveCursor(QTextCursor::End);
+    }
+    return 0;
 };
 
 /**

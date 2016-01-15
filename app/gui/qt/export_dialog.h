@@ -5,6 +5,7 @@
 #include <QPushButton>
 #include <QLineEdit>
 #include <QTextEdit>
+#include <QTextDocument>
 #include <string>
 
 #include "io_dialog.h"
@@ -26,7 +27,8 @@ class ExportDialog : public IODialog
         void set_file_contents(std::string contents);
 
     protected slots:
-	    virtual int export_file();
+	      virtual int export_file();
+        int limit_description();
 
     protected:
         QLabel * heading_label;

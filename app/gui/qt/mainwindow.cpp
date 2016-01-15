@@ -1787,15 +1787,10 @@ void MainWindow::changeRPSystemVol(int)
   // do nothing
 #else
   //assuming Raspberry Pi
-  QProcess *p = new QProcess();
-  float v = (float) val;
-  // handle the fact that the amixer percentage range isn't linear
-  float vol_float = std::pow(v/100.0, (float)1./3.) * 100.0;
-  std::ostringstream ss;
-  ss << vol_float;
-  statusBar()->showMessage(tr("Updating System Volume..."), 2000);
-  QString prog = "amixer cset numid=1 " + QString::fromStdString(ss.str()) + '%';
-  p->start(prog);
+
+  /**
+   * Do nothing for now - maybe implement properly later.
+   */
 #endif
 
 }

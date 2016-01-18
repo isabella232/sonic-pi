@@ -13,6 +13,12 @@ case "$1" in
         # Create Symlink
         ln -s /usr/share/sonic-pi/app/gui/qt/sonic-pi /usr/bin/make-music
 
+        if `dpkg --compare-versions $2 lt 2.9-0`; then
+            # v2.9-0: New defaults for workspace size so remove old ones
+            find /home -path /home/*/.config/uk.ac.cam.cl/Sonic\ Pi.conf \
+                -exec sed -ri '/^workspace[[:digit:]]+zoom=[[:digit:]]+$/d' {} \;
+        fi
+
         ;;
 esac
 

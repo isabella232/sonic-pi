@@ -1776,7 +1776,7 @@ void MainWindow::changeGUITransparency(int)
 
 
 #if defined(Q_OS_LINUX)
-void MainWindow::changeRPSystemVol(int val)
+void MainWindow::changeRPSystemVol(int)
 #else
 void MainWindow::changeRPSystemVol(int)
 #endif

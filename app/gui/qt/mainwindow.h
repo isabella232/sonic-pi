@@ -127,6 +127,7 @@ private slots:
     bool saveDialog();
     bool shareDialog();
     void load();
+    void load_share(const QString share_filename);
     void about();
     void help();
     void onExitCleanup();

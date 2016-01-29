@@ -34,6 +34,9 @@ class DbusActionsAdaptor: public QDBusAbstractAdaptor
 "    <method name=\"save\"/>\n"
 "    <method name=\"share\"/>\n"
 "    <method name=\"load\"/>\n"
+"    <method name=\"load_share\">\n"
+"      <arg direction=\"in\" type=\"s\"/>\n"
+"    </method>"
 "    <method name=\"make\"/>\n"
 "  </interface>\n"
         "")
@@ -44,6 +47,7 @@ public:
 public: // PROPERTIES
 public Q_SLOTS: // METHODS
     void load();
+    void load_share(const QString share_filename);
     void make();
     void save();
     void share();

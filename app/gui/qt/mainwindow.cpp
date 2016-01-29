@@ -1262,6 +1262,38 @@ void MainWindow::load()
     delete load_from_dialog;
 }
 
+
+/*
+ *   load_share(share_filename)
+ *
+ *   This function loads a filename containing the code for a SonicPi project
+ *   and unfolds it into the current workspace.
+ *
+ */
+void MainWindow::load_share(const QString share_filename)
+{
+    QFile sharedCreation(share_filename);
+
+    if (!sharedCreation.exists() || !sharedCreation.open(QIODevice::ReadOnly | QIODevice::Text)) {
+      QMessageBox load_failed;
+      load_failed.setText(QString(tr("The Shared creation file could not be loaded: %1").arg(share_filename)));
+      load_failed.exec();
+    }
+    else {
+      // Ask confirmation before removing the current creation
+      QMessageBox::StandardButton reply;
+      reply = QMessageBox::question(this, tr("Loading a share"),
+				    tr("Are you sure you want to load this share? You will lose the current workspace"),
+				    QMessageBox::Yes|QMessageBox::No);
+
+      if (reply == QMessageBox::Yes) {
+	QTextStream shared_code(&sharedCreation);
+	getCurrentWorkspace()->setText(sharedCreation.readAll());
+      }
+      sharedCreation.close();
+    }
+}
+
 void MainWindow::sendOSC(Message m)
 {
   int TIMEOUT = 30000;

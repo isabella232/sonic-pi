@@ -1,9 +1,3 @@
-make-music (2.10-0) unstable; urgency=low
-
-  * Added functionality to load a Kano World shared creation
-
- -- Team Kano <dev@kano.me>  Mon, 28 Jan 2016 20:22:00 +0100
-
 make-music (2.9-0) unstable; urgency=low
 
   * Updated version to Sonic-Pi 2.9.0 (Venster)

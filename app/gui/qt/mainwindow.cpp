@@ -1884,6 +1884,12 @@ void MainWindow::resetErrorPane() {
   errorPane->hide();
 }
 
+void MainWindow::load_share(const QString share_filename)
+{
+    // TODO: unfold the file into the workspace.
+    getCurrentWorkspace()->setText(share_filename);
+}
+
 void MainWindow::runBufferIdx(int idx)
 {
   QMetaObject::invokeMethod(tabs, "setCurrentIndex", Q_ARG(int, idx));

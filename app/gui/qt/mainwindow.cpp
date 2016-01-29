@@ -1283,14 +1283,14 @@ void MainWindow::load_share(const QString share_filename)
       // Ask confirmation before removing the current creation
       QMessageBox::StandardButton reply;
       reply = QMessageBox::question(this, tr("Loading a share"),
-				    tr("Are you sure you want to load this share? You will loose the current workspace"),
+				    tr("Are you sure you want to load this share? You will lose the current workspace"),
 				    QMessageBox::Yes|QMessageBox::No);
 
       if (reply == QMessageBox::Yes) {
 	QTextStream shared_code(&sharedCreation);
 	getCurrentWorkspace()->setText(sharedCreation.readAll());
-	sharedCreation.close();
       }
+      sharedCreation.close();
     }
 }
 

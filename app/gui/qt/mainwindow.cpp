@@ -418,7 +418,7 @@ void MainWindow::setupWindowStructure() {
     QShortcut *downcaseWord= new QShortcut(metaKey('l'), workspace);
     connect(downcaseWord, SIGNAL(activated()), workspace, SLOT(downcaseWordOrSelection()));
 
-    QString w = QString(tr("Challenge %1")).arg(QString::number(ws));
+    QString w = QString(tr("Challenge %1")).arg(QString::number(ws + 1));
     workspaces[ws] = workspace;
     tabs->addTab(workspace, w);
   }

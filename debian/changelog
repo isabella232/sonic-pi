@@ -1,3 +1,9 @@
+make-music (2.10-0) unstable; urgency=low
+
+  * Updated version to Sonic-Pi 2.10.0 (Cowbell)
+
+ -- Team Kano <dev@kano.me>  Tue, 07 Jun 2016 14:00:00 +0000
+
 make-music (2.9-0) unstable; urgency=low
 
   * Updated version to Sonic-Pi 2.9.0 (Venster)

@@ -127,7 +127,7 @@ private slots:
     bool saveDialog();
     bool shareDialog();
     void load();
-    void load_share(const QString share_filename);
+    void load_share(const QString share_filename, const bool force = false);
     void about();
     void help();
     void onExitCleanup();
@@ -199,7 +199,7 @@ private:
     void writeSettings();
     void loadFile(const QString &fileName, SonicPiScintilla* &text);
     bool saveFile(const QString &fileName, SonicPiScintilla* text);
-    void loadWorkspaces(std::string file_path = "");
+    void loadWorkspaces();
     void saveWorkspaces();
     std::string number_name(int);
     std::string workspaceFilename(SonicPiScintilla* text);

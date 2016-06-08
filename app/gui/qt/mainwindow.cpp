@@ -218,7 +218,7 @@ MainWindow::MainWindow(QApplication &app, bool i18n, QSplashScreen* splash, std:
   //setup autocompletion
   autocomplete->loadSamples(sample_path);
 
-  file_to_load = load_file;
+  this->file_to_load = load_file;
 
   is_recording = false;
   show_rec_icon_a = false;
@@ -894,7 +894,10 @@ void MainWindow::splashClose() {
 
 void MainWindow::showWindow() {
   splashClose();
-  loadWorkspaces(file_to_load);
+  loadWorkspaces();
+
+  if (!this->file_to_load.empty())
+    this->load_share(this->file_to_load, true);
 
   QSettings settings("uk.ac.cam.cl", "Sonic Pi");
 
@@ -1342,7 +1345,7 @@ std::string MainWindow::workspaceFilename(SonicPiScintilla* text)
   return "default";
 }
 
-void MainWindow::loadWorkspaces(std::string file_path)
+void MainWindow::loadWorkspaces()
 {
   std::cout << "[GUI] - loading workspaces" << std::endl;
 
@@ -1350,14 +1353,11 @@ void MainWindow::loadWorkspaces(std::string file_path)
     Message msg("/load-buffer");
     msg.pushStr(guiID.toStdString());
     std::string s = "workspace_" + number_name(i);
-      if (i == 0
-          && file_path.compare("")) {
-	    s = file_path;
-      }
     msg.pushStr(s);
     sendOSC(msg);
   }
 }
+
 
 void MainWindow::saveWorkspaces()
 {
@@ -1463,28 +1463,43 @@ void MainWindow::load()
  *   and unfolds it into the current workspace.
  *
  */
-void MainWindow::load_share(const QString share_filename)
+void MainWindow::load_share(const QString share_filename, const bool force)
 {
-    QFile sharedCreation(share_filename);
+    QFile shared_creation(share_filename);
 
-    if (!sharedCreation.exists() || !sharedCreation.open(QIODevice::ReadOnly | QIODevice::Text)) {
-      QMessageBox load_failed;
-      load_failed.setText(QString(tr("The Shared creation file could not be loaded: %1").arg(share_filename)));
-      load_failed.exec();
+    if (!shared_creation.exists()
+            || !shared_creation.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QMessageBox load_failed;
+        load_failed.setText(
+            QString(
+                tr("The Shared creation file could not be loaded: %1")
+                .arg(share_filename)
+            )
+        );
+        load_failed.exec();
+        return;
     }
-    else {
-      // Ask confirmation before removing the current creation
-      QMessageBox::StandardButton reply;
-      reply = QMessageBox::question(this, tr("Loading a share"),
-				    tr("Are you sure you want to load this share? You will lose the current workspace"),
-				    QMessageBox::Yes|QMessageBox::No);
 
-      if (reply == QMessageBox::Yes) {
-	QTextStream shared_code(&sharedCreation);
-	getCurrentWorkspace()->setText(sharedCreation.readAll());
-      }
-      sharedCreation.close();
+    QMessageBox::StandardButton reply;
+
+    if (!force) {
+        // Ask confirmation before removing the current creation
+        reply = QMessageBox::question(
+            this,
+            tr("Loading a share"),
+            tr("Are you sure you want to load this share? "
+                "You will lose the current workspace"),
+            QMessageBox::Yes | QMessageBox::No
+        );
     }
+
+    if (force || reply == QMessageBox::Yes) {
+        this->changeTab(this->workspace_max - 1);
+        QTextStream shared_code(&shared_creation);
+        this->getCurrentWorkspace()->setText(shared_creation.readAll());
+    }
+
+    shared_creation.close();
 }
 
 void MainWindow::sendOSC(Message m)

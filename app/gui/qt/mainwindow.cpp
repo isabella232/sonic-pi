@@ -1451,6 +1451,7 @@ void MainWindow::load()
     int rc = load_from_dialog->exec();
 
     if (rc == QDialog::Accepted) {
+        this->changeTab(this->workspace_max - 1);
         getCurrentWorkspace()->setText(QString::fromStdString(load_from_dialog->get_file_contents()));
     }
 

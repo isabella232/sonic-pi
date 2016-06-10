@@ -415,13 +415,20 @@ module SonicPi
     def __load_buffer(id)
       id = id.to_s
       raise "Aborting load: file name is blank" if  id.empty?
+
+      challenge = "#{challenge_path}/#{id}.spi"
       path = project_path + id + '.spi'
+
       s = "# Welcome to Sonic Pi #{@version.to_s}\n\n"
+
       if File.exists? path
         s = IO.read(path)
       elsif File.exists? id
         s = IO.read(id)
+      elsif File.exists? challenge
+        s = IO.read(challenge)
       end
+
       __replace_buffer(id, s)
     end
 

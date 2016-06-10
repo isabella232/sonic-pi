@@ -1156,7 +1156,6 @@ void MainWindow::splashClose() {
 
 void MainWindow::showWindow() {
   splashClose();
-  loadWorkspaces();
 
   if (!this->file_to_load.empty())
     this->load_share(QString::fromStdString(this->file_to_load), true);
@@ -1766,6 +1765,9 @@ void MainWindow::loadWorkspaces(std::string file_path)
   std::cout << "[GUI] - loading workspaces" << std::endl;
 
   for(int i = 0; i < workspace_max; i++) {
+    if (i == workspace_max - 1 && !this->file_to_load.empty())
+        continue;
+
     Message msg("/load-buffer");
     msg.pushStr(guiID.toStdString());
     std::string s = "workspace_" + number_name(i);
@@ -1924,7 +1926,8 @@ void MainWindow::load_share(const QString share_filename, const bool force)
     if (force || reply == QMessageBox::Yes) {
         this->changeTab(this->workspace_max - 1);
         QTextStream shared_code(&shared_creation);
-        this->getCurrentWorkspace()->setText(shared_creation.readAll());
+        QString code = shared_code.readAll();
+        this->getCurrentWorkspace()->setText(code);
     }
 
     shared_creation.close();

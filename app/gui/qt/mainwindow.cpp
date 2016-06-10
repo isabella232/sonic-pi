@@ -1159,7 +1159,7 @@ void MainWindow::showWindow() {
   loadWorkspaces();
 
   if (!this->file_to_load.empty())
-    this->load_share(this->file_to_load, true);
+    this->load_share(QString::fromStdString(this->file_to_load), true);
 
   QSettings settings("sonic-pi.net", "gui-settings");
 

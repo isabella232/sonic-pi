@@ -24,6 +24,8 @@ Building:
 * `cmake`
 * `libboost1.58-dev`
 * `libqt5svg5-dev`
+* `pkg-config`
+* `libsndfile1-dev`
 
 Running:
 
@@ -46,7 +48,7 @@ This will take some time.
 
 ### Qt GUI
 
-`cd` into the directory `app/gui/qt/` and run the script `rp-build-app`. This will also take some time.
+`cd` into the directory `app/gui/qt/` and run the script `rp-build-app`. This will also take some time. Make sure you quit all apps as this process uses a lot of RAM and the compile could fail midway if the Pi runs out.
 
 ### Erlang Scheduler
 

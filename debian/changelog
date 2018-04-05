@@ -1,4 +1,4 @@
-make-music (3.14.0-0) unstable; urgency=low
+make-music (4.0.0-0) unstable; urgency=low
 
   * Applied changes from v3.9.2 es_AR backports to latest
   * Adapted dependency to also build and install on Debian Stretch

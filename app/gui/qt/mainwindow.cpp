@@ -2918,7 +2918,7 @@ void MainWindow::createToolBar()
 
   toolBar->addAction(saveAsAct);
   toolBar->addAction(shareAct);
-  toolBar->addAction(loadAct);
+  toolBar->addAction(loadFileAct);
   // toolBar->addAction(recAct);
   toolBar->addWidget(spacer);
 
@@ -3247,8 +3247,8 @@ void MainWindow::onExitCleanup()
   std::remove(SAMPLE_TMP_PATH);
 
   // Ensure that all the processes are killed
-  system("pkill ruby");
-  system("pkill scsynth");
+  // system("pkill ruby");
+  // system("pkill scsynth");
 }
 
 void MainWindow::heartbeatOSC() {

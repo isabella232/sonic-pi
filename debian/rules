@@ -1,8 +1,26 @@
 #!/usr/bin/make -f
 
+OSMID_DIR=app/server/native/linux/osmid
+ERLANG_DIR=app/server/erlang
+QT_DIR=app/gui/qt
+RUBY_BIN_DIR=app/server/ruby/bin
+
 %:
 	dh $@
 
 override_dh_auto_build:
-	app/server/bin/compile-extensions.rb
-	app/gui/qt/rp-build-app
+	mkdir -p $(OSMID_DIR)
+	cp /usr/bin/m2o $(OSMID_DIR)
+	cp /usr/bin/o2m $(OSMID_DIR)
+
+	cd $(ERLANG_DIR) && erlc osc.erl
+	cd $(ERLANG_DIR) && erlc pi_server.erl
+
+	$(RUBY_BIN_DIR)/compile-extensions.rb
+	$(RUBY_BIN_DIR)/i18n-tool.rb -t
+	cp -f $(QT_DIR)/ruby_help.tmpl $(QT_DIR)/ruby_help.h
+	$(RUBY_BIN_DIR)/qt-doc.rb -o $(QT_DIR)/ruby_help.h
+
+	cd $(QT_DIR) && lrelease SonicPi.pro
+	cd $(QT_DIR) && qmake -qt=qt5 SonicPi.pro
+	cd $(QT_DIR) && make -j $(shell nproc)

@@ -3,13 +3,66 @@ Maintainer: Team Kano <dev@kano.me>
 Section: sound
 Priority: optional
 Standards-Version: 3.9.4
-Build-Depends: debhelper (>=9.0.0), qt4-dev-tools, libqt4-dev, libffi-dev, libqscintilla2-dev,
- ruby (>=1.9.3), ruby-dev, make, cmake, libsndfile1-dev, pkg-config
+Build-Depends:
+    debhelper (>=9.0.0),
+    build-essential,
+    aubio-sonicpi,
+    osmid-sonicpi,
+    supercollider-sonicpi,
+    sc3-plugins-sonicpi,
+    g++,
+    make,
+    cmake,
+    curl,
+    pkg-config,
+    python,
+    ruby-dev,
+    erlang-base,
+    openssl,
+    zlib1g-dev,
+    qt5-qmake,
+    qt5-default,
+    qtbase5-dev-tools,
+    qttools5-dev-tools,
+    qttools5-dev,
+    qtdeclarative5-dev,
+    qtpositioning5-dev,
+    qtmultimedia5-dev,
+    libqt5sensors5-dev,
+    libqt5svg5-dev,
+    libqt5scintilla2-dev,
+    libqt5opengl5-dev,
+    libqt5webkit5-dev,
+    libffi-dev,
+    libqwt-qt5-dev,
+    libboost-all-dev,
+    libsndfile1-dev,
+    libcurl4-openssl-dev,
+    libhttp-parser-dev,
+    libssh2-1-dev,
+    libjack-jackd2-dev,
+    libsndfile1-dev,
+    libavahi-client-dev,
+    libicu-dev,
+    libreadline6-dev,
+    libxt-dev,
+    libudev-dev
 
 Package: make-music
 Architecture: all
-Depends: ${shlibs:Depends}, ${misc:Depends}, libc6, supercollider, jackd2,
- ruby (>=1.9.3), libqscintilla2-11 | libqscintilla2-12v5, libqtgui4, libqt4-network, libqtdbus4,
- kano-toolset (>= 1.2-2), kano-profile (>=2.1-1), libsndfile1, kano-webengine (>= 3.9.0-1)
+Depends:
+    ${shlibs:Depends},
+    ${misc:Depends},
+    aubio-sonicpi,
+    osmid-sonicpi,
+    supercollider-sonicpi,
+    sc3-plugins-sonicpi,
+    ruby (>=1.9.3),
+    erlang,
+    libqt5scintilla2-12v5,
+    libsndfile1,
+    kano-toolset (>= 1.2-2),
+    kano-profile (>=2.1-1),
+    kano-webengine (>= 3.9.0-1)
 Description: Make Music with a music programming environment
  A programatic approach to making music based on Sam Aaron's Sonic Pi

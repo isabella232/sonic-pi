@@ -21,7 +21,7 @@ echo "We're working to make this script a one shot solution for all Linux platfo
 echo "Please direct rage and suggestions to Factoid in (https://gitter.im/samaaron/sonic-pi)"
 
 #Install dependencies for building supercollider, as well as qt5 and supporting libraries for gui
-sudo apt-get install -y \
+apt-get install -y \
      g++ ruby ruby-dev pkg-config git build-essential libjack-jackd2-dev \
      libsndfile1-dev libasound2-dev libavahi-client-dev libicu-dev \
      libreadline6-dev libfftw3-dev libxt-dev libudev-dev cmake libboost1.58-dev \
@@ -57,8 +57,8 @@ git checkout Version-${SUPERCOLLIDER_VERSION}
 git submodule init && git submodule update
 mkdir -p build
 cd build
-cmake -DSC_EL=no ..
-make
+cmake -DSC_EL=no -DSC_IDE=no -DSYSTEM_BOOST=yes -DSYSTEM_YAMLCPP=yes ..
+make -j $(nproc)
 sudo make install
 #This should install to /usr/local/
 
@@ -72,7 +72,7 @@ cp -r external_libraries/nova-simd/* source/VBAPUGens
 mkdir -p build
 cd build
 cmake -DSC_PATH=/usr/local/include/SuperCollider -DCMAKE_INSTALL_PREFIX=/usr/local -DCMAKE_BUILD_TYPE=Release ..
-make
+make -j $(nproc)
 sudo make install
 
 #Install libaubio (apt-get version is too old)
@@ -93,7 +93,7 @@ git checkout ${OSMID_VERSION}
 mkdir -p build
 cd build
 cmake ..
-make
+make -j $(nproc)
 mkdir -p ${OSMID_DIR}
 install m2o o2m -t ${OSMID_DIR}
 
@@ -124,4 +124,4 @@ cp -f ruby_help.tmpl ruby_help.h
 ../../server/bin/qt-doc.rb -o ruby_help.h
 lrelease SonicPi.pro
 qmake -qt=qt5 SonicPi.pro
-make
+make -j $(nproc)

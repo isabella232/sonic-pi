@@ -2,7 +2,3 @@
 
 %:
 	dh $@
-
-override_dh_auto_build:
-	app/server/bin/compile-extensions.rb
-	app/gui/qt/rp-build-app

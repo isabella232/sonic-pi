@@ -1,9 +1,3 @@
-app /usr/share/sonic-pi
-etc /usr/share/sonic-pi
-songs /usr/share/sonic-pi
-challenges /usr/share/sonic-pi
-LICENSE_SonicPi /usr/share/sonic-pi
-
 kdesktop/SonicPi.lnk /usr/share/kano-desktop/kdesk/kdesktop/
 kdesktop/sonic-pi.xml /usr/share/mime/packages/
 icon/sonicpi.png /usr/share/kano-desktop/icons/
